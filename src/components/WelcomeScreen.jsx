@@ -15,6 +15,7 @@ export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
       transition={{ duration: 0.6 }}
       style={{ width: "100%", maxWidth: 500 }}
     >
@@ -29,14 +30,13 @@ export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
       >
         <CardContent>
           <Typography variant="h4" gutterBottom>
-            🎮 Quiz Interactivo - Desarrollado por Jorge Patricio Santamaría Cherrez
+            🎮 Quiz Interactivo - Desarrollado por Jorge Patricio Santamaría
+            Cherrez
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Responde 10 preguntas al azar.  
-            ¡Demuestra tu conocimiento!
+            Responde 10 preguntas al azar. ¡Demuestra tu conocimiento!
           </Typography>
 
-          {/* Selección de dificultad */}
           <Stack mt={3} spacing={2}>
             <Typography variant="body2">Selecciona la dificultad:</Typography>
             <ToggleButtonGroup
@@ -45,13 +45,12 @@ export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
               onChange={(e, val) => val && setDifficulty(val)}
               color="secondary"
             >
-              <ToggleButton value="easy">Fácil</ToggleButton>
-              <ToggleButton value="medium">Medio</ToggleButton>
-              <ToggleButton value="hard">Difícil</ToggleButton>
+              <ToggleButton value="easy">🌱 Fácil</ToggleButton>
+              <ToggleButton value="medium">⚡ Medio</ToggleButton>
+              <ToggleButton value="hard">🔥 Difícil</ToggleButton>
             </ToggleButtonGroup>
           </Stack>
 
-          {/* Botón empezar */}
           <Button
             variant="contained"
             color="primary"
@@ -67,4 +66,3 @@ export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
     </motion.div>
   );
 }
-
