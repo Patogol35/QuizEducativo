@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 // 🎮 Styled-components
 const GameContainer = styled.div`
-  width: 100%;
-  max-width: 800px;
+  width: 800px;
+  max-width: 100%;
   height: 400px;
   margin: 30px auto;
   background: linear-gradient(180deg, #1e1e2f, #121212);
@@ -29,6 +29,7 @@ const GameContainer = styled.div`
 
 const Player = styled(motion.div)`
   position: absolute;
+  left: ${({ position }) => position}px;
   bottom: 50px;
   width: 50px;
   height: 50px;
@@ -90,6 +91,7 @@ const CenterScreen = styled.div`
 export default function Game() {
   const [screen, setScreen] = useState("start"); // start | play | end
   const [playerPos, setPlayerPos] = useState(100);
+  const [isJumping, setIsJumping] = useState(false);
   const [obstacles, setObstacles] = useState([]);
   const [speed, setSpeed] = useState(5);
   const [score, setScore] = useState(0);
@@ -103,12 +105,18 @@ export default function Game() {
         setPlayerPos((pos) => pos - 40);
       } else if (e.key === "ArrowRight" && playerPos < 750) {
         setPlayerPos((pos) => pos + 40);
+      } else if (e.key === " " && !isJumping) {
+        jump();
       }
     };
 
     const handleTouch = (e) => {
       const x = e.touches[0].clientX;
-      if (x < window.innerWidth / 2 && playerPos > 0) {
+      const y = e.touches[0].clientY;
+
+      if (y < window.innerHeight / 2 && !isJumping) {
+        jump(); // salto
+      } else if (x < window.innerWidth / 2 && playerPos > 0) {
         setPlayerPos((pos) => pos - 40);
       } else if (x >= window.innerWidth / 2 && playerPos < 750) {
         setPlayerPos((pos) => pos + 40);
@@ -122,7 +130,7 @@ export default function Game() {
       window.removeEventListener("keydown", handleKey);
       window.removeEventListener("touchstart", handleTouch);
     };
-  }, [screen, playerPos]);
+  }, [screen, playerPos, isJumping]);
 
   // 🚀 Obstáculos y puntuación
   useEffect(() => {
@@ -135,7 +143,12 @@ export default function Game() {
         return [
           ...newObs.filter((o) => o.left > -60),
           ...(addNew
-            ? [{ left: 800, bottom: Math.random() > 0.5 ? 50 : 120 }]
+            ? [
+                {
+                  left: 800,
+                  bottom: Math.random() > 0.5 ? 50 : 120, // bajo o alto
+                },
+              ]
             : []),
         ];
       });
@@ -149,23 +162,33 @@ export default function Game() {
   // 🚨 Colisiones
   useEffect(() => {
     if (screen !== "play") return;
+
     obstacles.forEach((o) => {
+      const playerBottom = isJumping ? 150 : 50; // altura del jugador si está saltando
       if (
         o.left < playerPos + 50 &&
         o.left + 50 > playerPos &&
-        o.bottom === 50 // misma altura
+        o.bottom === playerBottom
       ) {
         setScreen("end");
       }
     });
-  }, [obstacles, playerPos, screen]);
+  }, [obstacles, playerPos, screen, isJumping]);
+
+  // 🚀 Función salto
+  const jump = () => {
+    setIsJumping(true);
+    setTimeout(() => setIsJumping(false), 700); // dura 0.7s
+  };
 
   return (
     <GameContainer>
       {screen === "start" && (
         <CenterScreen>
           <h1>🚀 Adaptive Runner</h1>
-          <p>Mueve con ← → (o toca la pantalla) y esquiva obstáculos</p>
+          <p>
+            Mueve con ← →, salta con <b>Espacio</b> o toca arriba en la pantalla
+          </p>
           <GameButton onClick={() => setScreen("play")}>Iniciar Juego</GameButton>
         </CenterScreen>
       )}
@@ -176,8 +199,9 @@ export default function Game() {
             <ProgressFill speed={speed} />
           </ProgressBar>
           <Player
-            animate={{ left: playerPos }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            position={playerPos}
+            animate={{ bottom: isJumping ? 150 : 50 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
           />
           {obstacles.map((o, i) => (
             <Obstacle
@@ -211,6 +235,7 @@ export default function Game() {
               setObstacles([]);
               setSpeed(5);
               setScore(0);
+              setIsJumping(false);
               setScreen("start");
             }}
           >
