@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-// 🎮 Contenedor del juego
+// Contenedor del juego
 const GameContainer = styled.div`
   width: 800px;
   max-width: 100%;
@@ -14,17 +14,6 @@ const GameContainer = styled.div`
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-  background-size: 200% 100%;
-  animation: moveBg 8s linear infinite;
-
-  @keyframes moveBg {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: -200% 0;
-    }
-  }
 `;
 
 const Player = styled(motion.div)`
@@ -88,35 +77,39 @@ const CenterScreen = styled.div`
   padding-top: 100px;
 `;
 
-// 🎮 Componente principal
+// Componente principal
 export default function Game() {
-  const [screen, setScreen] = useState("start"); // start | play | end
+  const [screen, setScreen] = useState("start");
   const [playerPos, setPlayerPos] = useState(100);
   const [obstacles, setObstacles] = useState([]);
   const [speed, setSpeed] = useState(5);
   const [score, setScore] = useState(0);
 
+  // Usamos useRef para mantener la posición actual y que los handlers siempre la vean
+  const playerRef = useRef(playerPos);
+  playerRef.current = playerPos;
+
   const animRef = useRef(null);
   const lastTimeRef = useRef(null);
 
-  // 🚀 Controles PC y móvil
+  // Controles PC y móvil
   useEffect(() => {
     if (screen !== "play") return;
 
     const handleKey = (e) => {
-      if (e.key === "ArrowLeft" && playerPos > 0) {
-        setPlayerPos((pos) => pos - 20);
-      } else if (e.key === "ArrowRight" && playerPos < 750) {
-        setPlayerPos((pos) => pos + 20);
+      if (e.key === "ArrowLeft" && playerRef.current > 0) {
+        setPlayerPos((pos) => Math.max(pos - 20, 0));
+      } else if (e.key === "ArrowRight" && playerRef.current < 750) {
+        setPlayerPos((pos) => Math.min(pos + 20, 750));
       }
     };
 
     const handleTouch = (e) => {
       const x = e.touches[0].clientX;
-      if (x < window.innerWidth / 2 && playerPos > 0) {
-        setPlayerPos((pos) => pos - 20);
-      } else if (x >= window.innerWidth / 2 && playerPos < 750) {
-        setPlayerPos((pos) => pos + 20);
+      if (x < window.innerWidth / 2 && playerRef.current > 0) {
+        setPlayerPos((pos) => Math.max(pos - 20, 0));
+      } else if (x >= window.innerWidth / 2 && playerRef.current < 750) {
+        setPlayerPos((pos) => Math.min(pos + 20, 750));
       }
     };
 
@@ -127,9 +120,9 @@ export default function Game() {
       window.removeEventListener("keydown", handleKey);
       window.removeEventListener("touchstart", handleTouch);
     };
-  }, [screen, playerPos]);
+  }, [screen]);
 
-  // 🚀 Bucle de animación
+  // Bucle de animación
   useEffect(() => {
     if (screen !== "play") return;
 
@@ -157,7 +150,7 @@ export default function Game() {
     return () => cancelAnimationFrame(animRef.current);
   }, [screen, speed]);
 
-  // 🚨 Colisiones
+  // Colisiones
   useEffect(() => {
     if (screen !== "play") return;
     obstacles.forEach((o) => {
@@ -172,7 +165,7 @@ export default function Game() {
       {screen === "start" && (
         <CenterScreen>
           <h1>🚀 Adaptive Runner</h1>
-          <p>Mueve el jugador con ← → y esquiva los obstáculos</p>
+          <p>Mueve con ← → o toca izquierda/derecha en móvil</p>
           <GameButton onClick={() => setScreen("play")}>Iniciar Juego</GameButton>
         </CenterScreen>
       )}
