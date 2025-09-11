@@ -1,4 +1,3 @@
-
 import styled, { keyframes } from "styled-components";
 
 const Card = styled.div`
@@ -75,4 +74,4 @@ export default function QuestionCard({ question, current, total, score, time, on
       </ProgressBarWrapper>
     </Card>
   );
-}
+          }
