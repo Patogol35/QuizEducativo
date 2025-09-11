@@ -35,6 +35,27 @@ export const questions = [
   { question: "¿Cuál es el plato típico ecuatoriano a base de pescado frito y patacones?", options: ["Ceviche", "Seco de gallina", "Fanesca", "Encocado"], answer: "Ceviche" },
   { question: "¿Qué mar baña la costa de Ecuador?", options: ["Océano Atlántico", "Océano Pacífico", "Mar Caribe", "Mar del Norte"], answer: "Océano Pacífico" },
   { question: "¿Qué parque nacional es famoso por sus lobos marinos y tortugas?", options: ["Galápagos", "Cajas", "Yasuní", "Sumaco"], answer: "Galápagos" },
+  { question: "¿En qué año se proclamó la independencia de Quito?", options: ["1809", "1822", "1830", "1810"], answer: "1809" },
+  { question: "¿En qué batalla se consolidó la independencia de Ecuador?", options: ["Batalla de Pichincha", "Batalla de Junín", "Batalla de Ayacucho", "Batalla del Panecillo"], answer: "Batalla de Pichincha" },
+  { question: "¿Quién fue el primer presidente del Ecuador?", options: ["Vicente Rocafuerte", "Juan José Flores", "Gabriel García Moreno", "Eloy Alfaro"], answer: "Juan José Flores" },
+  { question: "¿Qué provincia ecuatoriana es conocida como la 'Provincia Verde'?", options: ["Esmeraldas", "Manabí", "Guayas", "Orellana"], answer: "Esmeraldas" },
+  { question: "¿Cuál es la capital de la provincia de Loja?", options: ["Catamayo", "Zamora", "Loja", "Macará"], answer: "Loja" },
+  { question: "¿Qué nombre recibe el archipiélago ecuatoriano declarado Patrimonio Natural de la Humanidad por la UNESCO?", options: ["Galápagos", "Cocos", "Malpelo", "Juan Fernández"], answer: "Galápagos" },
+  { question: "¿Qué ciudad ecuatoriana es famosa por su carnaval con agua y espuma?", options: ["Ambato", "Guaranda", "Quito", "Cuenca"], answer: "Guaranda" },
+  { question: "¿Qué provincia ecuatoriana es reconocida por su producción de rosas de exportación?", options: ["Pichincha", "Tungurahua", "Cotopaxi", "Imbabura"], answer: "Cotopaxi" },
+  { question: "¿Qué famoso ecuatoriano es considerado el 'Viejo Luchador'?", options: ["Juan Montalvo", "Eloy Alfaro", "Vicente Rocafuerte", "Antonio Borrero"], answer: "Eloy Alfaro" },
+  { question: "¿Qué puerto ecuatoriano es el más importante del país?", options: ["Manta", "Guayaquil", "Esmeraldas", "Puerto Bolívar"], answer: "Guayaquil" },
+  { question: "¿Quién compuso el pasillo 'Nuestro Juramento', interpretado por Julio Jaramillo?", options: ["Benítez y Valencia", "Luis Alfredo León", "Nicasio Safadi", "Carlos Rubira Infante"], answer: "Luis Alfredo León" },
+  { question: "¿Qué género musical es considerado el más representativo de Ecuador?", options: ["Pasillo", "Pasacalle", "Sanjuanito", "Albazo"], answer: "Pasillo" },
+  { question: "¿Cómo se llamaba el famoso dúo musical conformado por Gonzalo Benítez y Luis Alberto Valencia?", options: ["Los Reales", "Benítez y Valencia", "Los Brillantes", "Los Hermanos Miño Naranjo"], answer: "Benítez y Valencia" },
+  { question: "¿Qué cantante guayaquileño es conocido como 'El Ruiseñor de América'?", options: ["Carlota Jaramillo", "Julio Jaramillo", "Olga Gutiérrez", "Segundo Rosero"], answer: "Julio Jaramillo" },
+  { question: "¿Qué instrumento musical es muy característico en los sanjuanitos ecuatorianos?", options: ["Guitarra", "Rondador", "Violín", "Charango"], answer: "Rondador" },
+  { question: "¿Cuál de estos géneros musicales es originario de los pueblos indígenas de la Sierra?", options: ["Sanjuanito", "Pasillo", "Pasacalle", "Albazo"], answer: "Sanjuanito" },
+  { question: "¿Qué cantante ecuatoriana es conocida como 'La Reina del Pasillo'?", options: ["Olga Gutiérrez", "Carlota Jaramillo", "Paulina Tamayo", "Rosa Guraieb"], answer: "Carlota Jaramillo" },
+  { question: "¿Qué compositor ecuatoriano escribió la canción 'Guayaquil de mis amores'?", options: ["Nicasio Safadi", "Carlos Rubira Infante", "Luis Humberto Salgado", "Jorge Humberto Benítez"], answer: "Nicasio Safadi" },
+  { question: "¿En qué provincia nació el compositor Carlos Rubira Infante?", options: ["Pichincha", "Guayas", "Manabí", "Azuay"], answer: "Guayas" },
+  { question: "¿Qué género musical suele interpretarse en las fiestas de San Pedro y San Pablo?", options: ["Sanjuanito", "Albazo", "Yaraví", "Pasacalle"], answer: "Sanjuanito" },
+
 
   // PREGUNTAS DE AMBATO
   { question: "¿Qué volcán se encuentra cerca de Ambato?", options: ["Cotopaxi", "Chimborazo", "Pichincha", "Tungurahua"], answer: "Tungurahua" },
@@ -56,38 +77,14 @@ export const questions = [
   { question: "¿Cuál es el apodo de Ambato debido a su reconstrucción tras varios terremotos?", options: ["Ciudad de las Flores", "Ciudad de los Tres Juanes", "Ciudad de los Terremotos", "Ciudad del Despertar"], answer: "Ciudad de los Tres Juanes" },
   { question: "¿En qué año ocurrió el terremoto más destructivo en Ambato?", options: ["1698", "1797", "1868", "1949"], answer: "1949" },
   { question: "¿Qué institución cultural importante se encuentra en Ambato?", options: ["Casa de la Cultura Núcleo de Tungurahua", "Museo Nacional", "Centro Cultural Metropolitano", "Teatro Sucre"], answer: "Casa de la Cultura Núcleo de Tungurahua" },
-
-  // PREGUNTAS DE JUAN MONTALVO
   { question: "¿En qué año nació Juan Montalvo?", options: ["1832", "1840", "1855", "1825"], answer: "1832" },
   { question: "¿Cuál es una de las obras más famosas de Juan Montalvo?", options: ["Las Catilinarias", "Cien años de soledad", "El Quijote", "Huasipungo"], answer: "Las Catilinarias" },
   { question: "¿Dónde murió Juan Montalvo?", options: ["Quito", "Guayaquil", "París", "Ambato"], answer: "París" },
-
-  // PREGUNTAS DE JUAN LEÓN MERA
   { question: "¿En qué año nació Juan León Mera?", options: ["1832", "1844", "1820", "1850"], answer: "1832" },
   { question: "¿Cuál es una de las obras más famosas de Juan León Mera?", options: ["Cumandá", "La Vorágine", "Huasipungo", "María"], answer: "Cumandá" },
   { question: "¿En qué ciudad ecuatoriana nació Juan León Mera?", options: ["Ambato", "Quito", "Guayaquil", "Loja"], answer: "Ambato" },
+  
+  ];
 
-  // NUEVAS PREGUNTAS DE ECUADOR
-  { question: "¿En qué año se proclamó la independencia de Quito?", options: ["1809", "1822", "1830", "1810"], answer: "1809" },
-  { question: "¿En qué batalla se consolidó la independencia de Ecuador?", options: ["Batalla de Pichincha", "Batalla de Junín", "Batalla de Ayacucho", "Batalla del Panecillo"], answer: "Batalla de Pichincha" },
-  { question: "¿Quién fue el primer presidente del Ecuador?", options: ["Vicente Rocafuerte", "Juan José Flores", "Gabriel García Moreno", "Eloy Alfaro"], answer: "Juan José Flores" },
-  { question: "¿Qué provincia ecuatoriana es conocida como la 'Provincia Verde'?", options: ["Esmeraldas", "Manabí", "Guayas", "Orellana"], answer: "Esmeraldas" },
-  { question: "¿Cuál es la capital de la provincia de Loja?", options: ["Catamayo", "Zamora", "Loja", "Macará"], answer: "Loja" },
-  { question: "¿Qué nombre recibe el archipiélago ecuatoriano declarado Patrimonio Natural de la Humanidad por la UNESCO?", options: ["Galápagos", "Cocos", "Malpelo", "Juan Fernández"], answer: "Galápagos" },
-  { question: "¿Qué ciudad ecuatoriana es famosa por su carnaval con agua y espuma?", options: ["Ambato", "Guaranda", "Quito", "Cuenca"], answer: "Guaranda" },
-  { question: "¿Qué provincia ecuatoriana es reconocida por su producción de rosas de exportación?", options: ["Pichincha", "Tungurahua", "Cotopaxi", "Imbabura"], answer: "Cotopaxi" },
-  { question: "¿Qué famoso ecuatoriano es considerado el 'Viejo Luchador'?", options: ["Juan Montalvo", "Eloy Alfaro", "Vicente Rocafuerte", "Antonio Borrero"], answer: "Eloy Alfaro" },
-  { question: "¿Qué puerto ecuatoriano es el más importante del país?", options: ["Manta", "Guayaquil", "Esmeraldas", "Puerto Bolívar"], answer: "Guayaquil" },
-
-  // PREGUNTAS DE MÚSICA ECUATORIANA
-  { question: "¿Quién compuso el pasillo 'Nuestro Juramento', interpretado por Julio Jaramillo?", options: ["Benítez y Valencia", "Luis Alfredo León", "Nicasio Safadi", "Carlos Rubira Infante"], answer: "Luis Alfredo León" },
-  { question: "¿Qué género musical es considerado el más representativo de Ecuador?", options: ["Pasillo", "Pasacalle", "Sanjuanito", "Albazo"], answer: "Pasillo" },
-  { question: "¿Cómo se llamaba el famoso dúo musical conformado por Gonzalo Benítez y Luis Alberto Valencia?", options: ["Los Reales", "Benítez y Valencia", "Los Brillantes", "Los Hermanos Miño Naranjo"], answer: "Benítez y Valencia" },
-  { question: "¿Qué cantante guayaquileño es conocido como 'El Ruiseñor de América'?", options: ["Carlota Jaramillo", "Julio Jaramillo", "Olga Gutiérrez", "Segundo Rosero"], answer: "Julio Jaramillo" },
-  { question: "¿Qué instrumento musical es muy característico en los sanjuanitos ecuatorianos?", options: ["Guitarra", "Rondador", "Violín", "Charango"], answer: "Rondador" },
-  { question: "¿Cuál de estos géneros musicales es originario de los pueblos indígenas de la Sierra?", options: ["Sanjuanito", "Pasillo", "Pasacalle", "Albazo"], answer: "Sanjuanito" },
-  { question: "¿Qué cantante ecuatoriana es conocida como 'La Reina del Pasillo'?", options: ["Olga Gutiérrez", "Carlota Jaramillo", "Paulina Tamayo", "Rosa Guraieb"], answer: "Carlota Jaramillo" },
-  { question: "¿Qué compositor ecuatoriano escribió la canción 'Guayaquil de mis amores'?", options: ["Nicasio Safadi", "Carlos Rubira Infante", "Luis Humberto Salgado", "Jorge Humberto Benítez"], answer: "Nicasio Safadi" },
-  { question: "¿En qué provincia nació el compositor Carlos Rubira Infante?", options: ["Pichincha", "Guayas", "Manabí", "Azuay"], answer: "Guayas" },
-  { question: "¿Qué género musical suele interpretarse en las fiestas de San Pedro y San Pablo?", options: ["Sanjuanito", "Albazo", "Yaraví", "Pasacalle"], answer: "Sanjuanito" },
-];
+  
+  
