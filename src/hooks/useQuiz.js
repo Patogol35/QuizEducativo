@@ -31,11 +31,14 @@ export default function useQuiz(allQuestions, difficulty) {
   }, [timeLeft, finished]);
 
   const startQuiz = () => {
-    // barajamos preguntas y opciones
-    const shuffled = shuffle(allQuestions).map((q) => ({
-      ...q,
-      options: shuffle(q.options),
-    }));
+    // barajamos preguntas y opciones, y tomamos SOLO 10
+    const shuffled = shuffle(allQuestions)
+      .slice(0, 10)
+      .map((q) => ({
+        ...q,
+        options: shuffle(q.options),
+      }));
+
     setQuestions(shuffled);
     setCurrent(0);
     setScore(0);
