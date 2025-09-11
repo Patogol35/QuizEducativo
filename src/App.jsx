@@ -1,8 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { ThemeProvider, createTheme, CssBaseline, Box, Button } from "@mui/material";
-
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
+import { ThemeProvider, createTheme, CssBaseline, Box } from "@mui/material";
 
 import WelcomeScreen from "./components/WelcomeScreen";
 import QuestionCard from "./components/QuestionCard";
@@ -31,26 +28,29 @@ export default function App() {
   useEffect(() => localStorage.setItem("darkMode", darkMode), [darkMode]);
   useEffect(() => localStorage.setItem("difficulty", difficulty), [difficulty]);
 
-  const theme = useMemo(() =>
-    createTheme({
-      palette: {
-        mode: darkMode ? "dark" : "light",
-        primary: { main: "#2563eb" },
-        secondary: { main: "#64748b" },
-        success: { main: "#16a34a" },
-        error: { main: "#dc2626" },
-        background: {
-          default: darkMode ? "#0f172a" : "#f1f5f9",
-          paper: darkMode ? "#1e293b" : "#ffffff"
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: darkMode ? "dark" : "light",
+          primary: { main: "#2563eb" },
+          secondary: { main: "#64748b" },
+          success: { main: "#16a34a" },
+          error: { main: "#dc2626" },
+          background: {
+            default: darkMode ? "#0f172a" : "#f1f5f9",
+            paper: darkMode ? "#1e293b" : "#ffffff",
+          },
+          text: {
+            primary: darkMode ? "#f1f5f9" : "#1e293b",
+            secondary: darkMode ? "#94a3b8" : "#64748b",
+          },
         },
-        text: {
-          primary: darkMode ? "#f1f5f9" : "#1e293b",
-          secondary: darkMode ? "#94a3b8" : "#64748b"
-        }
-      },
-      typography: { fontFamily: "Roboto, sans-serif" },
-      shape: { borderRadius: 12 }
-    }), [darkMode]);
+        typography: { fontFamily: "Roboto, sans-serif" },
+        shape: { borderRadius: 12 },
+      }),
+    [darkMode]
+  );
 
   const maxTime = difficulty === "easy" ? 15 : difficulty === "hard" ? 5 : 10;
 
@@ -68,11 +68,11 @@ export default function App() {
   const handleAnswerWithFeedback = (option) => {
     if (!gameQuestions[current]) return;
     setSelected(option);
-    if (option === gameQuestions[current].answer) setScore(prev => prev + 1);
+    if (option === gameQuestions[current].answer) setScore((prev) => prev + 1);
 
     setTimeout(() => {
       if (current + 1 < gameQuestions.length) {
-        setCurrent(prev => prev + 1);
+        setCurrent((prev) => prev + 1);
         setTimeLeft(maxTime);
         setSelected(null);
       } else setFinished(true);
@@ -81,8 +81,11 @@ export default function App() {
 
   useEffect(() => {
     if (finished || welcome) return;
-    if (timeLeft === 0) { handleAnswerWithFeedback(""); return; }
-    const timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
+    if (timeLeft === 0) {
+      handleAnswerWithFeedback("");
+      return;
+    }
+    const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
   }, [timeLeft, finished, welcome]);
 
@@ -113,30 +116,14 @@ export default function App() {
           gap: 3,
         }}
       >
-        {/* Toggle Modo Oscuro / Claro */}
-        <Button
-          variant="outlined"
-          onClick={() => setDarkMode(prev => !prev)}
-          sx={{
-            textTransform: "none",
-            borderRadius: 3,
-            px: 2.5,
-            py: 1,
-            fontWeight: "bold",
-            color: darkMode ? "#f1f5f9" : "#1e293b",
-            borderColor: darkMode ? "#f1f5f9" : "#1e293b",
-            "&:hover": {
-              backgroundColor: darkMode ? "rgba(241,245,249,0.1)" : "rgba(30,23,43,0.05)",
-              borderColor: darkMode ? "#f1f5f9" : "#1e293b",
-            },
-          }}
-        >
-          {darkMode ? "Modo Claro" : "Modo Oscuro"}
-        </Button>
-
-        {/* Pantallas */}
         {welcome ? (
-          <WelcomeScreen onStart={handleStart} setDifficulty={setDifficulty} difficulty={difficulty} />
+          <WelcomeScreen
+            onStart={handleStart}
+            setDifficulty={setDifficulty}
+            difficulty={difficulty}
+            darkMode={darkMode}
+            toggleDarkMode={() => setDarkMode((prev) => !prev)}
+          />
         ) : !finished ? (
           <QuestionCard
             question={gameQuestions[current]}
@@ -154,4 +141,4 @@ export default function App() {
       </Box>
     </ThemeProvider>
   );
-            }
+}
