@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { questions } from "./data";
 
 // 🎨 Estilos con styled-components
@@ -17,7 +17,7 @@ const Card = styled.div`
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  width: 380px;
+  width: 420px;
   text-align: center;
   animation: fadeIn 0.5s ease-in-out;
 
@@ -36,7 +36,7 @@ const Card = styled.div`
 const Title = styled.h2`
   font-size: 1.3rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: #333;
 `;
 
@@ -66,9 +66,23 @@ const Info = styled.div`
   color: #555;
 `;
 
-const Timer = styled.span`
-  font-weight: bold;
-  color: ${(props) => (props.timeLeft <= 3 ? "#dc2626" : "#2563eb")};
+const ProgressBarWrapper = styled.div`
+  margin-top: 1rem;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 5px;
+  overflow: hidden;
+`;
+
+const fillAnimation = (duration) => keyframes`
+  from { width: 100%; background: #2563eb; }
+  to { width: 0%; background: #dc2626; }
+`;
+
+const ProgressBar = styled.div`
+  height: 100%;
+  animation: ${(props) => fillAnimation(props.duration)} linear forwards;
+  animation-duration: ${(props) => props.duration}s;
 `;
 
 export default function App() {
@@ -79,14 +93,14 @@ export default function App() {
 
   const handleAnswer = (option) => {
     if (option === questions[current].answer) {
-      setScore(score + 1);
+      setScore((prev) => prev + 1);
     }
     nextQuestion();
   };
 
   const nextQuestion = () => {
     if (current + 1 < questions.length) {
-      setCurrent(current + 1);
+      setCurrent((prev) => prev + 1);
       setTimeLeft(10);
     } else {
       setFinished(true);
@@ -116,28 +130,36 @@ export default function App() {
     <Container>
       {!finished ? (
         <Card>
+          {/* Mostrar puntaje en la parte superior */}
+          <Info style={{ marginBottom: "1rem" }}>
+            <span>Puntaje: {score}</span>
+            <span>
+              Pregunta {current + 1} / {questions.length}
+            </span>
+          </Info>
+
           <Title>{questions[current].question}</Title>
+
           {questions[current].options.map((opt, idx) => (
             <Button key={idx} onClick={() => handleAnswer(opt)}>
               {opt}
             </Button>
           ))}
-          <Info>
-            <span>
-              Pregunta {current + 1} de {questions.length}
-            </span>
-            <Timer timeLeft={timeLeft}>⏱ {timeLeft}s</Timer>
-          </Info>
+
+          {/* Barra de progreso */}
+          <ProgressBarWrapper>
+            <ProgressBar key={current} duration={10} />
+          </ProgressBarWrapper>
         </Card>
       ) : (
         <Card>
           <Title>Juego terminado 🎉</Title>
           <p>
-            Tu puntaje: <b>{score}</b> / {questions.length}
+            Tu puntaje final: <b>{score}</b> / {questions.length}
           </p>
           <Button onClick={restartGame}>Jugar de nuevo</Button>
         </Card>
       )}
     </Container>
   );
-  }
+          }
