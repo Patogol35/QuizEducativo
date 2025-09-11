@@ -19,37 +19,57 @@ export default function QuestionCard({ question, current, total, score, onAnswer
           backdropFilter: "blur(12px)",
           background: (theme) =>
             theme.palette.mode === "dark"
-              ? "rgba(30,41,59,0.7)"
-              : "rgba(255,255,255,0.85)",
+              ? "rgba(30,41,59,0.8)"
+              : "rgba(255,255,255,0.9)",
           boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
         }}
       >
         <CardContent>
+          {/* Contador y temporizador */}
           <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
-            <Typography variant="h6">{current + 1} / {total}</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 500 }}>
+              {current + 1} / {total}
+            </Typography>
+
             <Box position="relative" display="inline-flex">
               <CircularProgress
                 variant="determinate"
                 value={(time / maxTime) * 100}
                 size={60}
                 thickness={5}
-                color={time <= 3 ? "error" : "primary"}
+                sx={{
+                  color: time <= 3 ? "error.main" : "primary.main",
+                }}
               />
               <Box
-                top={0} left={0} bottom={0} right={0}
                 position="absolute"
+                top={0}
+                left={0}
+                bottom={0}
+                right={0}
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
+                sx={{ pointerEvents: "none" }}
               >
-                <Typography fontWeight="bold">{time}s</Typography>
+                <Typography
+                  variant="subtitle1"
+                  fontWeight="bold"
+                  sx={{ color: "text.primary" }}
+                >
+                  {time}s
+                </Typography>
               </Box>
             </Box>
           </Stack>
 
-          <Typography variant="h5" gutterBottom>{question.question}</Typography>
+          {/* Pregunta */}
+          <Typography variant="h5" gutterBottom sx={{ fontWeight: 500, mb: 3 }}>
+            {question.question}
+          </Typography>
 
-          <Stack spacing={2} mt={2}>
+          {/* Opciones */}
+          <Stack spacing={2}>
             {question.options.map((opt, i) => (
               <motion.div key={i} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                 <Button
@@ -59,15 +79,23 @@ export default function QuestionCard({ question, current, total, score, onAnswer
                   sx={{
                     textTransform: "none",
                     borderRadius: 2,
-                    fontWeight: "500",
+                    fontWeight: 500,
                     py: 1.5,
-                    backgroundColor: selected === opt ? (opt === question.answer ? "success.main" : "error.main") : "transparent",
+                    backgroundColor:
+                      selected === opt
+                        ? opt === question.answer
+                          ? "success.main"
+                          : "error.main"
+                        : "transparent",
                     color: selected === opt ? "#fff" : "inherit",
                     "&:hover": {
-                      backgroundColor: selected === opt
-                        ? (opt === question.answer ? "success.dark" : "error.dark")
-                        : "rgba(37,99,235,0.1)",
-                    }
+                      backgroundColor:
+                        selected === opt
+                          ? opt === question.answer
+                            ? "success.dark"
+                            : "error.dark"
+                          : "rgba(37,99,235,0.1)",
+                    },
                   }}
                 >
                   {opt}
@@ -76,7 +104,12 @@ export default function QuestionCard({ question, current, total, score, onAnswer
             ))}
           </Stack>
 
-          <Typography variant="body2" align="right" sx={{ mt: 2, color: "text.secondary" }}>
+          {/* Puntos */}
+          <Typography
+            variant="body2"
+            align="right"
+            sx={{ mt: 2, color: "text.secondary", fontWeight: 500 }}
+          >
             Puntos: {score}
           </Typography>
         </CardContent>
