@@ -82,7 +82,7 @@ export default function App() {
     }, 700); // Espera 0.7s para mostrar feedback
   };
 
-  // Cronómetro con sonido tick
+  // Cronómetro con sonido solo en preguntas activas
   useEffect(() => {
     if (finished || welcome) return;
 
@@ -124,7 +124,7 @@ export default function App() {
           position: "relative"
         }}
       >
-        {/* Botón Modo Oscuro */}
+        {/* Botón Modo Oscuro solo en Welcome */}
         {welcome && (
           <Box position="absolute" top={16} right={16}>
             <IconButton color="inherit" onClick={() => setDarkMode(prev => !prev)}>
