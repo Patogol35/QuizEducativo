@@ -110,9 +110,9 @@ export default function WelcomeScreen({
             >
               {["easy", "medium", "hard"].map((level) => {
                 const colors = {
-                  easy: { main: "success.main", light: "success.light" },
-                  medium: { main: "primary.main", light: "primary.light" },
-                  hard: { main: "error.main", light: "error.light" },
+                  easy: { main: "#16a34a", hover: "#15803d" }, // verde
+                  medium: { main: "#2563eb", hover: "#1d4ed8" }, // azul
+                  hard: { main: "#dc2626", hover: "#b91c1c" }, // rojo
                 };
                 const label = level === "easy" ? "Fácil" : level === "medium" ? "Medio" : "Difícil";
 
@@ -126,13 +126,11 @@ export default function WelcomeScreen({
                       border: "1px solid",
                       borderColor: "divider",
                       fontWeight: 600,
-                      color: (theme) =>
-                        difficulty === level ? "#fff" : theme.palette.text.primary,
-                      backgroundColor: (theme) =>
-                        difficulty === level ? colors[level].main : "transparent",
+                      color: difficulty === level ? "#fff" : "inherit",
+                      backgroundColor: difficulty === level ? colors[level].main : "transparent",
                       "&:hover": {
-                        backgroundColor: colors[level].light,
-                        color: "#fff",
+                        backgroundColor: difficulty === level ? colors[level].hover : "rgba(37,99,235,0.1)",
+                        color: difficulty === level ? "#fff" : "inherit",
                       },
                     }}
                   >
