@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 const Card = styled.div`
   background: #fff;
@@ -34,31 +34,12 @@ const Info = styled.div`
   margin-bottom: 1rem;
 `;
 
-const ProgressBarWrapper = styled.div`
-  margin-top: 1.5rem;
-  height: 12px;
-  background: #e5e7eb;
-  border-radius: 6px;
-  overflow: hidden;
-`;
-
-const fillAnimation = (duration) => keyframes`
-  from { width: 100%; background: #2563eb; }
-  to { width: 0%; background: #dc2626; }
-`;
-
-const ProgressBar = styled.div`
-  height: 100%;
-  animation: ${(props) => fillAnimation(props.duration)} linear forwards;
-  animation-duration: ${(props) => props.duration}s;
-`;
-
-export default function QuestionCard({ question, current, total, score, time, onAnswer }) {
+export default function QuestionCard({ question, current, total, score, onAnswer }) {
   return (
     <Card>
       <Info>
         <span>Puntaje: {score}</span>
-        <span>Pregunta {current + 1} / {total}</span>
+        <span>Pregunta {current + 1} de {total}</span>
       </Info>
 
       <Title>{question.question}</Title>
@@ -68,10 +49,6 @@ export default function QuestionCard({ question, current, total, score, time, on
           {opt}
         </Button>
       ))}
-
-      <ProgressBarWrapper>
-        <ProgressBar key={current} duration={time} />
-      </ProgressBarWrapper>
     </Card>
   );
-          }
+}
