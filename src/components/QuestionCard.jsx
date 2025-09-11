@@ -24,41 +24,34 @@ export default function QuestionCard({
       key={current}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.4 }}
-      style={{ width: "100%", maxWidth: 600 }}
+      style={{ width: "100%", maxWidth: 650 }}
     >
       <Card
         sx={{
-          p: 3,
-          borderRadius: 3,
-          boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
+          p: 4,
+          borderRadius: 4,
+          background: (theme) =>
+            theme.palette.mode === "dark"
+              ? "rgba(30, 41, 59, 0.6)"
+              : "rgba(255, 255, 255, 0.7)",
+          backdropFilter: "blur(16px)",
+          border: "1px solid rgba(255,255,255,0.15)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
         }}
       >
         <CardContent>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-            mb={2}
-          >
-            <Typography variant="h6">
-              {current + 1} / {total}
+          <Stack direction="row" justifyContent="space-between" alignItems="center" mb={3}>
+            <Typography variant="h6" fontWeight={600}>
+              Pregunta {current + 1} / {total}
             </Typography>
             <Box position="relative" display="inline-flex">
               <CircularProgress
                 variant="determinate"
                 value={(time / maxTime) * 100}
-                size={60}
+                size={70}
                 thickness={5}
-                sx={{
-                  color:
-                    time <= 3
-                      ? "error.main"
-                      : time <= maxTime / 2
-                      ? "warning.main"
-                      : "primary.main",
-                }}
+                color={time <= 3 ? "error" : "primary"}
               />
               <Box
                 top={0}
@@ -75,56 +68,52 @@ export default function QuestionCard({
             </Box>
           </Stack>
 
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h5" gutterBottom fontWeight={600}>
             {question.question}
           </Typography>
 
-          <Stack spacing={2} mt={2}>
-            {question.options.map((opt, i) => {
-              const isCorrect = opt === question.answer;
-              const isSelected = selected === opt;
-              return (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+          <Stack spacing={2} mt={3}>
+            {question.options.map((opt, i) => (
+              <motion.div key={i} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => onAnswer(opt)}
+                  sx={{
+                    textTransform: "none",
+                    borderRadius: 3,
+                    fontWeight: "600",
+                    py: 1.5,
+                    fontSize: "1rem",
+                    transition: "0.3s",
+                    background:
+                      selected === opt
+                        ? opt === question.answer
+                          ? "linear-gradient(135deg, #22c55e, #16a34a)"
+                          : "linear-gradient(135deg, #ef4444, #b91c1c)"
+                        : "transparent",
+                    color:
+                      selected === opt
+                        ? "#fff"
+                        : "inherit",
+                    "&:hover": {
+                      background:
+                        selected === opt
+                          ? undefined
+                          : "rgba(59,130,246,0.1)",
+                    },
+                  }}
                 >
-                  <Button
-                    fullWidth
-                    variant="outlined"
-                    disabled={!!selected}
-                    onClick={() => onAnswer(opt)}
-                    sx={{
-                      textTransform: "none",
-                      borderRadius: 2,
-                      fontWeight: "500",
-                      py: 1.5,
-                      backgroundColor:
-                        selected &&
-                        (isCorrect
-                          ? "success.main"
-                          : isSelected
-                          ? "error.main"
-                          : ""),
-                      color:
-                        selected &&
-                        (isCorrect || isSelected ? "#fff" : "inherit"),
-                      "&:hover": {
-                        backgroundColor: !selected ? "#e0f2fe" : "",
-                      },
-                    }}
-                  >
-                    {opt}
-                  </Button>
-                </motion.div>
-              );
-            })}
+                  {opt}
+                </Button>
+              </motion.div>
+            ))}
           </Stack>
 
           <Typography
             variant="body2"
             align="right"
-            sx={{ mt: 2, color: "text.secondary" }}
+            sx={{ mt: 3, fontWeight: 600, color: "text.secondary" }}
           >
             Puntos: {score}
           </Typography>
