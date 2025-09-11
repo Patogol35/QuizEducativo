@@ -108,45 +108,38 @@ export default function WelcomeScreen({
               value={difficulty}
               onChange={(e, val) => val && setDifficulty(val)}
             >
-              <ToggleButton
-                value="easy"
-                sx={{
-                  px: 3,
-                  borderRadius: 2,
-                  border: "1px solid",
-                  borderColor: "divider",
-                  "&.Mui-selected": { backgroundColor: "primary.main", color: "#fff" },
-                  "&:hover": { backgroundColor: "primary.light", color: "#fff" },
-                }}
-              >
-                Fácil
-              </ToggleButton>
-              <ToggleButton
-                value="medium"
-                sx={{
-                  px: 3,
-                  borderRadius: 2,
-                  border: "1px solid",
-                  borderColor: "divider",
-                  "&.Mui-selected": { backgroundColor: "secondary.main", color: "#fff" },
-                  "&:hover": { backgroundColor: "secondary.light", color: "#fff" },
-                }}
-              >
-                Medio
-              </ToggleButton>
-              <ToggleButton
-                value="hard"
-                sx={{
-                  px: 3,
-                  borderRadius: 2,
-                  border: "1px solid",
-                  borderColor: "divider",
-                  "&.Mui-selected": { backgroundColor: "error.main", color: "#fff" },
-                  "&:hover": { backgroundColor: "error.light", color: "#fff" },
-                }}
-              >
-                Difícil
-              </ToggleButton>
+              {["easy", "medium", "hard"].map((level) => {
+                const colors = {
+                  easy: { main: "success.main", light: "success.light" },
+                  medium: { main: "primary.main", light: "primary.light" },
+                  hard: { main: "error.main", light: "error.light" },
+                };
+                const label = level === "easy" ? "Fácil" : level === "medium" ? "Medio" : "Difícil";
+
+                return (
+                  <ToggleButton
+                    key={level}
+                    value={level}
+                    sx={{
+                      px: 3,
+                      borderRadius: 2,
+                      border: "1px solid",
+                      borderColor: "divider",
+                      fontWeight: 600,
+                      "&.Mui-selected": {
+                        backgroundColor: colors[level].main,
+                        color: "#fff",
+                      },
+                      "&:hover": {
+                        backgroundColor: colors[level].light,
+                        color: "#fff",
+                      },
+                    }}
+                  >
+                    {label}
+                  </ToggleButton>
+                );
+              })}
             </ToggleButtonGroup>
           </Stack>
 
@@ -158,7 +151,13 @@ export default function WelcomeScreen({
               size="large"
               startIcon={<PlayArrowIcon />}
               onClick={onStart}
-              sx={{ px: 6, py: 1.8, fontSize: "1.1rem", borderRadius: 3, textTransform: "none" }}
+              sx={{
+                px: 6,
+                py: 1.8,
+                fontSize: "1.1rem",
+                borderRadius: 3,
+                textTransform: "none",
+              }}
             >
               Comenzar
             </Button>
