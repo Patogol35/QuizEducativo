@@ -41,6 +41,7 @@ export default function QuestionCard({
         }}
       >
         <CardContent>
+          {/* Contador + Tiempo */}
           <Stack direction="row" justifyContent="space-between" alignItems="center" mb={3}>
             <Typography variant="h6" fontWeight={600}>
               Pregunta {current + 1} / {total}
@@ -68,48 +69,57 @@ export default function QuestionCard({
             </Box>
           </Stack>
 
+          {/* Pregunta */}
           <Typography variant="h5" gutterBottom fontWeight={600}>
             {question.question}
           </Typography>
 
+          {/* Opciones */}
           <Stack spacing={2} mt={3}>
-            {question.options.map((opt, i) => (
-              <motion.div key={i} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  onClick={() => onAnswer(opt)}
-                  sx={{
-                    textTransform: "none",
-                    borderRadius: 3,
-                    fontWeight: "600",
-                    py: 1.5,
-                    fontSize: "1rem",
-                    transition: "0.3s",
-                    background:
-                      selected === opt
-                        ? opt === question.answer
-                          ? "linear-gradient(135deg, #22c55e, #16a34a)"
-                          : "linear-gradient(135deg, #ef4444, #b91c1c)"
-                        : "transparent",
-                    color:
-                      selected === opt
-                        ? "#fff"
-                        : "inherit",
-                    "&:hover": {
-                      background:
-                        selected === opt
-                          ? undefined
+            {question.options.map((opt, i) => {
+              const isSelected = selected === opt;
+              const isCorrect = opt === question.answer;
+
+              let bgColor = "transparent";
+              let textColor = "inherit";
+
+              if (isSelected) {
+                bgColor = isCorrect ? "success.main" : "error.main";
+                textColor = "#fff";
+              }
+
+              return (
+                <motion.div key={i} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    onClick={() => !selected && onAnswer(opt)}
+                    sx={{
+                      textTransform: "none",
+                      borderRadius: 3,
+                      fontWeight: 600,
+                      py: 1.5,
+                      fontSize: "1rem",
+                      border: "1px solid",
+                      borderColor: "divider",
+                      backgroundColor: bgColor,
+                      color: textColor,
+                      transition: "0.3s",
+                      "&:hover": {
+                        backgroundColor: isSelected
+                          ? bgColor
                           : "rgba(59,130,246,0.1)",
-                    },
-                  }}
-                >
-                  {opt}
-                </Button>
-              </motion.div>
-            ))}
+                      },
+                    }}
+                  >
+                    {opt}
+                  </Button>
+                </motion.div>
+              );
+            })}
           </Stack>
 
+          {/* Puntaje */}
           <Typography
             variant="body2"
             align="right"
