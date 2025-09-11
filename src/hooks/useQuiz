@@ -1,63 +1,75 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
-export default function useQuiz(allQuestions, difficulty = "medium") {
+// Fisher-Yates shuffle
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+export default function useQuiz(allQuestions, difficulty) {
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState(null);
   const [finished, setFinished] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(15);
 
-  const maxTime = difficulty === "easy" ? 15 : difficulty === "hard" ? 5 : 10;
+  const maxTime = 15;
 
-  const startQuiz = useCallback(() => {
-    const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
-    setQuestions(shuffled.slice(0, 10));
+  useEffect(() => {
+    let timer;
+    if (!finished && timeLeft > 0) {
+      timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
+    } else if (timeLeft === 0) {
+      handleAnswer(null);
+    }
+    return () => clearTimeout(timer);
+  }, [timeLeft, finished]);
+
+  const startQuiz = () => {
+    // barajamos preguntas y opciones
+    const shuffled = shuffle(allQuestions).map((q) => ({
+      ...q,
+      options: shuffle(q.options),
+    }));
+    setQuestions(shuffled);
     setCurrent(0);
     setScore(0);
     setSelected(null);
     setFinished(false);
     setTimeLeft(maxTime);
-  }, [allQuestions, maxTime]);
+  };
 
-  const answerQuestion = useCallback(
-    (option) => {
-      if (selected) return; // evitar doble click
-      setSelected(option);
-      if (option === questions[current]?.answer) {
-        setScore((prev) => prev + 1);
+  const handleAnswer = (answer) => {
+    if (selected !== null) return;
+
+    const correct = questions[current].answer;
+    if (answer === correct) setScore((s) => s + 1);
+
+    setSelected(answer);
+    setTimeout(() => {
+      if (current + 1 < questions.length) {
+        setCurrent((c) => c + 1);
+        setSelected(null);
+        setTimeLeft(maxTime);
+      } else {
+        setFinished(true);
       }
+    }, 1500);
+  };
 
-      setTimeout(() => {
-        if (current + 1 < questions.length) {
-          setCurrent((prev) => prev + 1);
-          setTimeLeft(maxTime);
-          setSelected(null);
-        } else {
-          setFinished(true);
-        }
-      }, 700);
-    },
-    [current, maxTime, questions, selected]
-  );
-
-  // Timer
-  useEffect(() => {
-    if (finished || questions.length === 0) return;
-    if (timeLeft === 0) {
-      answerQuestion(""); // responde vacío si se acaba el tiempo
-      return;
-    }
-    const timer = setInterval(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearInterval(timer);
-  }, [timeLeft, finished, questions, answerQuestion]);
-
-  // Cambiar dificultad reinicia el quiz automáticamente
-  useEffect(() => {
+  const restartQuiz = () => {
+    setQuestions([]);
+    setCurrent(0);
+    setScore(0);
+    setSelected(null);
+    setFinished(false);
     setTimeLeft(maxTime);
-  }, [difficulty, maxTime]);
-
-  const restartQuiz = () => startQuiz();
+  };
 
   return {
     questions,
@@ -68,7 +80,7 @@ export default function useQuiz(allQuestions, difficulty = "medium") {
     timeLeft,
     maxTime,
     startQuiz,
-    answerQuestion,
+    answerQuestion: handleAnswer,
     restartQuiz,
   };
 }
