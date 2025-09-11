@@ -2,29 +2,29 @@ import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { questions } from "./data";
 
-// 🎨 Estilos con styled-components
+// 🎨 Estilos mejorados con styled-components
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #f3f4f6;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #60a5fa, #2563eb);
+  font-family: "Poppins", sans-serif;
 `;
 
 const Card = styled.div`
   background: #fff;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  width: 420px;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  width: 460px;
   text-align: center;
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeIn 0.6s ease-in-out;
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(15px);
     }
     to {
       opacity: 1;
@@ -34,17 +34,17 @@ const Card = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #333;
+  color: #1f2937;
 `;
 
 const Button = styled.button`
-  padding: 0.8rem;
-  margin: 0.4rem 0;
+  padding: 0.9rem;
+  margin: 0.5rem 0;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
   transition: 0.3s;
@@ -54,23 +54,25 @@ const Button = styled.button`
 
   &:hover {
     background: #1d4ed8;
-    transform: scale(1.02);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
   }
 `;
 
 const Info = styled.div`
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 0.95rem;
+  color: #374151;
+  font-weight: 500;
 `;
 
 const ProgressBarWrapper = styled.div`
-  margin-top: 1rem;
-  height: 10px;
+  margin-top: 1.5rem;
+  height: 12px;
   background: #e5e7eb;
-  border-radius: 5px;
+  border-radius: 6px;
   overflow: hidden;
 `;
 
@@ -131,7 +133,7 @@ export default function App() {
       {!finished ? (
         <Card>
           {/* Mostrar puntaje en la parte superior */}
-          <Info style={{ marginBottom: "1rem" }}>
+          <Info>
             <span>Puntaje: {score}</span>
             <span>
               Pregunta {current + 1} / {questions.length}
@@ -153,13 +155,26 @@ export default function App() {
         </Card>
       ) : (
         <Card>
-          <Title>Juego terminado 🎉</Title>
-          <p>
-            Tu puntaje final: <b>{score}</b> / {questions.length}
+          <Title>🎉 ¡Juego terminado!</Title>
+          <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
+            Tu puntaje final fue:
           </p>
-          <Button onClick={restartGame}>Jugar de nuevo</Button>
+          <h3 style={{ fontSize: "1.6rem", color: "#2563eb", marginBottom: "1rem" }}>
+            {score} / {questions.length}
+          </h3>
+
+          {/* Mensajito motivador */}
+          <p style={{ marginBottom: "1.5rem", color: "#374151" }}>
+            {score === questions.length
+              ? "🔥 Perfecto, lo lograste sin fallar!"
+              : score > questions.length / 2
+              ? "👏 Muy bien, casi perfecto!"
+              : "💡 Sigue practicando, lo harás mejor la próxima!"}
+          </p>
+
+          <Button onClick={restartGame}>🔄 Jugar de nuevo</Button>
         </Card>
       )}
     </Container>
   );
-          }
+}
