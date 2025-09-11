@@ -1,19 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-// 🎮 Styled-components
+// 🎮 Fullscreen GameContainer
 const GameContainer = styled.div`
-  width: 800px;
-  max-width: 100%;
-  height: 400px;
-  margin: 30px auto;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(180deg, #1e1e2f, #121212);
-  border: 3px solid #333;
-  border-radius: 15px;
+  border: none;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
   background-size: 200% 100%;
   animation: moveBg 8s linear infinite;
 
@@ -38,7 +34,7 @@ const Player = styled(motion.div)`
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
 `;
 
-const Obstacle = styled(motion.div)`
+const Obstacle = styled.div`
   position: absolute;
   width: 50px;
   height: 50px;
@@ -84,7 +80,7 @@ const ProgressFill = styled.div`
 const CenterScreen = styled.div`
   text-align: center;
   color: white;
-  padding-top: 100px;
+  padding-top: 20vh;
 `;
 
 // 🎮 Componente principal
@@ -96,14 +92,17 @@ export default function Game() {
   const [speed, setSpeed] = useState(5);
   const [score, setScore] = useState(0);
 
-  // 🚀 Controles de teclado y móvil
+  const lastTimeRef = useRef(null);
+  const animRef = useRef(null);
+
+  // 🚀 Controles teclado/táctil
   useEffect(() => {
     if (screen !== "play") return;
 
     const handleKey = (e) => {
       if (e.key === "ArrowLeft" && playerPos > 0) {
         setPlayerPos((pos) => pos - 40);
-      } else if (e.key === "ArrowRight" && playerPos < 750) {
+      } else if (e.key === "ArrowRight" && playerPos < window.innerWidth - 60) {
         setPlayerPos((pos) => pos + 40);
       } else if (e.key === " " && !isJumping) {
         jump();
@@ -118,7 +117,7 @@ export default function Game() {
         jump(); // salto
       } else if (x < window.innerWidth / 2 && playerPos > 0) {
         setPlayerPos((pos) => pos - 40);
-      } else if (x >= window.innerWidth / 2 && playerPos < 750) {
+      } else if (x >= window.innerWidth / 2 && playerPos < window.innerWidth - 60) {
         setPlayerPos((pos) => pos + 40);
       }
     };
@@ -132,31 +131,37 @@ export default function Game() {
     };
   }, [screen, playerPos, isJumping]);
 
-  // 🚀 Obstáculos y puntuación
+  // 🚀 Bucle de animación con requestAnimationFrame
   useEffect(() => {
     if (screen !== "play") return;
 
-    const interval = setInterval(() => {
-      setObstacles((obs) => {
-        const newObs = obs.map((o) => ({ ...o, left: o.left - speed }));
-        const addNew = Math.random() < 0.1; // 10% probabilidad
-        return [
-          ...newObs.filter((o) => o.left > -60),
-          ...(addNew
-            ? [
-                {
-                  left: 800,
-                  bottom: Math.random() > 0.5 ? 50 : 120, // bajo o alto
-                },
-              ]
-            : []),
-        ];
-      });
-      setScore((s) => s + 1);
-      setSpeed((sp) => sp + 0.01);
-    }, 100);
+    const update = (time) => {
+      if (!lastTimeRef.current) lastTimeRef.current = time;
+      const delta = (time - lastTimeRef.current) / 16; // normalizar a ~60fps
+      lastTimeRef.current = time;
 
-    return () => clearInterval(interval);
+      setObstacles((obs) => {
+        const moved = obs.map((o) => ({ ...o, left: o.left - speed * delta }));
+        const filtered = moved.filter((o) => o.left > -60);
+        if (Math.random() < 0.02) {
+          // 2% probabilidad por frame
+          filtered.push({
+            left: window.innerWidth,
+            bottom: Math.random() > 0.5 ? 50 : 120,
+          });
+        }
+        return filtered;
+      });
+
+      setScore((s) => s + Math.floor(delta));
+      setSpeed((sp) => sp + 0.0005 * delta);
+
+      animRef.current = requestAnimationFrame(update);
+    };
+
+    animRef.current = requestAnimationFrame(update);
+
+    return () => cancelAnimationFrame(animRef.current);
   }, [screen, speed]);
 
   // 🚨 Colisiones
@@ -164,7 +169,7 @@ export default function Game() {
     if (screen !== "play") return;
 
     obstacles.forEach((o) => {
-      const playerBottom = isJumping ? 150 : 50; // altura del jugador si está saltando
+      const playerBottom = isJumping ? 150 : 50;
       if (
         o.left < playerPos + 50 &&
         o.left + 50 > playerPos &&
@@ -175,10 +180,10 @@ export default function Game() {
     });
   }, [obstacles, playerPos, screen, isJumping]);
 
-  // 🚀 Función salto
+  // 🚀 Salto fluido
   const jump = () => {
     setIsJumping(true);
-    setTimeout(() => setIsJumping(false), 700); // dura 0.7s
+    setTimeout(() => setIsJumping(false), 700);
   };
 
   return (
@@ -204,12 +209,7 @@ export default function Game() {
             transition={{ type: "spring", stiffness: 300, damping: 15 }}
           />
           {obstacles.map((o, i) => (
-            <Obstacle
-              key={i}
-              style={{ left: o.left, bottom: o.bottom }}
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
+            <Obstacle key={i} style={{ left: o.left, bottom: o.bottom }} />
           ))}
           <div
             style={{
