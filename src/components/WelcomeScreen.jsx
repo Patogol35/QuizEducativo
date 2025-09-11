@@ -7,12 +7,15 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Box,
+  IconButton,
 } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoIcon from "@mui/icons-material/Info";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import { motion } from "framer-motion";
 
-export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
+export default function WelcomeScreen({ onStart, setDifficulty, difficulty, darkMode, toggleDarkMode }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -34,19 +37,30 @@ export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
         }}
       >
         <CardContent>
-          {/* Título */}
-          <Typography
-            variant="h4"
-            fontWeight="bold"
-            gutterBottom
-            sx={{
-              background: "linear-gradient(90deg, #2563eb, #9333ea)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            🎮 Quiz Interactivo
-          </Typography>
+          {/* Título + Toggle modo oscuro */}
+          <Stack direction="row" alignItems="center" justifyContent="center" spacing={2} mb={3}>
+            <Typography
+              variant="h4"
+              fontWeight="bold"
+              sx={{
+                background: "linear-gradient(90deg, #2563eb, #9333ea)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              🎮 Quiz Interactivo
+            </Typography>
+            <IconButton
+              onClick={toggleDarkMode}
+              color="inherit"
+              sx={{
+                border: "1px solid",
+                borderColor: (theme) => (theme.palette.mode === "dark" ? "#f1f5f9" : "#1e293b"),
+              }}
+            >
+              {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
+          </Stack>
 
           <Typography variant="subtitle1" sx={{ mb: 3, color: "text.secondary" }}>
             Desarrollado por <b>Jorge Patricio Santamaría Cherrez</b>
