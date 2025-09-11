@@ -21,7 +21,7 @@ export default function QuestionCard({
 }) {
   if (!question) return null;
 
-  // 👇 aquí controlas el tamaño del círculo
+  // 👇 controla el tamaño del círculo
   const circleSize = 60;
 
   return (
@@ -57,7 +57,16 @@ export default function QuestionCard({
               {current + 1} / {total}
             </Typography>
 
-            <Box position="relative" display="inline-flex">
+            <Box
+              position="relative"
+              sx={{
+                width: circleSize,
+                height: circleSize,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <CircularProgress
                 variant="determinate"
                 value={(time / maxTime) * 100}
@@ -65,28 +74,17 @@ export default function QuestionCard({
                 thickness={5}
                 sx={{ color: time <= 3 ? "error.main" : "primary.main" }}
               />
-              <Box
-                position="absolute"
-                top={0}
-                left={0}
-                bottom={0}
-                right={0}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                sx={{ pointerEvents: "none" }}
+              <Typography
+                fontWeight="bold"
+                sx={{
+                  color: "text.primary",
+                  fontSize: `${circleSize * 0.3}px`,
+                  lineHeight: 1,
+                  position: "absolute",
+                }}
               >
-                <Typography
-                  fontWeight="bold"
-                  sx={{
-                    color: "text.primary",
-                    fontSize: `${circleSize * 0.3}px`, // dinámico
-                    lineHeight: 1,
-                  }}
-                >
-                  {time}s
-                </Typography>
-              </Box>
+                {time}s
+              </Typography>
             </Box>
           </Stack>
 
