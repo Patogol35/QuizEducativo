@@ -82,8 +82,7 @@ export default function QuestionCard({
                 }}
               />
             
-const cpSize = 60; 
-const progressValue = (time / maxTime) * 100;
+
 
 <Box
   sx={{
