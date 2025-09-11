@@ -11,27 +11,38 @@ function shuffle(array) {
 }
 
 export default function useQuiz(allQuestions, difficulty) {
+  const difficultyTimes = { easy: 15, medium: 10, hard: 5 };
+
+  const getTime = () => difficultyTimes[difficulty] || 10;
+
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState(null);
   const [finished, setFinished] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(15);
 
-  const maxTime = 15;
+  const [timeLeft, setTimeLeft] = useState(getTime());
+  const [maxTime, setMaxTime] = useState(getTime());
 
+  // Actualiza tiempo si cambia la dificultad
   useEffect(() => {
-    let timer;
-    if (!finished && timeLeft > 0) {
-      timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    } else if (timeLeft === 0) {
+    setTimeLeft(getTime());
+    setMaxTime(getTime());
+  }, [difficulty]);
+
+  // Temporizador
+  useEffect(() => {
+    if (finished) return;
+    if (timeLeft === 0) {
       handleAnswer(null);
+      return;
     }
+
+    const timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearTimeout(timer);
   }, [timeLeft, finished]);
 
   const startQuiz = () => {
-    // barajamos preguntas y opciones, y tomamos SOLO 10
     const shuffled = shuffle(allQuestions)
       .slice(0, 10)
       .map((q) => ({
@@ -44,21 +55,24 @@ export default function useQuiz(allQuestions, difficulty) {
     setScore(0);
     setSelected(null);
     setFinished(false);
-    setTimeLeft(maxTime);
+    setTimeLeft(getTime());
+    setMaxTime(getTime());
   };
 
   const handleAnswer = (answer) => {
     if (selected !== null) return;
 
-    const correct = questions[current].answer;
+    const correct = questions[current]?.answer;
     if (answer === correct) setScore((s) => s + 1);
 
     setSelected(answer);
+
     setTimeout(() => {
       if (current + 1 < questions.length) {
         setCurrent((c) => c + 1);
         setSelected(null);
-        setTimeLeft(maxTime);
+        setTimeLeft(getTime());
+        setMaxTime(getTime());
       } else {
         setFinished(true);
       }
@@ -71,7 +85,8 @@ export default function useQuiz(allQuestions, difficulty) {
     setScore(0);
     setSelected(null);
     setFinished(false);
-    setTimeLeft(maxTime);
+    setTimeLeft(getTime());
+    setMaxTime(getTime());
   };
 
   return {
@@ -86,4 +101,4 @@ export default function useQuiz(allQuestions, difficulty) {
     answerQuestion: handleAnswer,
     restartQuiz,
   };
-}
+            }
