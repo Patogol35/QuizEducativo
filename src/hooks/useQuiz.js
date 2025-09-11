@@ -44,7 +44,7 @@ export default function useQuiz(allQuestions, difficulty) {
 
   const startQuiz = () => {
     const shuffled = shuffle(allQuestions)
-      .slice(0, 10)
+      .slice(0, 20)
       .map((q) => ({
         ...q,
         options: shuffle(q.options),
@@ -63,7 +63,7 @@ export default function useQuiz(allQuestions, difficulty) {
     if (selected !== null) return;
 
     const correct = questions[current]?.answer;
-    if (answer === correct) setScore((s) => s + 1);
+    if (answer === correct) setScore((s) => s + 0.5);
 
     setSelected(answer);
 
