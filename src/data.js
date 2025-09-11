@@ -48,6 +48,15 @@ export const questions = [
   { question: "¿Qué avenida principal cruza Ambato?", options: ["Avenida Cevallos", "Avenida Amazonas", "Avenida 10 de Agosto", "Avenida América"], answer: "Avenida Cevallos" },
   { question: "¿Cuál es la principal festividad religiosa de Ambato?", options: ["Semana Santa", "Corpus Christi", "Fiesta de la Virgen de la Merced", "Inti Raymi"], answer: "Fiesta de la Virgen de la Merced" },
   { question: "¿Qué museo es destacado en Ambato?", options: ["Museo Casa de Montalvo", "Museo Nacional", "Museo Tumbaco", "Museo Guayasamín"], answer: "Museo Casa de Montalvo" },
+  { question: "¿Qué poeta y periodista ambateño es considerado uno de los mejores de Ecuador?", options: ["Juan Montalvo", "Juan León Mera", "Jorge Icaza", "Benjamín Carrión"], answer: "Juan León Mera" },
+  { question: "¿Qué himno escribió Juan León Mera, oriundo de Ambato?", options: ["Himno Nacional del Ecuador", "Himno de Quito", "Himno de Guayaquil", "Himno de Cuenca"], answer: "Himno Nacional del Ecuador" },
+  { question: "¿Qué producto es emblemático de Ambato", options: ["Pan de Ambato", "Dulce de guayaba", "Helado de paila", "Empanadas de viento"], answer: "Pan de Ambato" },
+  { question: "¿Qué institución educativa tradicional de Ambato fue fundada en 1868?", options: ["Colegio Bolívar", "Colegio Mejía", "Colegio Montúfar", "Colegio Central Técnico"], answer: "Colegio Bolívar" },
+  { question: "¿Qué estadio de fútbol se encuentra en Ambato?", options: ["Estadio Olímpico Atahualpa", "Estadio Bellavista", "Estadio Alejandro Serrano Aguilar", "Estadio Monumental"], answer: "Estadio Bellavista" },
+  { question: "¿Cuál es el apodo de Ambato debido a su reconstrucción tras varios terremotos?", options: ["Ciudad de las Flores", "Ciudad de los Tres Juanes", "Ciudad de los Terremotos", "Ciudad del Despertar"], answer: "Ciudad de los Tres Juanes" },
+  { question: "¿En qué año ocurrió el terremoto más destructivo en Ambato?", options: ["1698", "1797", "1868", "1949"], answer: "1949" },
+  { question: "¿Qué institución cultural importante se encuentra en Ambato?", options: ["Casa de la Cultura Núcleo de Tungurahua", "Museo Nacional", "Centro Cultural Metropolitano", "Teatro Sucre"], answer: "Casa de la Cultura Núcleo de Tungurahua" },
+  
 
   // MÁS PREGUNTAS VARIADAS DE ECUADOR
   { question: "¿Cuál es la ciudad más poblada de Ecuador?", options: ["Quito", "Guayaquil", "Cuenca", "Ambato"], answer: "Guayaquil" },
@@ -58,6 +67,5 @@ export const questions = [
   { question: "¿Cuál es la ciudad conocida como la 'Sultana del Azuay'?", options: ["Cuenca", "Loja", "Machala", "Portoviejo"], answer: "Cuenca" },
   { question: "¿Qué río forma parte de la Amazonía ecuatoriana?", options: ["Río Napo", "Río Guayas", "Río Esmeraldas", "Río Zamora"], answer: "Río Napo" },
   { question: "¿Qué personaje histórico ecuatoriano lideró la Revolución Liberal?", options: ["Eloy Alfaro", "Antonio José de Sucre", "Simón Bolívar", "José Joaquín de Olmedo"], answer: "Eloy Alfaro" },
-  { question: "¿Cuál es el plato típico de la Sierra ecuatoriana hecho con habas y queso?", options: ["Hornado", "Llapingachos", "Fanesca", "Humitas"], answer: "Llapingachos" },
   { question: "¿Qué provincia es conocida por su producción de cacao?", options: ["Guayas", "Los Ríos", "Esmeraldas", "Carchi"], answer: "Los Ríos" },
 ];
