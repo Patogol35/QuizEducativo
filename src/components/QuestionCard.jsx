@@ -81,7 +81,7 @@ export default function QuestionCard({
                   },
                 }}
               />
-              // Ajusta un tamaño base para el círculo (puedes cambiarlo)
+            
 const cpSize = 60; 
 const progressValue = (time / maxTime) * 100;
 
