@@ -10,11 +10,11 @@ export default function QuestionCard({ question, current, total, score, onAnswer
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      style={{ width: "100%", maxWidth: 750 }} // más ancho para que respire
+      style={{ width: "90%", maxWidth: 700, margin: "0 auto" }} // responsive y centrado
     >
       <Card
         sx={{
-          p: 5, // padding mayor
+          p: { xs: 3, sm: 5 }, // padding responsive
           borderRadius: 4,
           backdropFilter: "blur(12px)",
           background: (theme) =>
@@ -25,18 +25,20 @@ export default function QuestionCard({ question, current, total, score, onAnswer
         }}
       >
         <CardContent>
-          {/* Contador de preguntas y temporizador */}
-          <Stack direction="row" justifyContent="space-between" alignItems="center" mb={5} spacing={3}>
+          {/* Contador y temporizador separados verticalmente */}
+          <Stack direction={{ xs: "column", sm: "row" }} justifyContent="space-between" alignItems="center" mb={5} spacing={3}>
+            {/* Contador */}
             <Typography variant="h5" sx={{ fontWeight: 600 }}>
-              {current + 1} / {total}
+              Pregunta {current + 1} / {total}
             </Typography>
 
+            {/* Temporizador */}
             <Box position="relative" display="inline-flex">
               <CircularProgress
                 variant="determinate"
                 value={(time / maxTime) * 100}
-                size={80} // más grande
-                thickness={6} // más grueso
+                size={80}
+                thickness={6}
                 sx={{ color: time <= 3 ? "error.main" : "primary.main" }}
               />
               <Box
@@ -58,12 +60,12 @@ export default function QuestionCard({ question, current, total, score, onAnswer
           </Stack>
 
           {/* Pregunta */}
-          <Typography variant="h4" gutterBottom sx={{ fontWeight: 600, mb: 4 }}>
+          <Typography variant="h4" gutterBottom sx={{ fontWeight: 600, mb: 4, textAlign: "center" }}>
             {question.question}
           </Typography>
 
           {/* Opciones */}
-          <Stack spacing={4} mt={2}> {/* más espacio entre botones */}
+          <Stack spacing={4} mt={2}>
             {question.options.map((opt, i) => (
               <motion.div key={i} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
                 <Button
@@ -74,7 +76,7 @@ export default function QuestionCard({ question, current, total, score, onAnswer
                     textTransform: "none",
                     borderRadius: 3,
                     fontWeight: 500,
-                    py: 2.2, // altura de botón mayor
+                    py: 2.2,
                     fontSize: "1rem",
                     backgroundColor:
                       selected === opt
