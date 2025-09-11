@@ -92,7 +92,7 @@ export default function WelcomeScreen({
             >
               <InfoIcon fontSize="small" /> Instrucciones
             </Typography>
-            <Typography variant="body2">✅ Responde <b>10 preguntas al azar</b>.</Typography>
+            <Typography variant="body2">✅ Responde <b> un total de 20 preguntas, a 0.5 puntos cada una</b>.</Typography>
             <Typography variant="body2">⏱️ Tienes un límite de tiempo para cada pregunta.</Typography>
             <Typography variant="body2">🏆 Gana puntos por cada respuesta correcta.</Typography>
             <Typography variant="body2">📊 Elige la dificultad antes de comenzar.</Typography>
