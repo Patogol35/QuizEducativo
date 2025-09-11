@@ -8,9 +8,9 @@ export const questions = [
   { question: "¿Cuál es la bebida típica ecuatoriana hecha de maíz fermentado?", options: ["Colada Morada", "Chicha de jora", "Canelazo", "Guayusa"], answer: "Chicha de jora" },
   { question: "¿Qué país limita al norte con Ecuador?", options: ["Colombia", "Perú", "Brasil", "Venezuela"], answer: "Colombia" },
   { question: "¿Qué país limita al sur con Ecuador?", options: ["Perú", "Chile", "Brasil", "Colombia"], answer: "Perú" },
-  { question: "¿Qué famoso pintor ecuatoriano nació en Guayaquil?", options: ["Oswaldo Guayasamín", "Eduardo Kingman", "Manuel Rendón", "Camilo Egas"], answer: "Oswaldo Guayasamín" },
+  { question: "¿Qué famoso pintor ecuatoriano nació en Guayaquil?", options: ["Oswaldo Guayasamín", "Eduardo Kingman", "Manuel Rendón", "Camilo Egas"], answer: "Manuel Rendón" },
   { question: "¿Qué ciudad es conocida como la 'Sultana del Oriente'?", options: ["Loja", "Tena", "Macas", "Puyo"], answer: "Tena" },
-  { question: "¿Cuál es el plato típico ecuatoriano a base de pescado frito y patacones?", options: ["Ceviche", "Seco de gallina", "Fanesca", "Encocado"], answer: "Ceviche" },
+  { question: "¿Cuál es el plato típico ecuatoriano a base de pescado frito y patacones?", options: ["Ceviche", "Seco de gallina", "Fanesca", "Encocado"], answer: "Encocado" },
   { question: "¿Qué mar baña la costa de Ecuador?", options: ["Océano Atlántico", "Océano Pacífico", "Mar Caribe", "Mar del Norte"], answer: "Océano Pacífico" },
   { question: "¿Qué parque nacional es famoso por sus lobos marinos y tortugas?", options: ["Galápagos", "Cajas", "Yasuní", "Sumaco"], answer: "Galápagos" },
   { question: "¿En qué año se proclamó la independencia de Quito?", options: ["1809", "1822", "1830", "1810"], answer: "1809" },
@@ -20,7 +20,7 @@ export const questions = [
   { question: "¿Cuál es la capital de la provincia de Loja?", options: ["Catamayo", "Zamora", "Loja", "Macará"], answer: "Loja" },
   { question: "¿Qué nombre recibe el archipiélago ecuatoriano declarado Patrimonio Natural de la Humanidad por la UNESCO?", options: ["Galápagos", "Cocos", "Malpelo", "Juan Fernández"], answer: "Galápagos" },
   { question: "¿Qué ciudad ecuatoriana es famosa por su carnaval con agua y espuma?", options: ["Ambato", "Guaranda", "Quito", "Cuenca"], answer: "Guaranda" },
-  { question: "¿Qué provincia ecuatoriana es reconocida por su producción de rosas de exportación?", options: ["Pichincha", "Tungurahua", "Cotopaxi", "Imbabura"], answer: "Cotopaxi" },
+  { question: "¿Qué provincia ecuatoriana es reconocida por su producción de rosas de exportación?", options: ["Pichincha", "Tungurahua", "Cotopaxi", "Imbabura"], answer: "Pichincha" },
   { question: "¿Qué famoso ecuatoriano es considerado el 'Viejo Luchador'?", options: ["Juan Montalvo", "Eloy Alfaro", "Vicente Rocafuerte", "Antonio Borrero"], answer: "Eloy Alfaro" },
   { question: "¿Qué puerto ecuatoriano es el más importante del país?", options: ["Manta", "Guayaquil", "Esmeraldas", "Puerto Bolívar"], answer: "Guayaquil" },
   { question: "¿Quién compuso el pasillo 'Nuestro Juramento', interpretado por Julio Jaramillo?", options: ["Benítez y Valencia", "Luis Alfredo León", "Nicasio Safadi", "Carlos Rubira Infante"], answer: "Luis Alfredo León" },
@@ -33,17 +33,18 @@ export const questions = [
   { question: "¿Qué compositor ecuatoriano escribió la canción 'Guayaquil de mis amores'?", options: ["Nicasio Safadi", "Carlos Rubira Infante", "Luis Humberto Salgado", "Jorge Humberto Benítez"], answer: "Nicasio Safadi" },
   { question: "¿En qué provincia nació el compositor Carlos Rubira Infante?", options: ["Pichincha", "Guayas", "Manabí", "Azuay"], answer: "Guayas" },
   { question: "¿Qué género musical suele interpretarse en las fiestas de San Pedro y San Pablo?", options: ["Sanjuanito", "Albazo", "Yaraví", "Pasacalle"], answer: "Sanjuanito" },
-// 🔹 PREGUNTAS ADICIONALES DE ECUADOR
-{ question: "¿Cuál es la provincia más grande de Ecuador en extensión territorial?", options: ["Pastaza", "Guayas", "Orellana", "Manabí"], answer: "Pastaza" },
-{ question: "¿Qué isla es la más grande del archipiélago de Galápagos?", options: ["Isabela", "Santa Cruz", "San Cristóbal", "Floreana"], answer: "Isabela" },
-{ question: "¿En qué provincia se encuentra el Parque Nacional Yasuní?", options: ["Orellana", "Sucumbíos", "Pastaza", "Napo"], answer: "Orellana" },
-{ question: "¿Qué línea imaginaria atraviesa Ecuador?", options: ["Trópico de Capricornio", "Trópico de Cáncer", "Ecuador", "Meridiano de Greenwich"], answer: "Ecuador" },
-{ question: "¿Cuál es el pico más alto medido desde el centro de la Tierra?", options: ["Everest", "Cotopaxi", "Chimborazo", "Antisana"], answer: "Chimborazo" },
-{ question: "¿Qué ciudad ecuatoriana es conocida como la 'Capital Mundial del Banano'?", options: ["Machala", "Babahoyo", "Portoviejo", "Quevedo"], answer: "Machala" },
-{ question: "¿Qué lago es el más grande de Ecuador?", options: ["Lago San Pablo", "Laguna de Colta", "Lago Agrio", "Laguna de Quilotoa"], answer: "Lago San Pablo" },
-{ question: "¿En qué provincia se encuentra la ciudad de Baños de Agua Santa?", options: ["Tungurahua", "Cotopaxi", "Pastaza", "Bolívar"], answer: "Tungurahua" },
-{ question: "¿Qué bebida caliente es típica de la Sierra ecuatoriana y se prepara con aguardiente y canela?", options: ["Colada Morada", "Canelazo", "Horchata", "Guayusa"], answer: "Canelazo" },
-{ question: "¿Qué provincia es famosa por la producción de cacao fino de aroma?", options: ["Los Ríos", "Esmeraldas", "Manabí", "Guayas"], answer: "Los Ríos" },
+
+  // 🔹 PREGUNTAS ADICIONALES DE ECUADOR
+  { question: "¿Cuál es la provincia más grande de Ecuador en extensión territorial?", options: ["Pastaza", "Guayas", "Orellana", "Manabí"], answer: "Pastaza" },
+  { question: "¿Qué isla es la más grande del archipiélago de Galápagos?", options: ["Isabela", "Santa Cruz", "San Cristóbal", "Floreana"], answer: "Isabela" },
+  { question: "¿En qué provincia se encuentra el Parque Nacional Yasuní?", options: ["Orellana", "Sucumbíos", "Pastaza", "Napo"], answer: "Orellana" },
+  { question: "¿Qué línea imaginaria atraviesa Ecuador?", options: ["Trópico de Capricornio", "Trópico de Cáncer", "Ecuador", "Meridiano de Greenwich"], answer: "Ecuador" },
+  { question: "¿Cuál es el pico más alto medido desde el centro de la Tierra?", options: ["Everest", "Cotopaxi", "Chimborazo", "Antisana"], answer: "Chimborazo" },
+  { question: "¿Qué ciudad ecuatoriana es conocida como la 'Capital Mundial del Banano'?", options: ["Machala", "Babahoyo", "Portoviejo", "Quevedo"], answer: "Machala" },
+  { question: "¿Qué lago es el más grande de Ecuador?", options: ["Lago San Pablo", "Laguna de Colta", "Lago Agrio", "Laguna de Quilotoa"], answer: "Lago San Pablo" },
+  { question: "¿En qué provincia se encuentra la ciudad de Baños de Agua Santa?", options: ["Tungurahua", "Cotopaxi", "Pastaza", "Bolívar"], answer: "Tungurahua" },
+  { question: "¿Qué bebida caliente es típica de la Sierra ecuatoriana y se prepara con aguardiente y canela?", options: ["Colada Morada", "Canelazo", "Horchata", "Guayusa"], answer: "Canelazo" },
+  { question: "¿Qué provincia es famosa por la producción de cacao fino de aroma?", options: ["Los Ríos", "Esmeraldas", "Manabí", "Guayas"], answer: "Los Ríos" },
 
   // PREGUNTAS DE AMBATO
   { question: "¿Qué volcán se encuentra cerca de Ambato?", options: ["Cotopaxi", "Chimborazo", "Pichincha", "Tungurahua"], answer: "Tungurahua" },
@@ -57,7 +58,7 @@ export const questions = [
   { question: "¿Qué avenida principal cruza Ambato?", options: ["Avenida Cevallos", "Avenida Amazonas", "Avenida 10 de Agosto", "Avenida América"], answer: "Avenida Cevallos" },
   { question: "¿Cuál es la principal festividad religiosa de Ambato?", options: ["Semana Santa", "Corpus Christi", "Fiesta de la Virgen de la Merced", "Inti Raymi"], answer: "Fiesta de la Virgen de la Merced" },
   { question: "¿Qué museo es destacado en Ambato?", options: ["Museo Casa de Montalvo", "Museo Nacional", "Museo Tumbaco", "Museo Guayasamín"], answer: "Museo Casa de Montalvo" },
-  { question: "¿Qué poeta y periodista ambateño es considerado uno de los mejores de Ecuador?", options: ["Juan Montalvo", "Juan León Mera", "Jorge Icaza", "Benjamín Carrión"], answer: "Juan León Mera" },
+  { question: "¿Qué poeta y escritor ambateño es considerado uno de los mejores de Ecuador?", options: ["Juan Montalvo", "Juan León Mera", "Jorge Icaza", "Benjamín Carrión"], answer: "Juan León Mera" },
   { question: "¿Qué himno escribió Juan León Mera, oriundo de Ambato?", options: ["Himno Nacional del Ecuador", "Himno de Quito", "Himno de Guayaquil", "Himno de Cuenca"], answer: "Himno Nacional del Ecuador" },
   { question: "¿Qué producto es emblemático de Ambato", options: ["Pan de Ambato", "Dulce de guayaba", "Helado de paila", "Empanadas de viento"], answer: "Pan de Ambato" },
   { question: "¿Qué institución educativa tradicional de Ambato fue fundada en 1868?", options: ["Colegio Bolívar", "Colegio Mejía", "Colegio Montúfar", "Colegio Central Técnico"], answer: "Colegio Bolívar" },
@@ -68,11 +69,17 @@ export const questions = [
   { question: "¿En qué año nació Juan Montalvo?", options: ["1832", "1840", "1855", "1825"], answer: "1832" },
   { question: "¿Cuál es una de las obras más famosas de Juan Montalvo?", options: ["Las Catilinarias", "Cien años de soledad", "El Quijote", "Huasipungo"], answer: "Las Catilinarias" },
   { question: "¿Dónde murió Juan Montalvo?", options: ["Quito", "Guayaquil", "París", "Ambato"], answer: "París" },
-  { question: "¿En qué año nació Juan León Mera?", options: ["1832", "1844", "1820", "1850"], answer: "1832" },
+  { question: "¿En qué año nació Juan León Mera?", options: ["1832", "1844", "1820", "1850"], answer: "1844" },
   { question: "¿Cuál es una de las obras más famosas de Juan León Mera?", options: ["Cumandá", "La Vorágine", "Huasipungo", "María"], answer: "Cumandá" },
   { question: "¿En qué ciudad ecuatoriana nació Juan León Mera?", options: ["Ambato", "Quito", "Guayaquil", "Loja"], answer: "Ambato" },
-  { question: "¿Qué iglesia emblemática se encuentra en el centro de Ambato?", options: ["Iglesia La Catedral", "Iglesia de San Francisco", "Basílica del Voto Nacional", "Iglesia de La Merced"], answer: "Iglesia La Catedral" }
+  { question: "¿Qué iglesia emblemática se encuentra en el centro de Ambato?", options: ["Iglesia La Catedral", "Iglesia de San Francisco", "Basílica del Voto Nacional", "Iglesia de La Merced"], answer: "Iglesia La Catedral" },
+  { question: "¿Qué parque de Ambato es conocido por su rosaleda y áreas recreativas?", 
+    options: ["Parque Provincial de la Familia", "Parque Cevallos", "Parque La Carolina", "Parque Montalvo"], 
+    answer: "Parque Provincial de la Familia" 
+  },
+  { 
+    question: "¿Qué parque de Ambato cuenta con un monumento a Juan Montalvo y áreas de descanso?", 
+    options: ["Parque Montalvo", "Parque Cevallos", "Parque Provincial de la Familia", "Parque de las Flores"], 
+    answer: "Parque Montalvo" 
+  },
 ];
-
-  
-  
