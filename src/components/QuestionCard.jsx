@@ -10,11 +10,11 @@ export default function QuestionCard({ question, current, total, score, onAnswer
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      style={{ width: "90%", maxWidth: 700, margin: "0 auto" }} // responsive y centrado
+      style={{ width: "90%", maxWidth: 700, margin: "0 auto" }}
     >
       <Card
         sx={{
-          p: { xs: 3, sm: 4 }, // padding un poco menor
+          p: { xs: 3, sm: 4 },
           borderRadius: 4,
           backdropFilter: "blur(12px)",
           background: (theme) =>
@@ -25,19 +25,17 @@ export default function QuestionCard({ question, current, total, score, onAnswer
         }}
       >
         <CardContent>
-          {/* Contador y temporizador separados verticalmente */}
+          {/* Contador y temporizador */}
           <Stack direction={{ xs: "column", sm: "row" }} justifyContent="space-between" alignItems="center" mb={4} spacing={2}>
-            {/* Contador */}
             <Typography variant="h6" sx={{ fontWeight: 500 }}>
               {current + 1} / {total}
             </Typography>
 
-            {/* Temporizador */}
             <Box position="relative" display="inline-flex">
               <CircularProgress
                 variant="determinate"
                 value={(time / maxTime) * 100}
-                size={60} // tamaño similar al tuyo
+                size={60}
                 thickness={5}
                 sx={{ color: time <= 3 ? "error.main" : "primary.main" }}
               />
@@ -67,16 +65,21 @@ export default function QuestionCard({ question, current, total, score, onAnswer
           {/* Opciones */}
           <Stack spacing={3} mt={2}>
             {question.options.map((opt, i) => (
-              <motion.div key={i} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => onAnswer(opt)} // clic ahora en todo el recuadro
+                style={{ cursor: "pointer" }}
+              >
                 <Button
                   fullWidth
                   variant={selected === opt ? "contained" : "outlined"}
-                  onClick={() => onAnswer(opt)}
                   sx={{
                     textTransform: "none",
                     borderRadius: 2,
                     fontWeight: 500,
-                    py: 1.5, // altura similar al tuyo
+                    py: 1.5,
                     fontSize: "0.95rem",
                     backgroundColor:
                       selected === opt
