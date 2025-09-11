@@ -83,8 +83,8 @@ export const questions = [
   { question: "¿En qué año nació Juan León Mera?", options: ["1832", "1844", "1820", "1850"], answer: "1832" },
   { question: "¿Cuál es una de las obras más famosas de Juan León Mera?", options: ["Cumandá", "La Vorágine", "Huasipungo", "María"], answer: "Cumandá" },
   { question: "¿En qué ciudad ecuatoriana nació Juan León Mera?", options: ["Ambato", "Quito", "Guayaquil", "Loja"], answer: "Ambato" },
-  
-  ];
+  { question: "¿Qué iglesia emblemática se encuentra en el centro de Ambato?", options: ["Iglesia La Catedral", "Iglesia de San Francisco", "Basílica del Voto Nacional", "Iglesia de La Merced"], answer: "Iglesia La Catedral" }
+];
 
   
   
