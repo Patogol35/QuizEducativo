@@ -81,28 +81,47 @@ export default function QuestionCard({
                   },
                 }}
               />
-              <Box
-                position="absolute"
-                top={0}
-                left={0}
-                bottom={0}
-                right={0}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                sx={{ pointerEvents: "none" }}
-              >
-                <Typography
-                  variant="body1"
-                  fontWeight="bold"
-                  sx={{
-                    color: "text.primary",
-                    fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
-                  }}
-                >
-                  {time}s
-                </Typography>
-              </Box>
+              // Ajusta un tamaño base para el círculo (puedes cambiarlo)
+const cpSize = 60; 
+const progressValue = (time / maxTime) * 100;
+
+<Box
+  sx={{
+    position: "relative",
+    width: cpSize,
+    height: cpSize,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }}
+>
+  {/* Círculo */}
+  <CircularProgress
+    variant="determinate"
+    value={progressValue}
+    size={cpSize}
+    thickness={5}
+    sx={{ color: time <= 3 ? "error.main" : "primary.main" }}
+  />
+  {/* Número centrado */}
+  <Typography
+    component="div"
+    variant="body1"
+    fontWeight="bold"
+    sx={{
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+      color: "text.primary",
+      lineHeight: 1,
+      pointerEvents: "none",
+    }}
+  >
+    {time}s
+  </Typography>
+</Box>
             </Box>
           </Stack>
 
