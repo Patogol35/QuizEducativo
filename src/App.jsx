@@ -79,12 +79,12 @@ export default function App() {
         setTimeLeft(maxTime);
         setSelected(null);
       } else setFinished(true);
-    }, 700); // Espera 0.7s para mostrar feedback
+    }, 700);
   };
 
-  // Cronómetro con sonido solo en preguntas activas
+  // Cronómetro con sonido solo durante preguntas activas
   useEffect(() => {
-    if (finished || welcome) return;
+    if (finished || welcome || gameQuestions.length === 0) return;
 
     if (timeLeft === 0) {
       handleAnswerWithFeedback("");
@@ -96,7 +96,7 @@ export default function App() {
 
     const timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
     return () => clearInterval(timer);
-  }, [timeLeft, finished, welcome, tickSound]);
+  }, [timeLeft, finished, welcome, gameQuestions, tickSound]);
 
   const restartGame = () => {
     setWelcome(true);
