@@ -3,7 +3,11 @@ import { motion } from "framer-motion";
 import ReplayIcon from "@mui/icons-material/Replay";
 
 export default function ResultScreen({ score, total, onRestart }) {
-  const percent = (score / total) * 100;
+  // Calcular porcentaje según puntaje real (0.5 por pregunta)
+  const maxScore = total * 0.5;
+  const percent = (score / maxScore) * 100;
+
+  // Mensajes de motivación
   let message = "Sigue intentándolo, cada vez serás mejor!";
   if (percent >= 80) message = "¡Excelente trabajo! 🌟";
   else if (percent >= 50) message = "¡Buen esfuerzo, sigue así! 💪";
@@ -13,7 +17,7 @@ export default function ResultScreen({ score, total, onRestart }) {
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      style={{ width: "100%", maxWidth: 500 }}
+      style={{ width: "100%", maxWidth: 500, margin: "0 auto" }}
     >
       <Card
         sx={{
@@ -29,9 +33,18 @@ export default function ResultScreen({ score, total, onRestart }) {
         }}
       >
         <CardContent>
-          <Typography variant="h4" fontWeight="bold" gutterBottom>¡Juego terminado!</Typography>
-          <Typography variant="h6" gutterBottom>Puntaje: {score} / {total}</Typography>
-          <Typography variant="body1" sx={{ mb: 3 }}>{message}</Typography>
+          <Typography variant="h4" fontWeight="bold" gutterBottom>
+            ¡Juego terminado!
+          </Typography>
+
+          <Typography variant="h6" gutterBottom>
+            Puntaje: {score} / {maxScore}
+          </Typography>
+
+          <Typography variant="body1" sx={{ mb: 3 }}>
+            {message}
+          </Typography>
+
           <Stack direction="row" justifyContent="center">
             <Button
               variant="contained"
@@ -45,8 +58,8 @@ export default function ResultScreen({ score, total, onRestart }) {
                 fontWeight: "bold",
                 background: "linear-gradient(90deg, #2563eb, #9333ea)",
                 "&:hover": {
-                  background: "linear-gradient(90deg, #1e40af, #7e22ce)"
-                }
+                  background: "linear-gradient(90deg, #1e40af, #7e22ce)",
+                },
               }}
             >
               Volver a jugar
