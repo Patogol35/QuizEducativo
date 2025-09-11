@@ -8,17 +8,14 @@ import {
 } from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import { AnimatePresence } from "framer-motion";
 
 import WelcomeScreen from "./components/WelcomeScreen";
-import InstructionsScreen from "./components/InstructionsScreen";
 import QuestionCard from "./components/QuestionCard";
 import ResultScreen from "./components/ResultScreen";
 import { questions as allQuestions } from "./data";
 
 export default function App() {
   const [welcome, setWelcome] = useState(true);
-  const [showInstructions, setShowInstructions] = useState(false);
   const [difficulty, setDifficulty] = useState("medium");
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
@@ -27,9 +24,6 @@ export default function App() {
   const [gameQuestions, setGameQuestions] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const [selected, setSelected] = useState(null);
-  const [bestScore, setBestScore] = useState(
-    parseInt(localStorage.getItem("bestScore")) || 0
-  );
 
   // Cargar preferencias desde localStorage
   useEffect(() => {
@@ -47,31 +41,33 @@ export default function App() {
       createTheme({
         palette: {
           mode: darkMode ? "dark" : "light",
-          primary: { main: "#2563eb" },
-          secondary: { main: "#64748b" },
+          primary: { main: "#3b82f6" },
+          secondary: { main: "#06b6d4" },
           background: {
-            default: darkMode ? "#0f172a" : "#f1f5f9",
+            default: darkMode ? "#0f172a" : "#f8fafc",
             paper: darkMode ? "#1e293b" : "#ffffff",
           },
           text: {
-            primary: darkMode ? "#f1f5f9" : "#1e293b",
-            secondary: darkMode ? "#94a3b8" : "#64748b",
+            primary: darkMode ? "#f1f5f9" : "#0f172a",
+            secondary: darkMode ? "#94a3b8" : "#475569",
           },
         },
-        typography: { fontFamily: "Roboto, sans-serif" },
-        shape: { borderRadius: 12 },
+        typography: {
+          fontFamily: "Poppins, Roboto, sans-serif",
+          h4: { fontWeight: 700 },
+          body1: { lineHeight: 1.7 },
+        },
+        shape: { borderRadius: 16 },
       }),
     [darkMode]
   );
 
-  const maxTime =
-    difficulty === "easy" ? 15 : difficulty === "hard" ? 5 : 10;
+  const maxTime = difficulty === "easy" ? 15 : difficulty === "hard" ? 5 : 10;
 
   const handleStart = () => {
     const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
     setGameQuestions(shuffled.slice(0, 10));
     setWelcome(false);
-    setShowInstructions(false);
     setTimeLeft(maxTime);
     setCurrent(0);
     setScore(0);
@@ -88,36 +84,22 @@ export default function App() {
         setCurrent((prev) => prev + 1);
         setTimeLeft(maxTime);
         setSelected(null);
-      } else {
-        setFinished(true);
-
-        // Guardar récord personal
-        if (
-          score + (option === gameQuestions[current].answer ? 1 : 0) >
-          bestScore
-        ) {
-          const newBest =
-            score + (option === gameQuestions[current].answer ? 1 : 0);
-          setBestScore(newBest);
-          localStorage.setItem("bestScore", newBest);
-        }
-      }
-    }, 700); // 0.7s feedback
+      } else setFinished(true);
+    }, 700);
   };
 
   useEffect(() => {
-    if (finished || welcome || showInstructions) return;
+    if (finished || welcome) return;
     if (timeLeft === 0) {
       handleAnswerWithFeedback("");
       return;
     }
     const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
-  }, [timeLeft, finished, welcome, showInstructions]);
+  }, [timeLeft, finished, welcome]);
 
   const restartGame = () => {
     setWelcome(true);
-    setShowInstructions(false);
     setCurrent(0);
     setScore(0);
     setFinished(false);
@@ -134,7 +116,7 @@ export default function App() {
           minHeight: "100vh",
           background: darkMode
             ? "linear-gradient(135deg, #0f172a, #1e293b)"
-            : "linear-gradient(135deg, #f1f5f9, #e2e8f0)",
+            : "linear-gradient(135deg, #e0f2fe, #f8fafc)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -147,50 +129,36 @@ export default function App() {
           <IconButton
             color="inherit"
             onClick={() => setDarkMode((prev) => !prev)}
+            sx={{
+              background: "rgba(255,255,255,0.15)",
+              backdropFilter: "blur(10px)",
+              borderRadius: 2,
+            }}
           >
             {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
           </IconButton>
         </Box>
 
-        <AnimatePresence mode="wait">
-          {welcome ? (
-            <WelcomeScreen
-              key="welcome"
-              onContinue={() => {
-                setWelcome(false);
-                setShowInstructions(true);
-              }}
-              setDifficulty={setDifficulty}
-              difficulty={difficulty}
-            />
-          ) : showInstructions ? (
-            <InstructionsScreen
-              key="instructions"
-              onStart={handleStart}
-              difficulty={difficulty}
-            />
-          ) : !finished ? (
-            <QuestionCard
-              key={`q-${current}`}
-              question={gameQuestions[current]}
-              current={current}
-              total={gameQuestions.length}
-              score={score}
-              onAnswer={handleAnswerWithFeedback}
-              time={timeLeft}
-              maxTime={maxTime}
-              selected={selected}
-            />
-          ) : (
-            <ResultScreen
-              key="result"
-              score={score}
-              total={gameQuestions.length}
-              onRestart={restartGame}
-              bestScore={bestScore}
-            />
-          )}
-        </AnimatePresence>
+        {welcome ? (
+          <WelcomeScreen
+            onStart={handleStart}
+            setDifficulty={setDifficulty}
+            difficulty={difficulty}
+          />
+        ) : !finished ? (
+          <QuestionCard
+            question={gameQuestions[current]}
+            current={current}
+            total={gameQuestions.length}
+            score={score}
+            onAnswer={handleAnswerWithFeedback}
+            time={timeLeft}
+            maxTime={maxTime}
+            selected={selected}
+          />
+        ) : (
+          <ResultScreen score={score} total={gameQuestions.length} onRestart={restartGame} />
+        )}
       </Box>
     </ThemeProvider>
   );
