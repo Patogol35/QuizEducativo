@@ -33,7 +33,17 @@ export const questions = [
   { question: "¿Qué compositor ecuatoriano escribió la canción 'Guayaquil de mis amores'?", options: ["Nicasio Safadi", "Carlos Rubira Infante", "Luis Humberto Salgado", "Jorge Humberto Benítez"], answer: "Nicasio Safadi" },
   { question: "¿En qué provincia nació el compositor Carlos Rubira Infante?", options: ["Pichincha", "Guayas", "Manabí", "Azuay"], answer: "Guayas" },
   { question: "¿Qué género musical suele interpretarse en las fiestas de San Pedro y San Pablo?", options: ["Sanjuanito", "Albazo", "Yaraví", "Pasacalle"], answer: "Sanjuanito" },
-
+// 🔹 PREGUNTAS ADICIONALES DE ECUADOR
+{ question: "¿Cuál es la provincia más grande de Ecuador en extensión territorial?", options: ["Pastaza", "Guayas", "Orellana", "Manabí"], answer: "Pastaza" },
+{ question: "¿Qué isla es la más grande del archipiélago de Galápagos?", options: ["Isabela", "Santa Cruz", "San Cristóbal", "Floreana"], answer: "Isabela" },
+{ question: "¿En qué provincia se encuentra el Parque Nacional Yasuní?", options: ["Orellana", "Sucumbíos", "Pastaza", "Napo"], answer: "Orellana" },
+{ question: "¿Qué línea imaginaria atraviesa Ecuador?", options: ["Trópico de Capricornio", "Trópico de Cáncer", "Ecuador", "Meridiano de Greenwich"], answer: "Ecuador" },
+{ question: "¿Cuál es el pico más alto medido desde el centro de la Tierra?", options: ["Everest", "Cotopaxi", "Chimborazo", "Antisana"], answer: "Chimborazo" },
+{ question: "¿Qué ciudad ecuatoriana es conocida como la 'Capital Mundial del Banano'?", options: ["Machala", "Babahoyo", "Portoviejo", "Quevedo"], answer: "Machala" },
+{ question: "¿Qué lago es el más grande de Ecuador?", options: ["Lago San Pablo", "Laguna de Colta", "Lago Agrio", "Laguna de Quilotoa"], answer: "Lago San Pablo" },
+{ question: "¿En qué provincia se encuentra la ciudad de Baños de Agua Santa?", options: ["Tungurahua", "Cotopaxi", "Pastaza", "Bolívar"], answer: "Tungurahua" },
+{ question: "¿Qué bebida caliente es típica de la Sierra ecuatoriana y se prepara con aguardiente y canela?", options: ["Colada Morada", "Canelazo", "Horchata", "Guayusa"], answer: "Canelazo" },
+{ question: "¿Qué provincia es famosa por la producción de cacao fino de aroma?", options: ["Los Ríos", "Esmeraldas", "Manabí", "Guayas"], answer: "Los Ríos" },
 
   // PREGUNTAS DE AMBATO
   { question: "¿Qué volcán se encuentra cerca de Ambato?", options: ["Cotopaxi", "Chimborazo", "Pichincha", "Tungurahua"], answer: "Tungurahua" },
