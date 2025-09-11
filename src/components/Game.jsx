@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 // 🎮 Styled-components
-
 const GameContainer = styled.div`
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   height: 400px;
   margin: 30px auto;
   background: linear-gradient(180deg, #1e1e2f, #121212);
@@ -14,12 +14,22 @@ const GameContainer = styled.div`
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  background-size: 200% 100%;
+  animation: moveBg 8s linear infinite;
+
+  @keyframes moveBg {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
 `;
 
-const Player = styled.div`
+const Player = styled(motion.div)`
   position: absolute;
   bottom: 50px;
-  left: ${({ position }) => position}px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -29,7 +39,6 @@ const Player = styled.div`
 
 const Obstacle = styled(motion.div)`
   position: absolute;
-  bottom: 50px;
   width: 50px;
   height: 50px;
   border-radius: 8px;
@@ -78,7 +87,6 @@ const CenterScreen = styled.div`
 `;
 
 // 🎮 Componente principal
-
 export default function Game() {
   const [screen, setScreen] = useState("start"); // start | play | end
   const [playerPos, setPlayerPos] = useState(100);
@@ -86,38 +94,67 @@ export default function Game() {
   const [speed, setSpeed] = useState(5);
   const [score, setScore] = useState(0);
 
+  // 🚀 Controles de teclado y móvil
   useEffect(() => {
     if (screen !== "play") return;
 
     const handleKey = (e) => {
       if (e.key === "ArrowLeft" && playerPos > 0) {
-        setPlayerPos((pos) => pos - 20);
+        setPlayerPos((pos) => pos - 40);
       } else if (e.key === "ArrowRight" && playerPos < 750) {
-        setPlayerPos((pos) => pos + 20);
+        setPlayerPos((pos) => pos + 40);
       }
     };
+
+    const handleTouch = (e) => {
+      const x = e.touches[0].clientX;
+      if (x < window.innerWidth / 2 && playerPos > 0) {
+        setPlayerPos((pos) => pos - 40);
+      } else if (x >= window.innerWidth / 2 && playerPos < 750) {
+        setPlayerPos((pos) => pos + 40);
+      }
+    };
+
     window.addEventListener("keydown", handleKey);
+    window.addEventListener("touchstart", handleTouch);
+
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      window.removeEventListener("touchstart", handleTouch);
+    };
+  }, [screen, playerPos]);
+
+  // 🚀 Obstáculos y puntuación
+  useEffect(() => {
+    if (screen !== "play") return;
 
     const interval = setInterval(() => {
       setObstacles((obs) => {
         const newObs = obs.map((o) => ({ ...o, left: o.left - speed }));
-        return [...newObs.filter((o) => o.left > -50), { left: 800 }];
+        const addNew = Math.random() < 0.1; // 10% probabilidad
+        return [
+          ...newObs.filter((o) => o.left > -60),
+          ...(addNew
+            ? [{ left: 800, bottom: Math.random() > 0.5 ? 50 : 120 }]
+            : []),
+        ];
       });
       setScore((s) => s + 1);
       setSpeed((sp) => sp + 0.01);
     }, 100);
 
-    return () => {
-      window.removeEventListener("keydown", handleKey);
-      clearInterval(interval);
-    };
-  }, [screen, playerPos, speed]);
+    return () => clearInterval(interval);
+  }, [screen, speed]);
 
   // 🚨 Colisiones
   useEffect(() => {
     if (screen !== "play") return;
     obstacles.forEach((o) => {
-      if (o.left < playerPos + 50 && o.left + 50 > playerPos) {
+      if (
+        o.left < playerPos + 50 &&
+        o.left + 50 > playerPos &&
+        o.bottom === 50 // misma altura
+      ) {
         setScreen("end");
       }
     });
@@ -128,7 +165,7 @@ export default function Game() {
       {screen === "start" && (
         <CenterScreen>
           <h1>🚀 Adaptive Runner</h1>
-          <p>Mueve el jugador con ← → y esquiva los obstáculos</p>
+          <p>Mueve con ← → (o toca la pantalla) y esquiva obstáculos</p>
           <GameButton onClick={() => setScreen("play")}>Iniciar Juego</GameButton>
         </CenterScreen>
       )}
@@ -138,9 +175,17 @@ export default function Game() {
           <ProgressBar>
             <ProgressFill speed={speed} />
           </ProgressBar>
-          <Player position={playerPos} />
+          <Player
+            animate={{ left: playerPos }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          />
           {obstacles.map((o, i) => (
-            <Obstacle key={i} style={{ left: o.left }} />
+            <Obstacle
+              key={i}
+              style={{ left: o.left, bottom: o.bottom }}
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
           ))}
           <div
             style={{
