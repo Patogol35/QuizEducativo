@@ -7,10 +7,10 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 
-export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
+export default function WelcomeScreen({ onContinue, setDifficulty, difficulty }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -34,7 +34,7 @@ export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
             Cherrez
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Responde 10 preguntas al azar. ¡Demuestra tu conocimiento!
+            Responde preguntas al azar y mide tu conocimiento.
           </Typography>
 
           <Stack mt={3} spacing={2}>
@@ -55,11 +55,11 @@ export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
             variant="contained"
             color="primary"
             size="large"
-            startIcon={<PlayArrowIcon />}
-            onClick={onStart}
+            startIcon={<ArrowForwardIcon />}
+            onClick={onContinue}
             sx={{ mt: 4, px: 5, py: 1.5, borderRadius: 3 }}
           >
-            Comenzar
+            Continuar
           </Button>
         </CardContent>
       </Card>
