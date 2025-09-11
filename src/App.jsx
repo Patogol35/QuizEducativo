@@ -34,6 +34,7 @@ export default function App() {
     if (savedDiff) setDifficulty(savedDiff);
   }, []);
 
+  // Guardar preferencias
   useEffect(() => localStorage.setItem("darkMode", darkMode), [darkMode]);
   useEffect(() => localStorage.setItem("difficulty", difficulty), [difficulty]);
 
@@ -117,4 +118,4 @@ export default function App() {
       </Box>
     </ThemeProvider>
   );
-}
+        }
