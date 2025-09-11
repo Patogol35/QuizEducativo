@@ -1,30 +1,23 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { ThemeProvider, createTheme, CssBaseline, Box } from "@mui/material";
 
 import WelcomeScreen from "./components/WelcomeScreen";
 import QuestionCard from "./components/QuestionCard";
 import ResultScreen from "./components/ResultScreen";
 import { questions as allQuestions } from "./data";
-import useQuiz from "./hooks/useQuiz";
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [welcome, setWelcome] = useState(true);
   const [difficulty, setDifficulty] = useState("medium");
+  const [current, setCurrent] = useState(0);
+  const [score, setScore] = useState(0);
+  const [finished, setFinished] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(10);
+  const [gameQuestions, setGameQuestions] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
+  const [selected, setSelected] = useState(null);
 
-  const {
-    questions,
-    current,
-    score,
-    selected,
-    finished,
-    timeLeft,
-    maxTime,
-    startQuiz,
-    answerQuestion,
-    restartQuiz,
-  } = useQuiz(allQuestions, difficulty);
-
-  // Guardar preferencias
+  // Cargar preferencias desde localStorage
   useEffect(() => {
     const savedDark = localStorage.getItem("darkMode");
     const savedDiff = localStorage.getItem("difficulty");
@@ -59,6 +52,55 @@ export default function App() {
     [darkMode]
   );
 
+  const maxTime = difficulty === "easy" ? 15 : difficulty === "hard" ? 5 : 10;
+
+  const handleStart = () => {
+    const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
+    setGameQuestions(shuffled.slice(0, 10));
+    setWelcome(false);
+    setTimeLeft(maxTime);
+    setCurrent(0);
+    setScore(0);
+    setSelected(null);
+    setFinished(false);
+  };
+
+  const handleAnswerWithFeedback = (option) => {
+    if (!gameQuestions[current]) return;
+    setSelected(option);
+    if (option === gameQuestions[current].answer) setScore((prev) => prev + 1);
+
+    setTimeout(() => {
+      if (current + 1 < gameQuestions.length) {
+        setCurrent((prev) => prev + 1);
+        setTimeLeft(maxTime);
+        setSelected(null);
+      } else {
+        setFinished(true);
+      }
+    }, 700);
+  };
+
+  useEffect(() => {
+    if (finished || welcome) return;
+    if (timeLeft === 0) {
+      handleAnswerWithFeedback("");
+      return;
+    }
+    const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
+    return () => clearInterval(timer);
+  }, [timeLeft, finished, welcome]);
+
+  const restartGame = () => {
+    setWelcome(true);
+    setCurrent(0);
+    setScore(0);
+    setFinished(false);
+    setTimeLeft(10);
+    setGameQuestions([]);
+    setSelected(null);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -76,9 +118,9 @@ export default function App() {
           gap: 3,
         }}
       >
-        {questions.length === 0 && !finished ? (
+        {welcome ? (
           <WelcomeScreen
-            onStart={startQuiz}
+            onStart={handleStart}
             setDifficulty={setDifficulty}
             difficulty={difficulty}
             darkMode={darkMode}
@@ -86,17 +128,21 @@ export default function App() {
           />
         ) : !finished ? (
           <QuestionCard
-            question={questions[current]}
+            question={gameQuestions[current]}
             current={current}
-            total={questions.length}
+            total={gameQuestions.length}
             score={score}
-            onAnswer={answerQuestion}
+            onAnswer={handleAnswerWithFeedback}
             time={timeLeft}
             maxTime={maxTime}
             selected={selected}
           />
         ) : (
-          <ResultScreen score={score} total={questions.length} onRestart={restartQuiz} />
+          <ResultScreen
+            score={score}
+            total={gameQuestions.length}
+            onRestart={restartGame} // vuelve a WelcomeScreen
+          />
         )}
       </Box>
     </ThemeProvider>
