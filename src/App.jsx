@@ -11,12 +11,14 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { AnimatePresence } from "framer-motion";
 
 import WelcomeScreen from "./components/WelcomeScreen";
+import InstructionsScreen from "./components/InstructionsScreen";
 import QuestionCard from "./components/QuestionCard";
 import ResultScreen from "./components/ResultScreen";
 import { questions as allQuestions } from "./data";
 
 export default function App() {
   const [welcome, setWelcome] = useState(true);
+  const [showInstructions, setShowInstructions] = useState(false);
   const [difficulty, setDifficulty] = useState("medium");
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
@@ -69,6 +71,7 @@ export default function App() {
     const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
     setGameQuestions(shuffled.slice(0, 10));
     setWelcome(false);
+    setShowInstructions(false);
     setTimeLeft(maxTime);
     setCurrent(0);
     setScore(0);
@@ -89,8 +92,12 @@ export default function App() {
         setFinished(true);
 
         // Guardar récord personal
-        if (score + (option === gameQuestions[current].answer ? 1 : 0) > bestScore) {
-          const newBest = score + (option === gameQuestions[current].answer ? 1 : 0);
+        if (
+          score + (option === gameQuestions[current].answer ? 1 : 0) >
+          bestScore
+        ) {
+          const newBest =
+            score + (option === gameQuestions[current].answer ? 1 : 0);
           setBestScore(newBest);
           localStorage.setItem("bestScore", newBest);
         }
@@ -99,17 +106,18 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (finished || welcome) return;
+    if (finished || welcome || showInstructions) return;
     if (timeLeft === 0) {
       handleAnswerWithFeedback("");
       return;
     }
     const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
-  }, [timeLeft, finished, welcome]);
+  }, [timeLeft, finished, welcome, showInstructions]);
 
   const restartGame = () => {
     setWelcome(true);
+    setShowInstructions(false);
     setCurrent(0);
     setScore(0);
     setFinished(false);
@@ -148,8 +156,17 @@ export default function App() {
           {welcome ? (
             <WelcomeScreen
               key="welcome"
-              onStart={handleStart}
+              onContinue={() => {
+                setWelcome(false);
+                setShowInstructions(true);
+              }}
               setDifficulty={setDifficulty}
+              difficulty={difficulty}
+            />
+          ) : showInstructions ? (
+            <InstructionsScreen
+              key="instructions"
+              onStart={handleStart}
               difficulty={difficulty}
             />
           ) : !finished ? (
@@ -177,4 +194,4 @@ export default function App() {
       </Box>
     </ThemeProvider>
   );
-          }
+}
