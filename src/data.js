@@ -1,4 +1,5 @@
 export const questions = [
+  // PREGUNTAS GENERALES
   { question: "¿Cuál es el planeta más grande del sistema solar?", options: ["Tierra", "Júpiter", "Marte", "Saturno"], answer: "Júpiter" },
   { question: "¿Quién pintó la Mona Lisa?", options: ["Van Gogh", "Picasso", "Da Vinci", "Rembrandt"], answer: "Da Vinci" },
   { question: "¿Qué lenguaje se usa en React?", options: ["Python", "Java", "JavaScript", "C#"], answer: "JavaScript" },
@@ -19,5 +20,44 @@ export const questions = [
   { question: "¿Quién inventó la bombilla eléctrica?", options: ["Tesla", "Edison", "Franklin", "Bell"], answer: "Edison" },
   { question: "¿Cuál es el animal más rápido del mundo?", options: ["Guepardo", "Halcón peregrino", "Leopardo", "Antílope"], answer: "Halcón peregrino" },
   { question: "¿Qué elemento químico tiene el símbolo O?", options: ["Oro", "Osmio", "Oxígeno", "Oganesón"], answer: "Oxígeno" },
-];
 
+  // PREGUNTAS DE ECUADOR
+  { question: "¿Cuál es la capital de Ecuador?", options: ["Guayaquil", "Quito", "Cuenca", "Ambato"], answer: "Quito" },
+  { question: "¿Cuál es la moneda oficial de Ecuador?", options: ["Dólar estadounidense", "Sucre", "Peso", "Euro"], answer: "Dólar estadounidense" },
+  { question: "¿Qué ciudad ecuatoriana es conocida como la 'Ciudad de las Flores y las Frutas'?", options: ["Quito", "Ambato", "Guayaquil", "Loja"], answer: "Ambato" },
+  { question: "¿Cuál es el volcán más alto de Ecuador?", options: ["Cotopaxi", "Chimborazo", "Tungurahua", "Pichincha"], answer: "Chimborazo" },
+  { question: "¿Qué río es el más largo de Ecuador?", options: ["Río Guayas", "Río Napo", "Río Pastaza", "Río Esmeraldas"], answer: "Río Napo" },
+  { question: "¿Cuál es la bebida típica ecuatoriana hecha de maíz fermentado?", options: ["Colada Morada", "Chicha de jora", "Canelazo", "Guayusa"], answer: "Chicha de jora" },
+  { question: "¿Qué país limita al norte con Ecuador?", options: ["Colombia", "Perú", "Brasil", "Venezuela"], answer: "Colombia" },
+  { question: "¿Qué país limita al sur con Ecuador?", options: ["Perú", "Chile", "Brasil", "Colombia"], answer: "Perú" },
+  { question: "¿Qué famoso pintor ecuatoriano nació en Guayaquil?", options: ["Oswaldo Guayasamín", "Eduardo Kingman", "Manuel Rendón", "Camilo Egas"], answer: "Oswaldo Guayasamín" },
+  { question: "¿Qué ciudad es conocida como la 'Sultana del Oriente'?", options: ["Loja", "Tena", "Macas", "Puyo"], answer: "Tena" },
+  { question: "¿Cuál es el plato típico ecuatoriano a base de pescado frito y patacones?", options: ["Ceviche", "Seco de gallina", "Fanesca", "Encocado"], answer: "Ceviche" },
+  { question: "¿Qué mar baña la costa de Ecuador?", options: ["Océano Atlántico", "Océano Pacífico", "Mar Caribe", "Mar del Norte"], answer: "Océano Pacífico" },
+  { question: "¿Qué parque nacional es famoso por sus lobos marinos y pingüinos?", options: ["Galápagos", "Cajas", "Yasuní", "Sumaco"], answer: "Galápagos" },
+
+  // PREGUNTAS DE AMBATO
+  { question: "¿Qué volcán se encuentra cerca de Ambato?", options: ["Cotopaxi", "Chimborazo", "Pichincha", "Tungurahua"], answer: "Tungurahua" },
+  { question: "¿Qué río pasa por Ambato?", options: ["Río Guayas", "Río Ambato", "Río Pastaza", "Río Esmeraldas"], answer: "Río Ambato" },
+  { question: "¿Cuál es el plato típico de Ambato?", options: ["Fanesca", "Fiambre", "Cuy asado", "Humitas"], answer: "Fiambre" },
+  { question: "¿Qué fiesta es famosa en Ambato?", options: ["Fiesta de la Mama Negra", "Carnaval de Ambato", "Inti Raymi", "Feria de Quito"], answer: "Carnaval de Ambato" },
+  { question: "¿En qué provincia está ubicada Ambato?", options: ["Pichincha", "Tungurahua", "Cotopaxi", "Imbabura"], answer: "Tungurahua" },
+  { question: "¿Qué parque es famoso en Ambato?", options: ["Parque Cevallos", "Parque La Carolina", "Parque Metropolitano", "Parque El Ejido"], answer: "Parque Cevallos" },
+  { question: "¿Qué fruta es muy representativa de Ambato?", options: ["Banano", "Manzana", "Naranja", "Piña"], answer: "Manzana" },
+  { question: "¿Qué famoso escritor nació en Ambato?", options: ["Juan Montalvo", "Eloy Alfaro", "Jorge Icaza", "Oswaldo Guayasamín"], answer: "Juan Montalvo" },
+  { question: "¿Qué avenida principal cruza Ambato?", options: ["Avenida Cevallos", "Avenida Amazonas", "Avenida 10 de Agosto", "Avenida América"], answer: "Avenida Cevallos" },
+  { question: "¿Cuál es la principal festividad religiosa de Ambato?", options: ["Semana Santa", "Corpus Christi", "Fiesta de la Virgen de la Merced", "Inti Raymi"], answer: "Fiesta de la Virgen de la Merced" },
+  { question: "¿Qué museo es destacado en Ambato?", options: ["Museo Casa de Montalvo", "Museo Nacional", "Museo Tumbaco", "Museo Guayasamín"], answer: "Museo Casa de Montalvo" },
+
+  // MÁS PREGUNTAS VARIADAS DE ECUADOR
+  { question: "¿Cuál es la ciudad más poblada de Ecuador?", options: ["Quito", "Guayaquil", "Cuenca", "Ambato"], answer: "Guayaquil" },
+  { question: "¿Qué isla ecuatoriana es famosa por sus tortugas gigantes?", options: ["Isla Santa Cruz", "Isla Isabela", "Isla Fernandina", "Isla Pinta"], answer: "Isla Isabela" },
+  { question: "¿Qué río atraviesa la ciudad de Quito?", options: ["Río Guayllabamba", "Río Machángara", "Río Napo", "Río Esmeraldas"], answer: "Río Machángara" },
+  { question: "¿Cuál es el parque más grande de Quito?", options: ["Parque La Carolina", "Parque Metropolitano", "Parque Itchimbía", "Parque El Ejido"], answer: "Parque Metropolitano" },
+  { question: "¿Cuál es la bebida tradicional caliente ecuatoriana hecha con canela y agua de panela?", options: ["Canelazo", "Colada Morada", "Guayusa", "Chicha"], answer: "Canelazo" },
+  { question: "¿Cuál es la ciudad conocida como la 'Sultana del Azuay'?", options: ["Cuenca", "Loja", "Machala", "Portoviejo"], answer: "Cuenca" },
+  { question: "¿Qué río forma parte de la Amazonía ecuatoriana?", options: ["Río Napo", "Río Guayas", "Río Esmeraldas", "Río Zamora"], answer: "Río Napo" },
+  { question: "¿Qué personaje histórico ecuatoriano lideró la Revolución Liberal?", options: ["Eloy Alfaro", "Antonio José de Sucre", "Simón Bolívar", "José Joaquín de Olmedo"], answer: "Eloy Alfaro" },
+  { question: "¿Cuál es el plato típico de la Sierra ecuatoriana hecho con habas y queso?", options: ["Hornado", "Llapingachos", "Fanesca", "Humitas"], answer: "Llapingachos" },
+  { question: "¿Qué provincia es conocida por su producción de cacao?", options: ["Guayas", "Los Ríos", "Esmeraldas", "Carchi"], answer: "Los Ríos" },
+];
