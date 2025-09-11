@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
 
 // Contenedor del juego
 const GameContainer = styled.div`
@@ -16,24 +15,25 @@ const GameContainer = styled.div`
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
 `;
 
-const Player = styled(motion.div)`
+const Player = styled.div`
   position: absolute;
-  bottom: 50px;
-  left: ${({ position }) => position}px;
+  bottom: ${({ bottom }) => bottom}px;
+  left: ${({ left }) => left}px;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
   background: radial-gradient(circle, red, darkred);
+  border-radius: 50%;
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
 `;
 
 const Obstacle = styled.div`
   position: absolute;
   bottom: 50px;
+  left: ${({ left }) => left}px;
   width: 50px;
   height: 50px;
-  border-radius: 8px;
   background: linear-gradient(to bottom, #0072ff, #004aad);
+  border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 255, 0.6);
 `;
 
@@ -54,40 +54,31 @@ const GameButton = styled.button`
   }
 `;
 
-const ProgressBar = styled.div`
-  width: 90%;
-  height: 20px;
-  background: #ccc;
-  margin: 15px auto;
-  border-radius: 5px;
-  overflow: hidden;
-`;
-
-const ProgressFill = styled.div`
-  height: 100%;
-  width: ${({ speed }) => speed * 6}px;
-  background: ${({ speed }) =>
-    speed < 7 ? "green" : speed < 12 ? "orange" : "red"};
-  transition: width 0.2s ease, background 0.3s ease;
-`;
-
 const CenterScreen = styled.div`
   text-align: center;
   color: white;
   padding-top: 100px;
 `;
 
+const ScoreDisplay = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 18px;
+  color: white;
+`;
+
 // Componente principal
 export default function Game() {
-  const [screen, setScreen] = useState("start");
-  const [playerPos, setPlayerPos] = useState(100);
+  const [screen, setScreen] = useState("start"); // start | play | end
+  const [playerLeft, setPlayerLeft] = useState(100);
+  const [playerBottom, setPlayerBottom] = useState(50);
   const [obstacles, setObstacles] = useState([]);
-  const [speed, setSpeed] = useState(5);
   const [score, setScore] = useState(0);
 
-  // Usamos useRef para mantener la posición actual y que los handlers siempre la vean
-  const playerRef = useRef(playerPos);
-  playerRef.current = playerPos;
+  const playerRef = useRef({ left: playerLeft, bottom: playerBottom });
+  playerRef.current.left = playerLeft;
+  playerRef.current.bottom = playerBottom;
 
   const animRef = useRef(null);
   const lastTimeRef = useRef(null);
@@ -96,20 +87,66 @@ export default function Game() {
   useEffect(() => {
     if (screen !== "play") return;
 
+    let jumping = false;
+
     const handleKey = (e) => {
-      if (e.key === "ArrowLeft" && playerRef.current > 0) {
-        setPlayerPos((pos) => Math.max(pos - 20, 0));
-      } else if (e.key === "ArrowRight" && playerRef.current < 750) {
-        setPlayerPos((pos) => Math.min(pos + 20, 750));
+      if (e.key === "ArrowLeft" && playerRef.current.left > 0) {
+        setPlayerLeft((pos) => Math.max(pos - 20, 0));
+      } else if (e.key === "ArrowRight" && playerRef.current.left < 750) {
+        setPlayerLeft((pos) => Math.min(pos + 20, 750));
+      } else if ((e.key === "ArrowUp" || e.key === " ") && !jumping) {
+        jumping = true;
+        let jumpHeight = 0;
+        const jumpInterval = setInterval(() => {
+          if (jumpHeight < 150) {
+            setPlayerBottom((b) => b + 15);
+            jumpHeight += 15;
+          } else {
+            clearInterval(jumpInterval);
+            const fallInterval = setInterval(() => {
+              if (jumpHeight > 0) {
+                setPlayerBottom((b) => b - 15);
+                jumpHeight -= 15;
+              } else {
+                clearInterval(fallInterval);
+                jumping = false;
+              }
+            }, 20);
+          }
+        }, 20);
       }
     };
 
     const handleTouch = (e) => {
       const x = e.touches[0].clientX;
-      if (x < window.innerWidth / 2 && playerRef.current > 0) {
-        setPlayerPos((pos) => Math.max(pos - 20, 0));
-      } else if (x >= window.innerWidth / 2 && playerRef.current < 750) {
-        setPlayerPos((pos) => Math.min(pos + 20, 750));
+      const y = e.touches[0].clientY;
+      // izquierda/derecha
+      if (x < window.innerWidth / 2 && playerRef.current.left > 0) {
+        setPlayerLeft((pos) => Math.max(pos - 20, 0));
+      } else if (x >= window.innerWidth / 2 && playerRef.current.left < 750) {
+        setPlayerLeft((pos) => Math.min(pos + 20, 750));
+      }
+      // arriba = salto
+      if (y < window.innerHeight / 2 && !jumping) {
+        jumping = true;
+        let jumpHeight = 0;
+        const jumpInterval = setInterval(() => {
+          if (jumpHeight < 150) {
+            setPlayerBottom((b) => b + 15);
+            jumpHeight += 15;
+          } else {
+            clearInterval(jumpInterval);
+            const fallInterval = setInterval(() => {
+              if (jumpHeight > 0) {
+                setPlayerBottom((b) => b - 15);
+                jumpHeight -= 15;
+              } else {
+                clearInterval(fallInterval);
+                jumping = false;
+              }
+            }, 20);
+          }
+        }, 20);
       }
     };
 
@@ -131,65 +168,55 @@ export default function Game() {
       const delta = (time - lastTimeRef.current) / 16;
       lastTimeRef.current = time;
 
+      // Mover obstáculos
       setObstacles((obs) => {
-        const moved = obs.map((o) => ({ ...o, left: o.left - speed * delta }));
+        const moved = obs.map((o) => ({ ...o, left: o.left - 10 * delta }));
         const filtered = moved.filter((o) => o.left > -60);
-        if (Math.random() < 0.03) {
-          filtered.push({ left: 800 });
-        }
+        if (Math.random() < 0.03) filtered.push({ left: 800 });
         return filtered;
       });
 
       setScore((s) => s + Math.floor(delta));
-      setSpeed((sp) => sp + 0.001 * delta);
 
       animRef.current = requestAnimationFrame(update);
     };
 
     animRef.current = requestAnimationFrame(update);
     return () => cancelAnimationFrame(animRef.current);
-  }, [screen, speed]);
+  }, [screen]);
 
   // Colisiones
   useEffect(() => {
     if (screen !== "play") return;
     obstacles.forEach((o) => {
-      if (o.left < playerPos + 50 && o.left + 50 > playerPos) {
+      // colisión solo si toca en el mismo nivel
+      if (
+        o.left < playerLeft + 50 &&
+        o.left + 50 > playerLeft &&
+        playerBottom < 100
+      ) {
         setScreen("end");
       }
     });
-  }, [obstacles, playerPos, screen]);
+  }, [obstacles, playerLeft, playerBottom, screen]);
 
   return (
     <GameContainer>
       {screen === "start" && (
         <CenterScreen>
-          <h1>🚀 Adaptive Runner</h1>
-          <p>Mueve con ← → o toca izquierda/derecha en móvil</p>
+          <h1>🚀 Runner Nuevo</h1>
+          <p>Mueve ← → y salta con ↑ o toca arriba en móvil</p>
           <GameButton onClick={() => setScreen("play")}>Iniciar Juego</GameButton>
         </CenterScreen>
       )}
 
       {screen === "play" && (
         <>
-          <ProgressBar>
-            <ProgressFill speed={speed} />
-          </ProgressBar>
-          <Player position={playerPos} />
+          <ScoreDisplay>Puntuación: {score}</ScoreDisplay>
+          <Player left={playerLeft} bottom={playerBottom} />
           {obstacles.map((o, i) => (
-            <Obstacle key={i} style={{ left: o.left }} />
+            <Obstacle key={i} left={o.left} />
           ))}
-          <div
-            style={{
-              position: "absolute",
-              top: 10,
-              left: 10,
-              color: "white",
-              fontSize: "18px",
-            }}
-          >
-            Puntuación: {score}
-          </div>
         </>
       )}
 
@@ -199,9 +226,9 @@ export default function Game() {
           <p>Tu puntuación: {score}</p>
           <GameButton
             onClick={() => {
-              setPlayerPos(100);
+              setPlayerLeft(100);
+              setPlayerBottom(50);
               setObstacles([]);
-              setSpeed(5);
               setScore(0);
               setScreen("start");
             }}
