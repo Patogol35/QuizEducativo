@@ -20,6 +20,16 @@ export const questions = [
   { question: "¿Quién inventó la bombilla eléctrica?", options: ["Tesla", "Edison", "Franklin", "Bell"], answer: "Edison" },
   { question: "¿Cuál es el animal más rápido del mundo?", options: ["Guepardo", "Halcón peregrino", "Leopardo", "Antílope"], answer: "Halcón peregrino" },
   { question: "¿Qué elemento químico tiene el símbolo O?", options: ["Oro", "Osmio", "Oxígeno", "Oganesón"], answer: "Oxígeno" },
+  { question: "¿Cuál es el país más grande del mundo?", options: ["Canadá", "China", "Rusia", "Estados Unidos"], answer: "Rusia" },
+{ question: "¿Qué planeta es conocido como el planeta rojo?", options: ["Venus", "Marte", "Mercurio", "Saturno"], answer: "Marte" },
+{ question: "¿Cuál es el océano que separa América de Europa?", options: ["Pacífico", "Atlántico", "Índico", "Ártico"], answer: "Atlántico" },
+{ question: "¿Quién escribió 'Don Quijote de la Mancha'?", options: ["Miguel de Cervantes", "Lope de Vega", "Garcilaso de la Vega", "Quevedo"], answer: "Miguel de Cervantes" },
+{ question: "¿Qué gas respiramos para vivir?", options: ["Dióxido de carbono", "Oxígeno", "Nitrógeno", "Hidrógeno"], answer: "Oxígeno" },
+{ question: "¿En qué país se encuentra la Torre Eiffel?", options: ["Italia", "Francia", "España", "Alemania"], answer: "Francia" },
+{ question: "¿Quién fue conocido como el Libertador de América?", options: ["Simón Bolívar", "José de San Martín", "Antonio José de Sucre", "Francisco de Miranda"], answer: "Simón Bolívar" },
+{ question: "¿Cuál es el hueso más largo del cuerpo humano?", options: ["Fémur", "Húmero", "Tibia", "Radio"], answer: "Fémur" },
+{ question: "¿Qué país es famoso por la Torre de Pisa?", options: ["Francia", "Italia", "Portugal", "Grecia"], answer: "Italia" },
+{ question: "¿Qué científico propuso la teoría de la gravedad?", options: ["Galileo Galilei", "Isaac Newton", "Albert Einstein", "Nikola Tesla"], answer: "Isaac Newton" },
 
   // PREGUNTAS DE ECUADOR
   { question: "¿Cuál es la capital de Ecuador?", options: ["Guayaquil", "Quito", "Cuenca", "Ambato"], answer: "Quito" },
