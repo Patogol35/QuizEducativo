@@ -26,7 +26,13 @@ export default function QuestionCard({ question, current, total, score, onAnswer
       >
         <CardContent>
           {/* Contador y temporizador */}
-          <Stack direction={{ xs: "column", sm: "row" }} justifyContent="space-between" alignItems="center" mb={4} spacing={2}>
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            justifyContent="space-between"
+            alignItems="center"
+            mb={4}
+            spacing={2}
+          >
             <Typography variant="h6" sx={{ fontWeight: 500 }}>
               {current + 1} / {total}
             </Typography>
@@ -35,7 +41,8 @@ export default function QuestionCard({ question, current, total, score, onAnswer
               <CircularProgress
                 variant="determinate"
                 value={(time / maxTime) * 100}
-                size={60}
+                // Tamaño adaptativo para móvil y PC
+                size={{ xs: 50, sm: 60, md: 70 }}
                 thickness={5}
                 sx={{ color: time <= 3 ? "error.main" : "primary.main" }}
               />
@@ -50,7 +57,14 @@ export default function QuestionCard({ question, current, total, score, onAnswer
                 justifyContent="center"
                 sx={{ pointerEvents: "none" }}
               >
-                <Typography variant="body1" fontWeight="bold" sx={{ color: "text.primary" }}>
+                <Typography
+                  variant="body1"
+                  fontWeight="bold"
+                  sx={{
+                    color: "text.primary",
+                    fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                  }}
+                >
                   {time}s
                 </Typography>
               </Box>
@@ -69,7 +83,7 @@ export default function QuestionCard({ question, current, total, score, onAnswer
                 key={i}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => onAnswer(opt)} // clic ahora en todo el recuadro
+                onClick={() => onAnswer(opt)}
                 style={{ cursor: "pointer" }}
               >
                 <Button
