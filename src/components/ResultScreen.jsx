@@ -1,48 +1,25 @@
-import styled from "styled-components";
-
-const Card = styled.div`
-  background: #fff;
-  padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-  width: 460px;
-  text-align: center;
-`;
-
-const Title = styled.h2`
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-`;
-
-const Button = styled.button`
-  padding: 1rem;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  background: #2563eb;
-  color: #fff;
-  width: 100%;
-  margin-top: 1rem;
-  transition: 0.3s;
-  &:hover { background: #1d4ed8; transform: scale(1.02); }
-`;
+import { Card, CardContent, Typography, Button, Stack } from "@mui/material";
+import { motion } from "framer-motion";
+import ReplayIcon from "@mui/icons-material/Replay";
 
 export default function ResultScreen({ score, total, onRestart }) {
-  const message =
-    score === total
-      ? "🔥 Perfecto, lo lograste sin fallar!"
-      : score > total / 2
-      ? "👏 Muy bien, casi perfecto!"
-      : "💡 Sigue practicando, lo harás mejor la próxima!";
+  const percent = (score / total) * 100;
+  let message = "Sigue intentándolo, cada vez serás mejor!";
+  if (percent >= 80) message = "¡Excelente trabajo! 🌟";
+  else if (percent >= 50) message = "¡Buen esfuerzo, sigue así! 💪";
 
   return (
-    <Card>
-      <Title>🎉 ¡Juego terminado!</Title>
-      <p>Tu puntaje final:</p>
-      <h3 style={{ color: "#2563eb", fontSize: "1.6rem" }}>{score} / {total}</h3>
-      <p style={{ marginTop: "1rem" }}>{message}</p>
-      <Button onClick={onRestart}>🔄 Jugar de nuevo</Button>
-    </Card>
+    <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }} style={{ width: "100%", maxWidth: 500 }}>
+      <Card sx={{ p: 4, borderRadius: 3, boxShadow: "0 6px 20px rgba(0,0,0,0.1)", textAlign: "center" }}>
+        <CardContent>
+          <Typography variant="h4" fontWeight="bold" gutterBottom>¡Juego terminado!</Typography>
+          <Typography variant="h6" gutterBottom>Puntaje: {score} / {total}</Typography>
+          <Typography variant="body1" sx={{ mb: 3 }}>{message}</Typography>
+          <Stack direction="row" justifyContent="center">
+            <Button variant="contained" startIcon={<ReplayIcon />} onClick={onRestart} sx={{ px: 5, py: 1.5, borderRadius: 2, textTransform: "none" }}>Volver a jugar</Button>
+          </Stack>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }

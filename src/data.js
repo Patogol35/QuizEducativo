@@ -9,4 +9,15 @@ export const questions = [
   { question: "¿Quién escribió 'Cien años de soledad'?", options: ["Mario Vargas Llosa", "Julio Cortázar", "Gabriel García Márquez", "Pablo Neruda"], answer: "Gabriel García Márquez" },
   { question: "¿Qué país ganó el Mundial de Fútbol en 2010?", options: ["Brasil", "Alemania", "España", "Italia"], answer: "España" },
   { question: "¿Cuál es la montaña más alta del mundo?", options: ["K2", "Monte Everest", "Kilimanjaro", "Aconcagua"], answer: "Monte Everest" },
+  { question: "¿Quién fue el primer presidente de Estados Unidos?", options: ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "John Adams"], answer: "George Washington" },
+  { question: "¿Cuál es el metal más ligero?", options: ["Oro", "Litio", "Plata", "Aluminio"], answer: "Litio" },
+  { question: "¿Qué continente tiene más países?", options: ["África", "Asia", "Europa", "América"], answer: "África" },
+  { question: "¿Cuál es el idioma más hablado en el mundo?", options: ["Inglés", "Chino mandarín", "Español", "Hindi"], answer: "Chino mandarín" },
+  { question: "¿Quién formuló la teoría de la relatividad?", options: ["Newton", "Einstein", "Tesla", "Galileo"], answer: "Einstein" },
+  { question: "¿Cuál es el océano más grande?", options: ["Atlántico", "Índico", "Pacífico", "Ártico"], answer: "Pacífico" },
+  { question: "¿Qué país tiene forma de bota?", options: ["Grecia", "Italia", "Chile", "Turquía"], answer: "Italia" },
+  { question: "¿Quién inventó la bombilla eléctrica?", options: ["Tesla", "Edison", "Franklin", "Bell"], answer: "Edison" },
+  { question: "¿Cuál es el animal más rápido del mundo?", options: ["Guepardo", "Halcón peregrino", "Leopardo", "Antílope"], answer: "Halcón peregrino" },
+  { question: "¿Qué elemento químico tiene el símbolo O?", options: ["Oro", "Osmio", "Oxígeno", "Oganesón"], answer: "Oxígeno" },
 ];
+

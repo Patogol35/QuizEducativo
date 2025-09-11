@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { ThemeProvider, createTheme, CssBaseline, IconButton, Box } from "@mui/material";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+
 import WelcomeScreen from "./components/WelcomeScreen";
 import QuestionCard from "./components/QuestionCard";
 import ResultScreen from "./components/ResultScreen";
-import { questions } from "./data";
+import { questions as allQuestions } from "./data";
 
 export default function App() {
   const [welcome, setWelcome] = useState(true);
@@ -11,71 +15,128 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [timeLeft, setTimeLeft] = useState(10);
+  const [gameQuestions, setGameQuestions] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
+  const [selected, setSelected] = useState(null);
 
-  // Inicia el juego según dificultad
+  // Cargar preferencias desde localStorage
+  useEffect(() => {
+    const savedDark = localStorage.getItem("darkMode");
+    const savedDiff = localStorage.getItem("difficulty");
+    if (savedDark) setDarkMode(JSON.parse(savedDark));
+    if (savedDiff) setDifficulty(savedDiff);
+  }, []);
+
+  useEffect(() => localStorage.setItem("darkMode", darkMode), [darkMode]);
+  useEffect(() => localStorage.setItem("difficulty", difficulty), [difficulty]);
+
+  const theme = useMemo(() =>
+    createTheme({
+      palette: {
+        mode: darkMode ? "dark" : "light",
+        primary: { main: "#2563eb" },
+        secondary: { main: "#64748b" },
+        background: {
+          default: darkMode ? "#0f172a" : "#f1f5f9",
+          paper: darkMode ? "#1e293b" : "#ffffff"
+        },
+        text: {
+          primary: darkMode ? "#f1f5f9" : "#1e293b",
+          secondary: darkMode ? "#94a3b8" : "#64748b"
+        }
+      },
+      typography: { fontFamily: "Roboto, sans-serif" },
+      shape: { borderRadius: 12 }
+    }), [darkMode]);
+
+  const maxTime = difficulty === "easy" ? 15 : difficulty === "hard" ? 5 : 10;
+
   const handleStart = () => {
+    const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
+    setGameQuestions(shuffled.slice(0, 10));
     setWelcome(false);
-    switch (difficulty) {
-      case "easy": setTimeLeft(15); break;
-      case "medium": setTimeLeft(10); break;
-      case "hard": setTimeLeft(5); break;
-      default: setTimeLeft(10);
-    }
+    setTimeLeft(maxTime);
+    setCurrent(0);
+    setScore(0);
+    setSelected(null);
+    setFinished(false);
   };
 
-  const handleAnswer = (option) => {
-    if (option === questions[current].answer) setScore(prev => prev + 1);
+  const handleAnswerWithFeedback = (option) => {
+    setSelected(option);
+    if (option === gameQuestions[current].answer) setScore(prev => prev + 1);
 
-    if (current + 1 < questions.length) {
-      setCurrent(prev => prev + 1);
-      // reinicia tiempo según dificultad
-      switch (difficulty) {
-        case "easy": setTimeLeft(15); break;
-        case "medium": setTimeLeft(10); break;
-        case "hard": setTimeLeft(5); break;
-      }
-    } else {
-      setFinished(true);
-    }
+    setTimeout(() => {
+      if (current + 1 < gameQuestions.length) {
+        setCurrent(prev => prev + 1);
+        setTimeLeft(maxTime);
+        setSelected(null);
+      } else setFinished(true);
+    }, 700); // Espera 0.7s para mostrar feedback
   };
 
   useEffect(() => {
     if (finished || welcome) return;
-
-    if (timeLeft === 0) { handleAnswer(""); return; }
-
+    if (timeLeft === 0) { handleAnswerWithFeedback(""); return; }
     const timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
     return () => clearInterval(timer);
-  }, [timeLeft, finished, welcome, difficulty]);
+  }, [timeLeft, finished, welcome]);
 
+  // NUEVO: Redirigir a WelcomeScreen al reiniciar
   const restartGame = () => {
+    setWelcome(true);       // Mostrar pantalla de bienvenida
     setCurrent(0);
     setScore(0);
     setFinished(false);
-    setWelcome(true);
     setTimeLeft(10);
+    setGameQuestions([]);
+    setSelected(null);
   };
 
   return (
-    <>
-      {welcome ? (
-        <WelcomeScreen onStart={handleStart} setDifficulty={setDifficulty} />
-      ) : !finished ? (
-        <QuestionCard
-          question={questions[current]}
-          current={current}
-          total={questions.length}
-          score={score}
-          onAnswer={handleAnswer}
-          time={timeLeft}
-        />
-      ) : (
-        <ResultScreen
-          score={score}
-          total={questions.length}
-          onRestart={restartGame}
-        />
-      )}
-    </>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box
+        sx={{
+          minHeight: "100vh",
+          background: darkMode
+            ? "linear-gradient(135deg, #0f172a, #1e293b)"
+            : "linear-gradient(135deg, #f1f5f9, #e2e8f0)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          p: 2,
+          position: "relative"
+        }}
+      >
+        {/* Botón Modo Oscuro */}
+        <Box position="absolute" top={16} right={16}>
+          <IconButton color="inherit" onClick={() => setDarkMode(prev => !prev)}>
+            {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+          </IconButton>
+        </Box>
+
+        {welcome ? (
+          <WelcomeScreen onStart={handleStart} setDifficulty={setDifficulty} difficulty={difficulty} />
+        ) : !finished ? (
+          <QuestionCard
+            question={gameQuestions[current]}
+            current={current}
+            total={gameQuestions.length}
+            score={score}
+            onAnswer={handleAnswerWithFeedback}
+            time={timeLeft}
+            maxTime={maxTime}
+            selected={selected}
+          />
+        ) : (
+          <ResultScreen
+            score={score}
+            total={gameQuestions.length}
+            onRestart={restartGame}  // Aquí redirige al WelcomeScreen
+          />
+        )}
+      </Box>
+    </ThemeProvider>
   );
 }

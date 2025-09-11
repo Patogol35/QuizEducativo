@@ -1,54 +1,64 @@
-import styled from "styled-components";
+import { Card, CardContent, Typography, Button, Stack, CircularProgress, Box } from "@mui/material";
+import { motion } from "framer-motion";
 
-const Card = styled.div`
-  background: #fff;
-  padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-  width: 460px;
-  text-align: center;
-`;
-
-const Title = styled.h2`
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-`;
-
-const Button = styled.button`
-  padding: 0.9rem;
-  margin: 0.5rem 0;
-  border: none;
-  border-radius: 10px;
-  width: 100%;
-  cursor: pointer;
-  font-size: 1rem;
-  background: #2563eb;
-  color: #fff;
-  transition: 0.3s;
-  &:hover { background: #1d4ed8; transform: scale(1.02); }
-`;
-
-const Info = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-`;
-
-export default function QuestionCard({ question, current, total, score, onAnswer }) {
+export default function QuestionCard({ question, current, total, score, onAnswer, time }) {
   return (
-    <Card>
-      <Info>
-        <span>Puntaje: {score}</span>
-        <span>Pregunta {current + 1} de {total}</span>
-      </Info>
+    <motion.div
+      key={current}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      style={{ width: "100%", maxWidth: 600 }}
+    >
+      <Card sx={{ p: 3, borderRadius: 3, boxShadow: "0 6px 20px rgba(0,0,0,0.1)" }}>
+        <CardContent>
+          <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
+            <Typography variant="h6">{current + 1} / {total}</Typography>
+            <Box position="relative" display="inline-flex">
+              <CircularProgress
+                variant="determinate"
+                value={(time / 10) * 100}
+                size={60}
+                thickness={5}
+                color={time <= 3 ? "error" : "primary"}
+              />
+              <Box top={0} left={0} bottom={0} right={0} position="absolute" display="flex" alignItems="center" justifyContent="center">
+                <Typography fontWeight="bold">{time}s</Typography>
+              </Box>
+            </Box>
+          </Stack>
 
-      <Title>{question.question}</Title>
+          <Typography variant="h5" gutterBottom>{question.question}</Typography>
 
-      {question.options.map((opt, idx) => (
-        <Button key={idx} onClick={() => onAnswer(opt)}>
-          {opt}
-        </Button>
-      ))}
-    </Card>
+          <Stack spacing={2} mt={2}>
+            {question.options.map((opt, i) => (
+              <motion.div key={i} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => onAnswer(opt)}
+                  sx={{
+                    textTransform: "none",
+                    borderRadius: 2,
+                    fontWeight: "500",
+                    py: 1.5,
+                    "&:hover": { backgroundColor: "#e0f2fe" }
+                  }}
+                >
+                  {opt}
+                </Button>
+              </motion.div>
+            ))}
+          </Stack>
+
+          <Typography variant="body2" align="right" sx={{ mt: 2, color: "text.secondary" }}>
+            Puntos: {score}
+          </Typography>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }
+
+
+

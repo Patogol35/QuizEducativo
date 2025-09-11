@@ -1,50 +1,70 @@
-import styled from "styled-components";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { motion } from "framer-motion";
 
-const Card = styled.div`
-  background: #fff;
-  padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-  width: 460px;
-  text-align: center;
-`;
-
-const Title = styled.h2`
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-`;
-
-const Button = styled.button`
-  padding: 1rem;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  background: #2563eb;
-  color: #fff;
-  width: 100%;
-  margin-top: 1rem;
-  transition: 0.3s;
-  &:hover { background: #1d4ed8; transform: translateY(-2px) scale(1.02); }
-`;
-
-export default function WelcomeScreen({ onStart, setDifficulty }) {
+export default function WelcomeScreen({ onStart, setDifficulty, difficulty }) {
   return (
-    <Card>
-      <Title>👋 ¡Bienvenido a la Trivia!</Title>
-      <p>Selecciona la dificultad y pon a prueba tus conocimientos:</p>
-
-      <select
-        style={{ width: "100%", padding: "0.8rem", marginTop: "1rem", borderRadius: "8px", fontSize: "1rem" }}
-        onChange={(e) => setDifficulty(e.target.value)}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      style={{ width: "100%", maxWidth: 500 }}
+    >
+      <Card
+        sx={{
+          p: 4,
+          textAlign: "center",
+          background: "rgba(255,255,255,0.15)",
+          backdropFilter: "blur(12px)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+        }}
       >
-        <option value="easy">Fácil (15s)</option>
-        <option value="medium">Medio (10s)</option>
-        <option value="hard">Difícil (5s)</option>
-      </select>
+        <CardContent>
+          <Typography variant="h4" gutterBottom>
+            🎮 Quiz Interactivo - Desarrollado por Jorge Patricio Santamaría Cherrez
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Responde 10 preguntas al azar.  
+            ¡Demuestra tu conocimiento!
+          </Typography>
 
-      <Button onClick={onStart}>🚀 Comenzar</Button>
-    </Card>
+          {/* Selección de dificultad */}
+          <Stack mt={3} spacing={2}>
+            <Typography variant="body2">Selecciona la dificultad:</Typography>
+            <ToggleButtonGroup
+              exclusive
+              value={difficulty}
+              onChange={(e, val) => val && setDifficulty(val)}
+              color="secondary"
+            >
+              <ToggleButton value="easy">Fácil</ToggleButton>
+              <ToggleButton value="medium">Medio</ToggleButton>
+              <ToggleButton value="hard">Difícil</ToggleButton>
+            </ToggleButtonGroup>
+          </Stack>
+
+          {/* Botón empezar */}
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            startIcon={<PlayArrowIcon />}
+            onClick={onStart}
+            sx={{ mt: 4, px: 5, py: 1.5, borderRadius: 3 }}
+          >
+            Comenzar
+          </Button>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }
+
