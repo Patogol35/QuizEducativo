@@ -126,10 +126,10 @@ export default function WelcomeScreen({
                       border: "1px solid",
                       borderColor: "divider",
                       fontWeight: 600,
-                      "&.Mui-selected": {
-                        backgroundColor: colors[level].main,
-                        color: "#fff",
-                      },
+                      color: (theme) =>
+                        difficulty === level ? "#fff" : theme.palette.text.primary,
+                      backgroundColor: (theme) =>
+                        difficulty === level ? colors[level].main : "transparent",
                       "&:hover": {
                         backgroundColor: colors[level].light,
                         color: "#fff",
