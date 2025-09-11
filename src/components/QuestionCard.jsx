@@ -1,8 +1,37 @@
-import { Card, CardContent, Typography, Button, Stack, CircularProgress, Box } from "@mui/material";
+import React from "react";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  Stack,
+  CircularProgress,
+  Box,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { motion } from "framer-motion";
 
-export default function QuestionCard({ question, current, total, score, onAnswer, time, maxTime, selected }) {
+export default function QuestionCard({
+  question,
+  current,
+  total,
+  score,
+  onAnswer,
+  time,
+  maxTime,
+  selected,
+}) {
   if (!question) return null;
+
+  const theme = useTheme();
+  const isXs = useMediaQuery(theme.breakpoints.down("sm")); // móvil pequeño
+  const isMdUp = useMediaQuery(theme.breakpoints.up("md")); // escritorio
+  const cpSize = isXs ? 50 : isMdUp ? 70 : 60; // tamaño numérico para size
+
+  // Progreso seguro entre 0 y 100 (previene NaN / overflow)
+  const progressValue =
+    maxTime && maxTime > 0 ? Math.max(0, Math.min(100, (time / maxTime) * 100)) : 0;
 
   return (
     <motion.div
@@ -37,14 +66,20 @@ export default function QuestionCard({ question, current, total, score, onAnswer
               {current + 1} / {total}
             </Typography>
 
-            <Box position="relative" display="inline-flex">
+            <Box position="relative" display="inline-flex" aria-hidden={false}>
               <CircularProgress
                 variant="determinate"
-                value={(time / maxTime) * 100}
-                // Tamaño adaptativo para móvil y PC
-                size={{ xs: 50, sm: 60, md: 70 }}
+                value={progressValue}
+                size={cpSize} // número, no objeto
                 thickness={5}
-                sx={{ color: time <= 3 ? "error.main" : "primary.main" }}
+                sx={{
+                  color: time <= 3 ? "error.main" : "primary.main",
+                  transition: "color 0.2s linear",
+                  // animar suavemente el cambio del trazo del círculo (restores wheel animation)
+                  "& .MuiCircularProgress-circle": {
+                    transition: "stroke-dashoffset 0.35s linear",
+                  },
+                }}
               />
               <Box
                 position="absolute"
