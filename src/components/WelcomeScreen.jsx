@@ -7,10 +7,12 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   IconButton,
+  Box,
 } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import InfoIcon from "@mui/icons-material/Info";
 import { motion } from "framer-motion";
 
 export default function WelcomeScreen({
@@ -36,12 +38,13 @@ export default function WelcomeScreen({
             theme.palette.mode === "dark"
               ? "linear-gradient(145deg, #1e293b, #0f172a)"
               : "linear-gradient(145deg, #ffffff, #f8fafc)",
-          boxShadow: "0 8px 25px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.05)",
+          boxShadow:
+            "0 8px 25px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.05)",
         }}
       >
         <CardContent>
           {/* Título + Toggle modo oscuro */}
-          <Stack direction="row" alignItems="center" justifyContent="center" spacing={2} mb={3}>
+          <Stack direction="row" alignItems="center" justifyContent="center" spacing={2} mb={2}>
             <Typography
               variant="h4"
               fontWeight="bold"
@@ -58,15 +61,45 @@ export default function WelcomeScreen({
               color="inherit"
               sx={{
                 border: "1px solid",
-                borderColor: (theme) => (theme.palette.mode === "dark" ? "#f1f5f9" : "#1e293b"),
+                borderColor: (theme) =>
+                  theme.palette.mode === "dark" ? "#f1f5f9" : "#1e293b",
               }}
             >
               {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
             </IconButton>
           </Stack>
 
+          {/* Desarrollado por */}
+          <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
+            Desarrollado por <b>Jorge Patricio Santamaría Cherrez</b>
+          </Typography>
+
+          {/* Instrucciones */}
+          <Stack
+            spacing={1}
+            sx={{
+              textAlign: "left",
+              p: 2,
+              mb: 3,
+              borderRadius: 3,
+              backgroundColor: (theme) =>
+                theme.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "#f8fafc",
+            }}
+          >
+            <Typography
+              variant="subtitle1"
+              sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: "500" }}
+            >
+              <InfoIcon fontSize="small" /> Instrucciones
+            </Typography>
+            <Typography variant="body2">✅ Responde <b>10 preguntas al azar</b>.</Typography>
+            <Typography variant="body2">⏱️ Tienes un límite de tiempo para cada pregunta.</Typography>
+            <Typography variant="body2">🏆 Gana puntos por cada respuesta correcta.</Typography>
+            <Typography variant="body2">📊 Elige la dificultad antes de comenzar.</Typography>
+          </Stack>
+
           {/* Selección de dificultad */}
-          <Stack mt={3} spacing={2} alignItems="center">
+          <Stack mt={1} spacing={2} alignItems="center">
             <Typography variant="body2" fontWeight="500">
               Selecciona la dificultad:
             </Typography>
@@ -118,16 +151,18 @@ export default function WelcomeScreen({
           </Stack>
 
           {/* Botón empezar */}
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            startIcon={<PlayArrowIcon />}
-            onClick={onStart}
-            sx={{ mt: 4, px: 6, py: 1.8, fontSize: "1.1rem", borderRadius: 3, textTransform: "none" }}
-          >
-            Comenzar
-          </Button>
+          <Box mt={4}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              startIcon={<PlayArrowIcon />}
+              onClick={onStart}
+              sx={{ px: 6, py: 1.8, fontSize: "1.1rem", borderRadius: 3, textTransform: "none" }}
+            >
+              Comenzar
+            </Button>
+          </Box>
         </CardContent>
       </Card>
     </motion.div>
