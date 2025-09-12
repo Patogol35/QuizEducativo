@@ -28,7 +28,7 @@ export const questions = [
   { question: "¿Cómo se llamaba el famoso dúo musical conformado por Gonzalo Benítez y Luis Alberto Valencia?", options: ["Los Reales", "Benítez y Valencia", "Los Brillantes", "Los Hermanos Miño Naranjo"], answer: "Benítez y Valencia" },
   { question: "¿Qué cantante guayaquileño es conocido como 'El Ruiseñor de América'?", options: ["Carlota Jaramillo", "Julio Jaramillo", "Olga Gutiérrez", "Segundo Rosero"], answer: "Julio Jaramillo" },
   { question: "¿Qué instrumento musical es muy característico en los sanjuanitos ecuatorianos?", options: ["Guitarra", "Rondador", "Violín", "Charango"], answer: "Rondador" },
-  { question: "¿Cuál de estos géneros musicales es originario de los pueblos indígenas de la Sierra?", options: ["Sanjuanito", "Pasillo", "Pasacalle", "Albazo"], answer: "Sanjuanito" },
+  
   { question: "¿Qué cantante ecuatoriana es conocida como 'La Reina del Pasillo'?", options: ["Olga Gutiérrez", "Carlota Jaramillo", "Paulina Tamayo", "Rosa Guraieb"], answer: "Carlota Jaramillo" },
   { question: "¿Qué compositor ecuatoriano escribió la canción 'Guayaquil de mis amores'?", options: ["Nicasio Safadi", "Carlos Rubira Infante", "Luis Humberto Salgado", "Jorge Humberto Benítez"], answer: "Nicasio Safadi" },
   { question: "¿En qué provincia nació el compositor Carlos Rubira Infante?", options: ["Pichincha", "Guayas", "Manabí", "Azuay"], answer: "Guayas" },
