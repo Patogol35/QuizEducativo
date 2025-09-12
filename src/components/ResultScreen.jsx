@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { Card, CardContent, Typography, Button, Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import ReplayIcon from "@mui/icons-material/Replay";
+import confetti from "canvas-confetti";
 
 export default function ResultScreen({ score, total, onRestart }) {
   // Calcular porcentaje según puntaje real (0.5 por pregunta)
@@ -11,6 +13,55 @@ export default function ResultScreen({ score, total, onRestart }) {
   let message = "Sigue intentándolo, cada vez serás mejor!";
   if (percent >= 80) message = "¡Excelente trabajo! 🌟";
   else if (percent >= 50) message = "¡Buen esfuerzo, sigue así! 💪";
+
+  // 🎉 Efectos visuales según resultado
+  useEffect(() => {
+    if (percent >= 80) {
+      // 🎉 Lluvia de confeti por 3s
+      const duration = 3000;
+      const end = Date.now() + duration;
+
+      const interval = setInterval(() => {
+        if (Date.now() > end) {
+          clearInterval(interval);
+          return;
+        }
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { x: Math.random(), y: Math.random() - 0.2 },
+        });
+      }, 300);
+    } else if (percent >= 50) {
+      // 💥 Estallido colorido
+      confetti({
+        particleCount: 80,
+        spread: 60,
+        colors: ["#4ade80", "#60a5fa", "#facc15"],
+        origin: { y: 0.6 },
+      });
+    } else {
+      // 💧 Lluvia triste (gotitas azules desde arriba)
+      const duration = 2000;
+      const end = Date.now() + duration;
+
+      const interval = setInterval(() => {
+        if (Date.now() > end) {
+          clearInterval(interval);
+          return;
+        }
+        confetti({
+          particleCount: 15,
+          angle: 90,
+          spread: 20,
+          startVelocity: 20,
+          scalar: 1.2,
+          colors: ["#60a5fa", "#3b82f6", "#1e40af"], // tonos azul "lágrima"
+          origin: { x: Math.random(), y: 0 },
+        });
+      }, 250);
+    }
+  }, [percent]);
 
   return (
     <motion.div
@@ -69,4 +120,4 @@ export default function ResultScreen({ score, total, onRestart }) {
       </Card>
     </motion.div>
   );
-}
+          }
