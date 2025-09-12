@@ -23,7 +23,7 @@ export const questions = [
   { question: "¿Qué provincia ecuatoriana es reconocida por su producción de rosas de exportación?", options: ["Pichincha", "Tungurahua", "Cotopaxi", "Imbabura"], answer: "Pichincha" },
   { question: "¿Qué famoso ecuatoriano es considerado el 'Viejo Luchador'?", options: ["Juan Montalvo", "Eloy Alfaro", "Vicente Rocafuerte", "Antonio Borrero"], answer: "Eloy Alfaro" },
   { question: "¿Qué puerto ecuatoriano es el más importante del país?", options: ["Manta", "Guayaquil", "Esmeraldas", "Puerto Bolívar"], answer: "Guayaquil" },
-  { question: "¿Quién compuso el pasillo 'Nuestro Juramento', interpretado por Julio Jaramillo?", options: ["Benítez y Valencia", "Luis Alfredo León", "Nicasio Safadi", "Carlos Rubira Infante"], answer: "Luis Alfredo León" },
+  { question: "¿Quién compuso el pasillo 'Nuestro Juramento', interpretado por Julio Jaramillo?", options: ["Benítez y Valencia", "Benito de Jesús", "Nicasio Safadi", "Carlos Rubira Infante"], answer: "Benito de Jesús" },
   { question: "¿Qué género musical es considerado el más representativo de Ecuador?", options: ["Pasillo", "Pasacalle", "Sanjuanito", "Albazo"], answer: "Pasillo" },
   { question: "¿Cómo se llamaba el famoso dúo musical conformado por Gonzalo Benítez y Luis Alberto Valencia?", options: ["Los Reales", "Benítez y Valencia", "Los Brillantes", "Los Hermanos Miño Naranjo"], answer: "Benítez y Valencia" },
   { question: "¿Qué cantante guayaquileño es conocido como 'El Ruiseñor de América'?", options: ["Carlota Jaramillo", "Julio Jaramillo", "Olga Gutiérrez", "Segundo Rosero"], answer: "Julio Jaramillo" },
