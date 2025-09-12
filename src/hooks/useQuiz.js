@@ -24,6 +24,9 @@ export default function useQuiz(allQuestions, difficulty) {
   const [timeLeft, setTimeLeft] = useState(getTime());
   const [maxTime, setMaxTime] = useState(getTime());
 
+  // 🚀 nuevo lock para evitar dobles respuestas
+  const [answered, setAnswered] = useState(false);
+
   // Actualiza tiempo si cambia la dificultad
   useEffect(() => {
     setTimeLeft(getTime());
@@ -34,7 +37,7 @@ export default function useQuiz(allQuestions, difficulty) {
   useEffect(() => {
     if (finished) return;
     if (timeLeft === 0) {
-      handleTimeout();
+      handleAnswer(null);
       return;
     }
 
@@ -57,28 +60,12 @@ export default function useQuiz(allQuestions, difficulty) {
     setFinished(false);
     setTimeLeft(getTime());
     setMaxTime(getTime());
+    setAnswered(false); // reset lock
   };
 
-  // 👉 manejar cuando el tiempo llega a 0
-  const handleTimeout = () => {
-    if (selected !== null) return; // ya contestó
-    setSelected(null); // marca que no hubo respuesta
-
-    setTimeout(() => {
-      if (current + 1 < questions.length) {
-        setCurrent((c) => c + 1);
-        setSelected(null);
-        setTimeLeft(getTime());
-        setMaxTime(getTime());
-      } else {
-        setFinished(true);
-      }
-    }, 1000); // espera 1 seg antes de avanzar
-  };
-
-  // 👉 manejar cuando el usuario selecciona
   const handleAnswer = (answer) => {
-    if (selected !== null) return;
+    if (answered) return; // 🔒 evita dobles ejecuciones
+    setAnswered(true);
 
     const correct = questions[current]?.answer;
     if (answer === correct) setScore((s) => s + 0.5);
@@ -91,10 +78,11 @@ export default function useQuiz(allQuestions, difficulty) {
         setSelected(null);
         setTimeLeft(getTime());
         setMaxTime(getTime());
+        setAnswered(false); // 🔓 desbloquea en la nueva pregunta
       } else {
         setFinished(true);
       }
-    }, 1500); // espera 1.5 seg mostrando verde/rojo
+    }, 1500);
   };
 
   const restartQuiz = () => {
@@ -105,6 +93,7 @@ export default function useQuiz(allQuestions, difficulty) {
     setFinished(false);
     setTimeLeft(getTime());
     setMaxTime(getTime());
+    setAnswered(false); // reset lock
   };
 
   return {
