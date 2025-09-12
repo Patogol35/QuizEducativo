@@ -34,7 +34,7 @@ export default function useQuiz(allQuestions, difficulty) {
   useEffect(() => {
     if (finished) return;
     if (timeLeft === 0) {
-      handleAnswer(null);
+      handleTimeout();
       return;
     }
 
@@ -59,6 +59,24 @@ export default function useQuiz(allQuestions, difficulty) {
     setMaxTime(getTime());
   };
 
+  // 👉 manejar cuando el tiempo llega a 0
+  const handleTimeout = () => {
+    if (selected !== null) return; // ya contestó
+    setSelected(null); // marca que no hubo respuesta
+
+    setTimeout(() => {
+      if (current + 1 < questions.length) {
+        setCurrent((c) => c + 1);
+        setSelected(null);
+        setTimeLeft(getTime());
+        setMaxTime(getTime());
+      } else {
+        setFinished(true);
+      }
+    }, 1000); // espera 1 seg antes de avanzar
+  };
+
+  // 👉 manejar cuando el usuario selecciona
   const handleAnswer = (answer) => {
     if (selected !== null) return;
 
@@ -76,7 +94,7 @@ export default function useQuiz(allQuestions, difficulty) {
       } else {
         setFinished(true);
       }
-    }, 1500);
+    }, 1500); // espera 1.5 seg mostrando verde/rojo
   };
 
   const restartQuiz = () => {
@@ -101,4 +119,4 @@ export default function useQuiz(allQuestions, difficulty) {
     answerQuestion: handleAnswer,
     restartQuiz,
   };
-            }
+}
