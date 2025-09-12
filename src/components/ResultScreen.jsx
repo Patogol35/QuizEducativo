@@ -34,7 +34,7 @@ export default function ResultScreen({ score, total, onRestart }) {
       >
         <CardContent>
           <Typography variant="h4" fontWeight="bold" gutterBottom>
-            ¡Juego terminado!
+            ¡Quiz Terminado!
           </Typography>
 
           <Typography variant="h6" gutterBottom>
