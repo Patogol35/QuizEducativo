@@ -82,7 +82,7 @@ export default function useQuiz(allQuestions, difficulty) {
       } else {
         setFinished(true);
       }
-    }, 1500);
+    }, 1000);
   };
 
   const restartQuiz = () => {
