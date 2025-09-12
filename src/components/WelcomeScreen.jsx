@@ -54,7 +54,7 @@ export default function WelcomeScreen({
                 WebkitTextFillColor: "transparent",
               }}
             >
-              🎮 Quiz Interactivo
+              Quiz Interactivo
             </Typography>
             <IconButton
               onClick={toggleDarkMode}
@@ -78,28 +78,38 @@ export default function WelcomeScreen({
 </Typography>
 
           {/* Instrucciones */}
-          <Stack
-            spacing={1}
-            sx={{
-              textAlign: "left",
-              p: 2,
-              mb: 3,
-              borderRadius: 3,
-              backgroundColor: (theme) =>
-                theme.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "#f8fafc",
-            }}
-          >
-            <Typography
-              variant="subtitle1"
-              sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: "500" }}
-            >
-              <InfoIcon fontSize="small" /> Instrucciones
-            </Typography>
-            <Typography variant="body2">✅ Responde <b> un total de 20 preguntas, a 0.5 puntos cada una</b>.</Typography>
-            <Typography variant="body2">⏱️ Tienes un límite de tiempo para cada pregunta.</Typography>
-            <Typography variant="body2">🏆 Gana puntos por cada respuesta correcta.</Typography>
-            <Typography variant="body2">📊 Elige la dificultad antes de comenzar.</Typography>
-          </Stack>
+<Stack
+  spacing={1}
+  sx={{
+    textAlign: "left",
+    p: 3,
+    mb: 3,
+    borderRadius: 3,
+    background: (theme) =>
+      theme.palette.mode === "dark"
+        ? "linear-gradient(135deg, rgba(100,116,139,0.2), rgba(30,41,59,0.4))"
+        : "linear-gradient(135deg, rgba(96,165,250,0.1), rgba(237,242,247,0.6))",
+    border: (theme) =>
+      `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"}`,
+    boxShadow: (theme) =>
+      theme.palette.mode === "dark"
+        ? "0 4px 15px rgba(0,0,0,0.2)"
+        : "0 4px 15px rgba(0,0,0,0.05)",
+  }}
+>
+  <Typography
+    variant="subtitle1"
+    sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: "500" }}
+  >
+    <InfoIcon fontSize="small" /> Instrucciones
+  </Typography>
+  <Typography variant="body2">
+    ✅ Responde <b> un total de 20 preguntas, a 0.5 puntos cada una</b>.
+  </Typography>
+  <Typography variant="body2">⏱️ Tienes un límite de tiempo para cada pregunta.</Typography>
+  <Typography variant="body2">🏆 Gana puntos por cada respuesta correcta.</Typography>
+  <Typography variant="body2">📊 Elige la dificultad antes de comenzar.</Typography>
+</Stack>
 
           {/* Selección de dificultad */}
           <Stack mt={1} spacing={2} alignItems="center">
