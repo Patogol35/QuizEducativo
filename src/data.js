@@ -63,7 +63,7 @@ export const questions = [
   { question: "¿Qué producto es emblemático de Ambato", options: ["Pan de Ambato", "Dulce de guayaba", "Helado de paila", "Empanadas de viento"], answer: "Pan de Ambato" },
   { question: "¿Qué institución educativa tradicional de Ambato fue fundada en 1868?", options: ["Colegio Bolívar", "Colegio Mejía", "Colegio Montúfar", "Colegio Central Técnico"], answer: "Colegio Bolívar" },
   { question: "¿Qué estadio de fútbol se encuentra en Ambato?", options: ["Estadio Olímpico Atahualpa", "Estadio Bellavista", "Estadio Alejandro Serrano Aguilar", "Estadio Monumental"], answer: "Estadio Bellavista" },
-  { question: "¿Como es conocida la ciudad de Ambato?", options: ["Ciudad de las Flores y de las Frutas", "Ciudad de los Tres Juanes", "Ciudad Verde", "Ciudad del Despertar"], answer: "Ciudad de los Tres Juanes" },
+  { question: "¿Como es conocida la ciudad de Ambato?", options: ["Ciudad Esmeralda", "Ciudad de los Tres Juanes", "Ciudad Verde", "Ciudad del Despertar"], answer: "Ciudad de los Tres Juanes" },
   { question: "¿En qué año ocurrió el terremoto más destructivo en Ambato?", options: ["1698", "1797", "1868", "1949"], answer: "1949" },
   { question: "¿Qué institución cultural importante se encuentra en Ambato?", options: ["Casa de la Cultura Núcleo de Tungurahua", "Museo Nacional", "Centro Cultural Metropolitano", "Teatro Sucre"], answer: "Casa de la Cultura Núcleo de Tungurahua" },
   { question: "¿En qué año nació Juan Montalvo?", options: ["1832", "1840", "1855", "1825"], answer: "1832" },
