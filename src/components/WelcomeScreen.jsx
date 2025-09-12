@@ -70,9 +70,12 @@ export default function WelcomeScreen({
           </Stack>
 
           {/* Desarrollado por */}
-          <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
-            Desarrollado por <b>Jorge Patricio Santamaría Cherrez</b>
-          </Typography>
+<Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
+  Desarrollado por{" "}
+  <Box component="span" sx={{ fontWeight: "bold", color: "primary.main" }}>
+    Jorge Patricio Santamaría Cherrez
+  </Box>
+</Typography>
 
           {/* Instrucciones */}
           <Stack
