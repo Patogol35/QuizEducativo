@@ -6,58 +6,62 @@ El diseño es responsivo, con modo claro y oscuro, temporizador por pregunta y a
 
 ---
 
-🛠 Tecnologías utilizadas
+Ver la aplicación desplegada en Vercel:
 
-React – Biblioteca principal para la interfaz.
+https://calculadorajorgepatricio.vercel.app/
 
-Material-UI (MUI) – Componentes y diseño profesional.
-
-Framer Motion – Animaciones suaves y transiciones.
-
-JavaScript ES6+ – Lógica y manejo de estados.
-
-CSS-in-JS – Estilos con Material-UI y gradientes dinámicos.
 
 ---
 
-🎯 Características
+⚙️ Tecnologías utilizadas 
 
-Interfaz atractiva y moderna, compatible con modo oscuro y claro.
+- React (con Vite)
 
-Temporizador por pregunta con feedback visual.
+- JavaScript
 
-Puntuación automática y pantalla de resultados con mensajes personalizados.
+- MUI (Material UI)
 
-Selector de dificultad: Fácil, Medio, Difícil.
-
-Preguntas de cultura general, tecnología, Ecuador y Ambato.
-
-Animaciones fluidas al cambiar de pregunta y al iniciar/terminar el juego.
-
-Guarda preferencias de modo oscuro y dificultad en localStorage.
+- Framer Motion
 
 ---
 
-📝 Instalación
+✨ Funcionalidades
 
-1. Clonar el repositorio:
+- Interfaz atractiva y moderna, compatible con modo oscuro y claro.
 
+- Temporizador por pregunta con feedback visual.
 
+- Puntuación automática y pantalla de resultados con mensajes personalizados.
 
+- Selector de dificultad: Fácil, Medio, Difícil.
 
-2. Entrar en la carpeta del proyecto:
+- Preguntas de Ecuador y Ambato.
 
+- Animaciones fluidas al cambiar de pregunta y al iniciar/terminar el Quiz.
 
+---
 
-cd quiz-interactivo
+📦 Instalación y ejecución
 
-3. Instalar dependencias:
+1. Clona el repositorio:
 
+https://github.com/Patogol35/Calculadora
 
+2. Ingresa a la carpeta del proyecto:
+
+cd Calculadora
+
+3. Instala las dependencias:
 
 npm install
 
-4. Iniciar la aplicación en modo desarrollo:
+4. Ejecuta el proyecto:
+   
+npm run dev
+
+5. Abre en el navegador:
+
+http://localhost:5173
 
 ---
 
@@ -84,7 +88,8 @@ npm install
 
 ---
 
-
 👨‍💻 Autor
 
 Jorge Patricio Santamaría Cherrez
+
+Máster en Ingeniería de Software y Sistemas Informáticos
