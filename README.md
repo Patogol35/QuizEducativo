@@ -1,8 +1,7 @@
-Quiz Interactivo
+📖 Quiz Educativo
 
-Un juego de preguntas y respuestas dinámico y moderno desarrollado con React y Material-UI (MUI).
-Incluye preguntas de cultura general, tecnología, historia y especialmente sobre Ecuador y Ambato.
-El diseño es responsivo, con modo claro y oscuro, temporizador por pregunta y animaciones agradables
+Un quiz educativo, dinámico y moderno desarrollado con React y Material-UI (MUI).
+Está diseñado para enseñar y reforzar conocimientos sobre Ecuador y la ciudad de Ambato de forma entretenida e interactiva.
 
 ---
 
@@ -27,17 +26,17 @@ https://calculadorajorgepatricio.vercel.app/
 
 ✨ Funcionalidades
 
-- Interfaz atractiva y moderna, compatible con modo oscuro y claro.
+- Diseño responsivo con modo claro y oscuro
 
-- Temporizador por pregunta con feedback visual.
+- Temporizador por pregunta
 
-- Puntuación automática y pantalla de resultados con mensajes personalizados.
+- Animaciones interactivas
+
+- Puntaje final con mensajes personalizados
+
+- Opción para reiniciar el juego
 
 - Selector de dificultad: Fácil, Medio, Difícil.
-
-- Preguntas de Ecuador y Ambato.
-
-- Animaciones fluidas al cambiar de pregunta y al iniciar/terminar el Quiz.
 
 ---
 
@@ -68,22 +67,20 @@ http://localhost:5173
 
 🖥 Uso
 
-1. Selecciona el modo oscuro o claro.
+
+1. Elige la dificultad: Fácil, Medio o Difícil.
 
 
-2. Elige la dificultad: Fácil, Medio o Difícil.
+2. Presiona Comenzar para iniciar el quiz.
 
 
-3. Presiona Comenzar para iniciar el quiz.
+3. Responde las preguntas antes de que se acabe el tiempo.
 
 
-4. Responde las preguntas antes de que se acabe el tiempo.
+4. Al finalizar, ve tu puntaje y mensaje personalizado.
 
 
-5. Al finalizar, ve tu puntaje y mensaje personalizado.
-
-
-6. Puedes reiniciar el juego presionando Volver a jugar.
+5. Puedes reiniciar el juego presionando Volver a jugar.
 
 
 ---
