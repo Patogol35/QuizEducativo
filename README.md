@@ -45,11 +45,11 @@ https://calculadorajorgepatricio.vercel.app/
 
 1. Clona el repositorio:
 
-https://github.com/Patogol35/Calculadora
+https://github.com/Patogol35/QuizEducativo
 
 2. Ingresa a la carpeta del proyecto:
 
-cd Calculadora
+cd QuizEducativo
 
 3. Instala las dependencias:
 
