@@ -7,7 +7,7 @@ Está diseñado para enseñar y reforzar conocimientos sobre Ecuador y la ciudad
 
 Ver la aplicación desplegada en Vercel:
 
-https://calculadorajorgepatricio.vercel.app/
+https://quiz-educativo-jorgepatricio.vercel.app/
 
 
 ---
