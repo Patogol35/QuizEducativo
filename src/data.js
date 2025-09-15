@@ -48,6 +48,7 @@ export const questions = [
 
   // PREGUNTAS DE AMBATO
   { question: "¿Qué volcán se encuentra cerca de Ambato?", options: ["Cotopaxi", "Chimborazo", "Pichincha", "Tungurahua"], answer: "Tungurahua" },
+  { question: "¿Qué bebida tradicional se encuentra en Ambato durante todo el año?", options: ["Canelazo", "Chicha de jora", "Colada morada", "Aguapanela"], answer: "Colada morada" },
   { question: "¿Qué río pasa por Ambato?", options: ["Río Guayas", "Río Ambato", "Río Pastaza", "Río Esmeraldas"], answer: "Río Ambato" },
   { question: "¿Cuál es el plato típico de Ambato?", options: ["Fanesca", "Llapingacho", "Cuy asado", "Humitas"], answer: "Llapingacho" },
   { question: "¿Qué fiesta es famosa en Ambato?", options: ["Fiesta de Guayaquil", "Fiesta de las frutas y de las flores", "Inti Raymi", "Feria de Quito"], answer: "Fiesta de las frutas y de las flores" },
