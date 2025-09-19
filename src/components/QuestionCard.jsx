@@ -8,6 +8,7 @@ import {
   Box,
 } from "@mui/material";
 import { motion } from "framer-motion";
+import { CheckCircle, Cancel } from "@mui/icons-material";
 
 export default function QuestionCard({
   question,
@@ -23,6 +24,20 @@ export default function QuestionCard({
 
   // 👇 controla el tamaño del círculo
   const circleSize = 60;
+
+  const getButtonStyles = (opt) => {
+    if (selected !== opt) return {};
+
+    return {
+      backgroundColor:
+        opt === question.answer ? "success.main" : "error.main",
+      color: "#fff",
+      "&:hover": {
+        backgroundColor:
+          opt === question.answer ? "success.dark" : "error.dark",
+      },
+    };
+  };
 
   return (
     <motion.div
@@ -104,33 +119,29 @@ export default function QuestionCard({
                 key={i}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => onAnswer(opt)} // clic ahora en todo el recuadro
-                style={{ cursor: "pointer" }}
+                onClick={() => !selected && onAnswer(opt)} // ❌ evita clicks extra
+                style={{ cursor: selected ? "default" : "pointer" }}
               >
                 <Button
                   fullWidth
                   variant={selected === opt ? "contained" : "outlined"}
+                  disabled={!!selected} // 🔒 deshabilita botones tras responder
+                  startIcon={
+                    selected ? (
+                      opt === question.answer ? (
+                        <CheckCircle />
+                      ) : selected === opt ? (
+                        <Cancel />
+                      ) : null
+                    ) : null
+                  }
                   sx={{
                     textTransform: "none",
                     borderRadius: 2,
                     fontWeight: 500,
                     py: 1.5,
                     fontSize: "0.95rem",
-                    backgroundColor:
-                      selected === opt
-                        ? opt === question.answer
-                          ? "success.main"
-                          : "error.main"
-                        : "transparent",
-                    color: selected === opt ? "#fff" : "inherit",
-                    "&:hover": {
-                      backgroundColor:
-                        selected === opt
-                          ? opt === question.answer
-                            ? "success.dark"
-                            : "error.dark"
-                          : "rgba(37,99,235,0.1)",
-                    },
+                    ...getButtonStyles(opt),
                   }}
                 >
                   {opt}
