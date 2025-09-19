@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-// Fisher-Yates shuffle
+// Mezclar array (Fisher-Yates)
 function shuffle(array) {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
@@ -11,7 +11,11 @@ function shuffle(array) {
 }
 
 export default function useQuiz(allQuestions, difficulty) {
-  const difficultyTimes = { easy: 15, medium: 10, hard: 5 };
+  const difficultyTimes = {
+    easy: 15,
+    medium: 10,
+    hard: 5,
+  };
 
   const getTime = () => difficultyTimes[difficulty] || 10;
 
@@ -24,26 +28,31 @@ export default function useQuiz(allQuestions, difficulty) {
   const [timeLeft, setTimeLeft] = useState(getTime());
   const [maxTime, setMaxTime] = useState(getTime());
 
-  // 🚀 nuevo lock para evitar dobles respuestas
   const [answered, setAnswered] = useState(false);
 
-  // Actualiza tiempo si cambia la dificultad
+  // Actualiza tiempo al cambiar dificultad
   useEffect(() => {
     setTimeLeft(getTime());
     setMaxTime(getTime());
   }, [difficulty]);
 
-  // Temporizador
+  // Temporizador con setInterval (optimizado)
   useEffect(() => {
     if (finished) return;
-    if (timeLeft === 0) {
-      handleAnswer(null);
-      return;
-    }
 
-    const timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearTimeout(timer);
-  }, [timeLeft, finished]);
+    const timer = setInterval(() => {
+      setTimeLeft((t) => {
+        if (t <= 1) {
+          clearInterval(timer);
+          handleAnswer(null);
+          return 0;
+        }
+        return t - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [finished]);
 
   const startQuiz = () => {
     const shuffled = shuffle(allQuestions)
@@ -60,15 +69,15 @@ export default function useQuiz(allQuestions, difficulty) {
     setFinished(false);
     setTimeLeft(getTime());
     setMaxTime(getTime());
-    setAnswered(false); // reset lock
+    setAnswered(false);
   };
 
   const handleAnswer = (answer) => {
-    if (answered) return; // 🔒 evita dobles ejecuciones
+    if (answered) return;
     setAnswered(true);
 
     const correct = questions[current]?.answer;
-    if (answer === correct) setScore((s) => s + 0.5);
+    if (answer === correct) setScore((s) => s + 1);
 
     setSelected(answer);
 
@@ -78,7 +87,7 @@ export default function useQuiz(allQuestions, difficulty) {
         setSelected(null);
         setTimeLeft(getTime());
         setMaxTime(getTime());
-        setAnswered(false); // 🔓 desbloquea en la nueva pregunta
+        setAnswered(false);
       } else {
         setFinished(true);
       }
@@ -93,7 +102,7 @@ export default function useQuiz(allQuestions, difficulty) {
     setFinished(false);
     setTimeLeft(getTime());
     setMaxTime(getTime());
-    setAnswered(false); // reset lock
+    setAnswered(false);
   };
 
   return {
@@ -108,4 +117,4 @@ export default function useQuiz(allQuestions, difficulty) {
     answerQuestion: handleAnswer,
     restartQuiz,
   };
-  }
+}
