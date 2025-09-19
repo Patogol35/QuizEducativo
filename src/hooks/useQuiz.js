@@ -1,120 +1,154 @@
-import { useState, useEffect } from "react";
+Qustioncard import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  Stack,
+  CircularProgress,
+  Box,
+} from "@mui/material";
+import { motion } from "framer-motion";
 
-// Mezclar array (Fisher-Yates)
-function shuffle(array) {
-  const arr = [...array];
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
+export default function QuestionCard({
+  question,
+  current,
+  total,
+  score,
+  onAnswer,
+  time,
+  maxTime,
+  selected,
+}) {
+  if (!question) return null;
 
-export default function useQuiz(allQuestions, difficulty) {
-  const difficultyTimes = {
-    easy: 15,
-    medium: 10,
-    hard: 5,
-  };
+  // 👇 controla el tamaño del círculo
+  const circleSize = 60;
 
-  const getTime = () => difficultyTimes[difficulty] || 10;
+  return (
+    <motion.div
+      key={current}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      style={{ width: "90%", maxWidth: 700, margin: "0 auto" }}
+    >
+      <Card
+        sx={{
+          p: { xs: 3, sm: 4 },
+          borderRadius: 4,
+          backdropFilter: "blur(12px)",
+          background: (theme) =>
+            theme.palette.mode === "dark"
+              ? "rgba(30,41,59,0.95)"
+              : "rgba(255,255,255,0.95)",
+          boxShadow: "0 8px 25px rgba(0,0,0,0.2)",
+        }}
+      >
+        <CardContent>
+          {/* Contador y temporizador */}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            justifyContent="space-between"
+            alignItems="center"
+            mb={4}
+            spacing={2}
+          >
+            <Typography variant="h6" sx={{ fontWeight: 500 }}>
+              {current + 1} / {total}
+            </Typography>
 
-  const [questions, setQuestions] = useState([]);
-  const [current, setCurrent] = useState(0);
-  const [score, setScore] = useState(0);
-  const [selected, setSelected] = useState(null);
-  const [finished, setFinished] = useState(false);
+            <Box
+              position="relative"
+              sx={{
+                width: circleSize,
+                height: circleSize,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <CircularProgress
+                variant="determinate"
+                value={(time / maxTime) * 100}
+                size={circleSize}
+                thickness={5}
+                sx={{ color: time <= 3 ? "error.main" : "primary.main" }}
+              />
+              <Typography
+                fontWeight="bold"
+                sx={{
+                  color: "text.primary",
+                  fontSize: `${circleSize * 0.3}px`,
+                  lineHeight: 1,
+                  position: "absolute",
+                }}
+              >
+                {time}s
+              </Typography>
+            </Box>
+          </Stack>
 
-  const [timeLeft, setTimeLeft] = useState(getTime());
-  const [maxTime, setMaxTime] = useState(getTime());
+          {/* Pregunta */}
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ fontWeight: 500, mb: 3 }}
+          >
+            {question.question}
+          </Typography>
 
-  const [answered, setAnswered] = useState(false);
+          {/* Opciones */}
+          <Stack spacing={3} mt={2}>
+            {question.options.map((opt, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => onAnswer(opt)} // clic ahora en todo el recuadro
+                style={{ cursor: "pointer" }}
+              >
+                <Button
+                  fullWidth
+                  variant={selected === opt ? "contained" : "outlined"}
+                  sx={{
+                    textTransform: "none",
+                    borderRadius: 2,
+                    fontWeight: 500,
+                    py: 1.5,
+                    fontSize: "0.95rem",
+                    backgroundColor:
+                      selected === opt
+                        ? opt === question.answer
+                          ? "success.main"
+                          : "error.main"
+                        : "transparent",
+                    color: selected === opt ? "#fff" : "inherit",
+                    "&:hover": {
+                      backgroundColor:
+                        selected === opt
+                          ? opt === question.answer
+                            ? "success.dark"
+                            : "error.dark"
+                          : "rgba(37,99,235,0.1)",
+                    },
+                  }}
+                >
+                  {opt}
+                </Button>
+              </motion.div>
+            ))}
+          </Stack>
 
-  // Actualiza tiempo al cambiar dificultad
-  useEffect(() => {
-    setTimeLeft(getTime());
-    setMaxTime(getTime());
-  }, [difficulty]);
-
-  // Temporizador con setInterval (optimizado)
-  useEffect(() => {
-    if (finished) return;
-
-    const timer = setInterval(() => {
-      setTimeLeft((t) => {
-        if (t <= 1) {
-          clearInterval(timer);
-          handleAnswer(null);
-          return 0;
-        }
-        return t - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [finished]);
-
-  const startQuiz = () => {
-    const shuffled = shuffle(allQuestions)
-      .slice(0, 20)
-      .map((q) => ({
-        ...q,
-        options: shuffle(q.options),
-      }));
-
-    setQuestions(shuffled);
-    setCurrent(0);
-    setScore(0);
-    setSelected(null);
-    setFinished(false);
-    setTimeLeft(getTime());
-    setMaxTime(getTime());
-    setAnswered(false);
-  };
-
-  const handleAnswer = (answer) => {
-    if (answered) return;
-    setAnswered(true);
-
-    const correct = questions[current]?.answer;
-    if (answer === correct) setScore((s) => s + 1);
-
-    setSelected(answer);
-
-    setTimeout(() => {
-      if (current + 1 < questions.length) {
-        setCurrent((c) => c + 1);
-        setSelected(null);
-        setTimeLeft(getTime());
-        setMaxTime(getTime());
-        setAnswered(false);
-      } else {
-        setFinished(true);
-      }
-    }, 1000);
-  };
-
-  const restartQuiz = () => {
-    setQuestions([]);
-    setCurrent(0);
-    setScore(0);
-    setSelected(null);
-    setFinished(false);
-    setTimeLeft(getTime());
-    setMaxTime(getTime());
-    setAnswered(false);
-  };
-
-  return {
-    questions,
-    current,
-    score,
-    selected,
-    finished,
-    timeLeft,
-    maxTime,
-    startQuiz,
-    answerQuestion: handleAnswer,
-    restartQuiz,
-  };
-}
+          {/* Puntos */}
+          <Typography
+            variant="body2"
+            align="right"
+            sx={{ mt: 3, color: "text.secondary", fontWeight: 500 }}
+          >
+            Puntos: {score}
+          </Typography>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+            }
