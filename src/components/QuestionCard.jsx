@@ -1,4 +1,4 @@
-    import {
+import {
   Card,
   CardContent,
   Typography,
@@ -71,7 +71,12 @@ export default function QuestionCard({
             {/* Contador */}
             <Typography
               variant="h6"
-              sx={{ fontWeight: 600 }}
+              sx={{
+                fontWeight: 600,
+                whiteSpace: "nowrap", // evita que 1 / 2 se rompa en dos líneas
+                display: "inline-flex",
+                alignItems: "center",
+              }}
             >
               {current + 1} / {total}
             </Typography>
@@ -200,4 +205,4 @@ export default function QuestionCard({
       </Card>
     </motion.div>
   );
-                    }
+}
