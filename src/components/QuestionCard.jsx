@@ -52,39 +52,32 @@ export default function QuestionCard({
             variant="determinate"
             value={progress}
             sx={{
-              mb: 3,
+              mb: 2,
               height: 8,
               borderRadius: 5,
               backgroundColor: "rgba(0,0,0,0.1)",
             }}
           />
 
-          {/* Contador y cronómetro en extremos */}
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-            mb={4}
-            sx={{ px: { xs: 0, sm: 2 } }}
+          {/* Contador arriba a la izquierda */}
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 600,
+              whiteSpace: "nowrap",
+              mb: 3,
+              display: "inline-flex",
+              alignItems: "center",
+            }}
           >
-            {/* Contador */}
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 600,
-                whiteSpace: "nowrap",
-                display: "inline-flex",
-                alignItems: "center",
-              }}
-            >
-              {current + 1} / {total}
-            </Typography>
+            {current + 1} / {total}
+          </Typography>
 
-            {/* Cronómetro */}
+          {/* Cronómetro separado, centrado */}
+          <Stack alignItems="center" mb={4}>
             <motion.div
               animate={time <= 3 ? { scale: [1, 1.2, 1] } : {}}
               transition={{ repeat: Infinity, duration: 1 }}
-              style={{ flexShrink: 0 }}
             >
               <Box
                 position="relative"
