@@ -62,10 +62,10 @@ export default function QuestionCard({
           {/* Contador y temporizador */}
           <Stack
             direction={{ xs: "column", sm: "row" }}
-            justifyContent="space-between"
+            justifyContent="center"
             alignItems="center"
             mb={4}
-            spacing={2}
+            spacing={{ xs: 2, sm: 6 }} // 🔹 más separación en horizontal
           >
             <Typography
               variant="h6"
@@ -75,11 +75,7 @@ export default function QuestionCard({
             </Typography>
 
             <motion.div
-              animate={
-                time <= 3
-                  ? { scale: [1, 1.2, 1] }
-                  : {}
-              }
+              animate={time <= 3 ? { scale: [1, 1.2, 1] } : {}}
               transition={{ repeat: Infinity, duration: 1 }}
               style={{ flexShrink: 0 }}
             >
@@ -141,8 +137,8 @@ export default function QuestionCard({
               return (
                 <motion.div
                   key={i}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={!selected ? { scale: 1.03 } : {}}
+                  whileTap={!selected ? { scale: 0.97 } : {}}
                   onClick={() => !selected && onAnswer(opt)} // solo permite si no hay respuesta
                   style={{ cursor: selected ? "default" : "pointer" }}
                 >
@@ -201,4 +197,4 @@ export default function QuestionCard({
       </Card>
     </motion.div>
   );
-              }
+}
