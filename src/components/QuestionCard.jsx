@@ -1,4 +1,3 @@
-import React, { memo } from "react";
 import {
   Card,
   CardContent,
@@ -10,7 +9,7 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 
-const QuestionCard = ({
+export default function QuestionCard({
   question,
   current,
   total,
@@ -19,11 +18,10 @@ const QuestionCard = ({
   time,
   maxTime,
   selected,
-  answered,
-}) => {
+}) {
   if (!question) return null;
 
-  // 👇 tamaño del círculo de progreso
+  // 👇 controla el tamaño del círculo
   const circleSize = 60;
 
   return (
@@ -104,10 +102,10 @@ const QuestionCard = ({
             {question.options.map((opt, i) => (
               <motion.div
                 key={i}
-                whileHover={{ scale: answered ? 1 : 1.03 }}
-                whileTap={{ scale: answered ? 1 : 0.97 }}
-                onClick={() => !answered && onAnswer(opt)} // evitar doble click
-                style={{ cursor: answered ? "not-allowed" : "pointer" }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => onAnswer(opt)} // clic ahora en todo el recuadro
+                style={{ cursor: "pointer" }}
               >
                 <Button
                   fullWidth
@@ -134,7 +132,6 @@ const QuestionCard = ({
                           : "rgba(37,99,235,0.1)",
                     },
                   }}
-                  disabled={answered} // evita reintentos
                 >
                   {opt}
                 </Button>
@@ -154,6 +151,4 @@ const QuestionCard = ({
       </Card>
     </motion.div>
   );
-};
-
-export default memo(QuestionCard);
+}
