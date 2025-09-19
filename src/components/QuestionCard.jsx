@@ -59,13 +59,12 @@ export default function QuestionCard({
             }}
           />
 
-          {/* Contador y temporizador */}
+          {/* Contador y cronómetro en extremos */}
           <Stack
-            direction={{ xs: "column", sm: "row" }}
+            direction="row"
             justifyContent="space-between"
             alignItems="center"
             mb={4}
-            spacing={{ xs: 2, sm: 6 }}
             sx={{ px: { xs: 0, sm: 2 } }}
           >
             {/* Contador */}
@@ -73,7 +72,7 @@ export default function QuestionCard({
               variant="h6"
               sx={{
                 fontWeight: 600,
-                whiteSpace: "nowrap", // evita que 1 / 2 se rompa en dos líneas
+                whiteSpace: "nowrap",
                 display: "inline-flex",
                 alignItems: "center",
               }}
@@ -81,7 +80,7 @@ export default function QuestionCard({
               {current + 1} / {total}
             </Typography>
 
-            {/* Temporizador */}
+            {/* Cronómetro */}
             <motion.div
               animate={time <= 3 ? { scale: [1, 1.2, 1] } : {}}
               transition={{ repeat: Infinity, duration: 1 }}
@@ -152,7 +151,7 @@ export default function QuestionCard({
                 >
                   <Button
                     fullWidth
-                    disabled={!!selected && !isSelected} // bloquea los demás
+                    disabled={!!selected && !isSelected}
                     variant={isSelected ? "contained" : "outlined"}
                     sx={{
                       textTransform: "none",
