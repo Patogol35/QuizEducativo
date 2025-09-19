@@ -1,111 +1,83 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { questions } from "../data";
+import { shuffle } from "../utils";
 
-// Fisher-Yates shuffle
-function shuffle(array) {
-  const arr = [...array];
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
+const difficultyTimes = {
+  easy: 20,
+  medium: 15,
+  hard: 10,
+};
 
-export default function useQuiz(allQuestions, difficulty) {
-  const difficultyTimes = { easy: 15, medium: 10, hard: 5 };
-
-  const getTime = () => difficultyTimes[difficulty] || 10;
-
-  const [questions, setQuestions] = useState([]);
-  const [current, setCurrent] = useState(0);
+export const useQuiz = (difficulty, onFinish) => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [selected, setSelected] = useState(null);
-  const [finished, setFinished] = useState(false);
-
-  const [timeLeft, setTimeLeft] = useState(getTime());
-  const [maxTime, setMaxTime] = useState(getTime());
-
-  // 🚀 nuevo lock para evitar dobles respuestas
+  const [timeLeft, setTimeLeft] = useState(difficultyTimes[difficulty]);
   const [answered, setAnswered] = useState(false);
+  const [quizQuestions, setQuizQuestions] = useState([]);
 
-  // Actualiza tiempo si cambia la dificultad
+  // Inicializa preguntas barajadas al montar
   useEffect(() => {
-    setTimeLeft(getTime());
-    setMaxTime(getTime());
+    const prepared = shuffle(questions)
+      .slice(0, 20)
+      .map(q => ({ ...q, options: shuffle(q.options) }));
+    setQuizQuestions(prepared);
   }, [difficulty]);
 
-  // Temporizador
+  // Temporizador con setInterval
   useEffect(() => {
-    if (finished) return;
-    if (timeLeft === 0) {
-      handleAnswer(null);
+    if (timeLeft <= 0) {
+      handleAnswer(null); // auto-pasar si se acaba el tiempo
       return;
     }
 
-    const timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearTimeout(timer);
-  }, [timeLeft, finished]);
-
-  const startQuiz = () => {
-    const shuffled = shuffle(allQuestions)
-      .slice(0, 20)
-      .map((q) => ({
-        ...q,
-        options: shuffle(q.options),
-      }));
-
-    setQuestions(shuffled);
-    setCurrent(0);
-    setScore(0);
-    setSelected(null);
-    setFinished(false);
-    setTimeLeft(getTime());
-    setMaxTime(getTime());
-    setAnswered(false); // reset lock
-  };
-
-  const handleAnswer = (answer) => {
-    if (answered) return; // 🔒 evita dobles ejecuciones
-    setAnswered(true);
-
-    const correct = questions[current]?.answer;
-    if (answer === correct) setScore((s) => s + 0.5);
-
-    setSelected(answer);
-
-    setTimeout(() => {
-      if (current + 1 < questions.length) {
-        setCurrent((c) => c + 1);
-        setSelected(null);
-        setTimeLeft(getTime());
-        setMaxTime(getTime());
-        setAnswered(false); // 🔓 desbloquea en la nueva pregunta
-      } else {
-        setFinished(true);
-      }
+    const interval = setInterval(() => {
+      setTimeLeft(prev => prev - 1);
     }, 1000);
-  };
 
-  const restartQuiz = () => {
-    setQuestions([]);
-    setCurrent(0);
+    return () => clearInterval(interval);
+  }, [timeLeft]);
+
+  const handleAnswer = useCallback(
+    (option) => {
+      if (answered) return;
+      setAnswered(true);
+
+      const current = quizQuestions[currentQuestion];
+      if (option === current?.answer) {
+        setScore(prev => prev + 1);
+      }
+
+      setTimeout(() => {
+        if (currentQuestion + 1 < quizQuestions.length) {
+          setCurrentQuestion(prev => prev + 1);
+          setTimeLeft(difficultyTimes[difficulty]);
+          setAnswered(false);
+        } else {
+          onFinish(score + (option === current?.answer ? 1 : 0));
+        }
+      }, 1000);
+    },
+    [answered, currentQuestion, difficulty, onFinish, quizQuestions, score]
+  );
+
+  const resetQuiz = useCallback(() => {
+    const prepared = shuffle(questions)
+      .slice(0, 20)
+      .map(q => ({ ...q, options: shuffle(q.options) }));
+    setQuizQuestions(prepared);
+    setCurrentQuestion(0);
     setScore(0);
-    setSelected(null);
-    setFinished(false);
-    setTimeLeft(getTime());
-    setMaxTime(getTime());
-    setAnswered(false); // reset lock
-  };
+    setTimeLeft(difficultyTimes[difficulty]);
+    setAnswered(false);
+  }, [difficulty]);
 
   return {
-    questions,
-    current,
+    quizQuestions,
+    currentQuestion,
     score,
-    selected,
-    finished,
     timeLeft,
-    maxTime,
-    startQuiz,
-    answerQuestion: handleAnswer,
-    restartQuiz,
+    answered,
+    handleAnswer,
+    resetQuiz,
   };
-}
+};
