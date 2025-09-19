@@ -67,7 +67,10 @@ export default function QuestionCard({
             mb={4}
             spacing={2}
           >
-            <Typography variant="h6" sx={{ fontWeight: 600 }}>
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: 600, minWidth: "80px", textAlign: "center" }}
+            >
               {current + 1} / {total}
             </Typography>
 
@@ -78,6 +81,7 @@ export default function QuestionCard({
                   : {}
               }
               transition={{ repeat: Infinity, duration: 1 }}
+              style={{ flexShrink: 0 }}
             >
               <Box
                 position="relative"
@@ -139,11 +143,12 @@ export default function QuestionCard({
                   key={i}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  onClick={() => onAnswer(opt)}
-                  style={{ cursor: "pointer" }}
+                  onClick={() => !selected && onAnswer(opt)} // solo permite si no hay respuesta
+                  style={{ cursor: selected ? "default" : "pointer" }}
                 >
                   <Button
                     fullWidth
+                    disabled={!!selected && !isSelected} // bloquea los demás
                     variant={isSelected ? "contained" : "outlined"}
                     sx={{
                       textTransform: "none",
@@ -196,4 +201,4 @@ export default function QuestionCard({
       </Card>
     </motion.div>
   );
-                }
+              }
