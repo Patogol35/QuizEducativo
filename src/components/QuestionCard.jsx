@@ -1,200 +1,157 @@
+import { useState, useEffect } from "react";
 import {
-  Card,
-  CardContent,
-  Typography,
-  Button,
-  Stack,
-  CircularProgress,
   Box,
-  LinearProgress,
+  Button,
+  CircularProgress,
+  Stack,
+  Typography,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { CheckCircle, Cancel } from "@mui/icons-material";
 
-export default function QuestionCard({
-  question,
-  current,
-  total,
-  score,
-  onAnswer,
-  time,
-  maxTime,
-  selected,
-}) {
-  if (!question) return null;
+export default function Quiz({ questions, maxTime = 15 }) {
+  const [current, setCurrent] = useState(0);
+  const [time, setTime] = useState(maxTime);
+  const [selected, setSelected] = useState(null);
+  const [score, setScore] = useState(0);
 
-  const circleSize = 60;
-  const progress = ((current + 1) / total) * 100;
+  const total = questions.length;
+  const circleSize = 70;
+
+  // Temporizador
+  useEffect(() => {
+    if (selected !== null) return; // si ya respondió, se detiene
+    if (time === 0) {
+      handleNext();
+      return;
+    }
+    const timer = setTimeout(() => setTime(time - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [time, selected]);
+
+  const handleAnswer = (option) => {
+    if (selected !== null) return; // 🔒 no permite cambiar respuesta
+    setSelected(option);
+    if (option === questions[current].answer) {
+      setScore(score + 1);
+    }
+    setTimeout(() => handleNext(), 1000); // pasa a la siguiente
+  };
+
+  const handleNext = () => {
+    if (current + 1 < total) {
+      setCurrent(current + 1);
+      setTime(maxTime);
+      setSelected(null);
+    } else {
+      alert(`Juego terminado 🎉 Tu puntaje es ${score}/${total}`);
+    }
+  };
 
   return (
-    <motion.div
-      key={current}
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      style={{ width: "90%", maxWidth: 700, margin: "0 auto" }}
-    >
-      <Card
-        sx={{
-          p: { xs: 3, sm: 4 },
-          borderRadius: 4,
-          backdropFilter: "blur(12px)",
-          background: (theme) =>
-            theme.palette.mode === "dark"
-              ? "rgba(30,41,59,0.95)"
-              : "rgba(255,255,255,0.95)",
-          boxShadow: "0 8px 25px rgba(0,0,0,0.25)",
-        }}
+    <Box textAlign="center" p={3}>
+      {/* Encabezado: contador y temporizador */}
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        justifyContent="space-between"
+        alignItems="center"
+        mb={4}
+        spacing={{ xs: 2, sm: 4 }}
       >
-        <CardContent>
-          {/* Progreso global */}
-          <LinearProgress
-            variant="determinate"
-            value={progress}
+        {/* Contador */}
+        <Typography
+          variant="h6"
+          sx={{ fontWeight: 600, pl: { xs: 0, sm: 1 } }}
+        >
+          {current + 1} / {total}
+        </Typography>
+
+        {/* Temporizador */}
+        <motion.div
+          animate={time <= 3 ? { scale: [1, 1.2, 1] } : {}}
+          transition={{ repeat: Infinity, duration: 1 }}
+          style={{ flexShrink: 0 }}
+        >
+          <Box
+            position="relative"
             sx={{
-              mb: 3,
-              height: 8,
-              borderRadius: 5,
-              backgroundColor: "rgba(0,0,0,0.1)",
+              width: circleSize,
+              height: circleSize,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-          />
-
-          {/* Contador y temporizador */}
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            justifyContent="center"
-            alignItems="center"
-            mb={4}
-            spacing={{ xs: 2, sm: 6 }} // 🔹 más separación en horizontal
           >
+            <CircularProgress
+              variant="determinate"
+              value={(time / maxTime) * 100}
+              size={circleSize}
+              thickness={5}
+              sx={{
+                color:
+                  time > maxTime * 0.5
+                    ? "success.main"
+                    : time > 3
+                    ? "warning.main"
+                    : "error.main",
+                transition: "color 0.3s ease",
+              }}
+            />
             <Typography
-              variant="h6"
-              sx={{ fontWeight: 600, minWidth: "80px", textAlign: "center" }}
+              fontWeight="bold"
+              sx={{
+                color: "text.primary",
+                fontSize: `${circleSize * 0.3}px`,
+                lineHeight: 1,
+                position: "absolute",
+              }}
             >
-              {current + 1} / {total}
+              {time}s
             </Typography>
+          </Box>
+        </motion.div>
+      </Stack>
 
-            <motion.div
-              animate={time <= 3 ? { scale: [1, 1.2, 1] } : {}}
-              transition={{ repeat: Infinity, duration: 1 }}
-              style={{ flexShrink: 0 }}
-            >
-              <Box
-                position="relative"
-                sx={{
-                  width: circleSize,
-                  height: circleSize,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <CircularProgress
-                  variant="determinate"
-                  value={(time / maxTime) * 100}
-                  size={circleSize}
-                  thickness={5}
-                  sx={{
-                    color:
-                      time > maxTime * 0.5
-                        ? "success.main"
-                        : time > 3
-                        ? "warning.main"
-                        : "error.main",
-                    transition: "color 0.3s ease",
-                  }}
-                />
-                <Typography
-                  fontWeight="bold"
-                  sx={{
-                    color: "text.primary",
-                    fontSize: `${circleSize * 0.3}px`,
-                    lineHeight: 1,
-                    position: "absolute",
-                  }}
-                >
-                  {time}s
-                </Typography>
-              </Box>
-            </motion.div>
-          </Stack>
+      {/* Pregunta */}
+      <Typography variant="h5" fontWeight="bold" mb={3}>
+        {questions[current].question}
+      </Typography>
 
-          {/* Pregunta */}
-          <Typography
-            variant="h5"
-            gutterBottom
-            sx={{ fontWeight: 600, mb: 3 }}
+      {/* Opciones */}
+      <Stack spacing={2}>
+        {questions[current].options.map((option, index) => (
+          <Button
+            key={index}
+            variant="contained"
+            fullWidth
+            onClick={() => handleAnswer(option)}
+            disabled={selected !== null} // 🔒 no permite cambiar respuesta
+            sx={{
+              py: 1.5,
+              bgcolor:
+                selected === null
+                  ? "primary.main"
+                  : option === questions[current].answer
+                  ? "success.main"
+                  : selected === option
+                  ? "error.main"
+                  : "primary.main",
+              "&:hover": {
+                bgcolor:
+                  selected === null
+                    ? "primary.dark"
+                    : option === questions[current].answer
+                    ? "success.dark"
+                    : selected === option
+                    ? "error.dark"
+                    : "primary.dark",
+              },
+              transition: "all 0.3s ease",
+            }}
           >
-            {question.question}
-          </Typography>
-
-          {/* Opciones */}
-          <Stack spacing={3} mt={2}>
-            {question.options.map((opt, i) => {
-              const isSelected = selected === opt;
-              const isCorrect = opt === question.answer;
-
-              return (
-                <motion.div
-                  key={i}
-                  whileHover={!selected ? { scale: 1.03 } : {}}
-                  whileTap={!selected ? { scale: 0.97 } : {}}
-                  onClick={() => !selected && onAnswer(opt)} // solo permite si no hay respuesta
-                  style={{ cursor: selected ? "default" : "pointer" }}
-                >
-                  <Button
-                    fullWidth
-                    disabled={!!selected && !isSelected} // bloquea los demás
-                    variant={isSelected ? "contained" : "outlined"}
-                    sx={{
-                      textTransform: "none",
-                      borderRadius: 2,
-                      fontWeight: 500,
-                      py: 1.5,
-                      fontSize: "0.95rem",
-                      justifyContent: "space-between",
-                      backgroundColor: isSelected
-                        ? isCorrect
-                          ? "success.main"
-                          : "error.main"
-                        : "transparent",
-                      color: isSelected ? "#fff" : "inherit",
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        backgroundColor: isSelected
-                          ? isCorrect
-                            ? "success.dark"
-                            : "error.dark"
-                          : "rgba(37,99,235,0.1)",
-                      },
-                    }}
-                    endIcon={
-                      isSelected ? (
-                        isCorrect ? (
-                          <CheckCircle />
-                        ) : (
-                          <Cancel />
-                        )
-                      ) : null
-                    }
-                  >
-                    {opt}
-                  </Button>
-                </motion.div>
-              );
-            })}
-          </Stack>
-
-          {/* Puntos */}
-          <Typography
-            variant="body2"
-            align="right"
-            sx={{ mt: 3, color: "text.secondary", fontWeight: 500 }}
-          >
-            Puntos: {score}
-          </Typography>
-        </CardContent>
-      </Card>
-    </motion.div>
+            {option}
+          </Button>
+        ))}
+      </Stack>
+    </Box>
   );
 }
