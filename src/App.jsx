@@ -12,7 +12,6 @@ export default function App() {
   const [difficulty, setDifficulty] = useState("medium");
   const [darkMode, setDarkMode] = useState(false);
 
-  // Hook centralizado
   const {
     questions,
     current,
@@ -26,7 +25,7 @@ export default function App() {
     restartQuiz,
   } = useQuiz(allQuestions, difficulty);
 
-  // Cargar preferencias desde localStorage
+  // Cargar preferencias guardadas
   useEffect(() => {
     const savedDark = localStorage.getItem("darkMode");
     const savedDiff = localStorage.getItem("difficulty");
@@ -35,8 +34,13 @@ export default function App() {
   }, []);
 
   // Guardar preferencias
-  useEffect(() => localStorage.setItem("darkMode", darkMode), [darkMode]);
-  useEffect(() => localStorage.setItem("difficulty", difficulty), [difficulty]);
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  useEffect(() => {
+    localStorage.setItem("difficulty", difficulty);
+  }, [difficulty]);
 
   const theme = useMemo(
     () =>
@@ -103,10 +107,10 @@ export default function App() {
             current={current}
             total={questions.length}
             score={score}
-            onAnswer={answerQuestion}
             time={timeLeft}
             maxTime={maxTime}
             selected={selected}
+            onAnswer={answerQuestion}
           />
         ) : (
           <ResultScreen
@@ -118,4 +122,4 @@ export default function App() {
       </Box>
     </ThemeProvider>
   );
-        }
+}
