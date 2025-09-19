@@ -63,8 +63,10 @@ export default function QuestionCard({
           <Stack
             direction="column"
             alignItems="center"
+            justifyContent="center"
             spacing={2}
             mb={4}
+            sx={{ width: "100%" }}
           >
             {/* Contador */}
             <Typography
@@ -72,54 +74,63 @@ export default function QuestionCard({
               sx={{
                 fontWeight: 600,
                 whiteSpace: "nowrap",
+                textAlign: "center",
               }}
             >
               {current + 1} / {total}
             </Typography>
 
             {/* Cronómetro */}
-            <motion.div
-              animate={time <= 3 ? { scale: [1, 1.2, 1] } : {}}
-              transition={{ repeat: Infinity, duration: 1 }}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
             >
-              <Box
-                position="relative"
-                sx={{
-                  width: circleSize,
-                  height: circleSize,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
+              <motion.div
+                animate={time <= 3 ? { scale: [1, 1.2, 1] } : {}}
+                transition={{ repeat: Infinity, duration: 1 }}
               >
-                <CircularProgress
-                  variant="determinate"
-                  value={(time / maxTime) * 100}
-                  size={circleSize}
-                  thickness={5}
+                <Box
+                  position="relative"
                   sx={{
-                    color:
-                      time > maxTime * 0.5
-                        ? "success.main"
-                        : time > 3
-                        ? "warning.main"
-                        : "error.main",
-                    transition: "color 0.3s ease",
-                  }}
-                />
-                <Typography
-                  fontWeight="bold"
-                  sx={{
-                    color: "text.primary",
-                    fontSize: `${circleSize * 0.3}px`,
-                    lineHeight: 1,
-                    position: "absolute",
+                    width: circleSize,
+                    height: circleSize,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  {time}s
-                </Typography>
-              </Box>
-            </motion.div>
+                  <CircularProgress
+                    variant="determinate"
+                    value={(time / maxTime) * 100}
+                    size={circleSize}
+                    thickness={5}
+                    sx={{
+                      color:
+                        time > maxTime * 0.5
+                          ? "success.main"
+                          : time > 3
+                          ? "warning.main"
+                          : "error.main",
+                      transition: "color 0.3s ease",
+                    }}
+                  />
+                  <Typography
+                    fontWeight="bold"
+                    sx={{
+                      color: "text.primary",
+                      fontSize: `${circleSize * 0.3}px`,
+                      lineHeight: 1,
+                      position: "absolute",
+                    }}
+                  >
+                    {time}s
+                  </Typography>
+                </Box>
+              </motion.div>
+            </Box>
           </Stack>
 
           {/* Pregunta */}
@@ -200,4 +211,4 @@ export default function QuestionCard({
       </Card>
     </motion.div>
   );
-}
+                      }
