@@ -42,15 +42,15 @@ export default function WelcomeScreen({
           borderRadius: 4,
           background: (theme) =>
             theme.palette.mode === "dark"
-              ? "linear-gradient(145deg, #1e293b, #0f172a)"
-              : "linear-gradient(145deg, #ffffff, #f8fafc)",
+              ? "linear-gradient(145deg,#1e293b,#0f172a)"
+              : "linear-gradient(145deg,#ffffff,#f8fafc)",
           boxShadow:
-            "0 8px 25px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.05)",
+            "0 8px 25px rgba(0,0,0,0.15),0 4px 12px rgba(0,0,0,0.05)",
         }}
       >
         <CardContent>
 
-          {/* Título + modo oscuro */}
+          {/* TITULO + DARK MODE */}
           <Stack
             direction="row"
             alignItems="center"
@@ -62,8 +62,7 @@ export default function WelcomeScreen({
               variant="h4"
               fontWeight="bold"
               sx={{
-                color: (theme) =>
-                  theme.palette.mode === "dark" ? "#60a5fa" : "#2563eb",
+                color: "#2563eb",
               }}
             >
               Quiz Interactivo
@@ -75,21 +74,25 @@ export default function WelcomeScreen({
               sx={{
                 border: "1px solid",
                 borderColor: (theme) =>
-                  theme.palette.mode === "dark" ? "#f1f5f9" : "#1e293b",
+                  theme.palette.mode === "dark"
+                    ? "#f1f5f9"
+                    : "#1e293b",
               }}
             >
               {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
             </IconButton>
           </Stack>
 
-          {/* Autor */}
+          {/* DESARROLLADOR */}
           <Typography
             variant="body2"
             sx={{
               mb: 3,
               fontWeight: 500,
               color: (theme) =>
-                theme.palette.mode === "dark" ? "#cbd5f5" : "#334155",
+                theme.palette.mode === "dark"
+                  ? "#cbd5f5"
+                  : "#334155",
             }}
           >
             Desarrollado por{" "}
@@ -98,16 +101,18 @@ export default function WelcomeScreen({
               sx={{
                 fontWeight: 700,
                 color: (theme) =>
-                  theme.palette.mode === "dark" ? "#60a5fa" : "#1d4ed8",
+                  theme.palette.mode === "dark"
+                    ? "#60a5fa"
+                    : "#1d4ed8",
               }}
             >
               Jorge Patricio Santamaría Cherrez
             </Box>
           </Typography>
 
-          {/* Instrucciones */}
+          {/* INSTRUCCIONES */}
           <Stack
-            spacing={1.5}
+            spacing={1}
             sx={{
               textAlign: "left",
               p: 3,
@@ -115,60 +120,77 @@ export default function WelcomeScreen({
               borderRadius: 3,
               background: (theme) =>
                 theme.palette.mode === "dark"
-                  ? "linear-gradient(135deg, rgba(100,116,139,0.2), rgba(30,41,59,0.4))"
-                  : "linear-gradient(135deg, rgba(96,165,250,0.1), rgba(237,242,247,0.6))",
-              border: (theme) =>
-                `1px solid ${
-                  theme.palette.mode === "dark"
-                    ? "rgba(255,255,255,0.1)"
-                    : "rgba(0,0,0,0.05)"
-                }`,
+                  ? "rgba(100,116,139,0.15)"
+                  : "rgba(96,165,250,0.08)",
+              border: "1px solid rgba(0,0,0,0.05)",
             }}
           >
             <Typography
               variant="subtitle1"
-              sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: 500 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                fontWeight: 600,
+              }}
             >
-              <InfoIcon fontSize="small" /> Instrucciones
+              <InfoIcon fontSize="small" />
+              Instrucciones
             </Typography>
 
-            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+            <Typography
+              variant="body2"
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
+            >
               <CheckCircleIcon fontSize="small" color="success" />
-              <Box component="span" sx={{ fontWeight: "bold" }}>
-                Responde un total de 20 preguntas, a 0.5 puntos cada una
-              </Box>
+              Responde <b>un total de 20 preguntas, a 0.5 puntos cada una</b>.
             </Typography>
 
-            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+            <Typography
+              variant="body2"
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
+            >
               <TimerIcon fontSize="small" color="warning" />
               Tienes un límite de tiempo para cada pregunta.
             </Typography>
 
-            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+            <Typography
+              variant="body2"
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
+            >
               <EmojiEventsIcon fontSize="small" color="primary" />
               Gana puntos por cada respuesta correcta.
             </Typography>
 
-            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
-              <BarChartIcon fontSize="small" color="secondary" />
+            <Typography
+              variant="body2"
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
+            >
+              <BarChartIcon fontSize="small" color="action" />
               Elige la dificultad antes de comenzar.
             </Typography>
           </Stack>
 
-          {/* Dificultad */}
-          <Stack mt={1} spacing={2} alignItems="center">
-            <Typography variant="body2" fontWeight="500">
+          {/* SELECCION DE DIFICULTAD */}
+          <Stack spacing={2} alignItems="center">
+
+            <Typography variant="body2" fontWeight={600}>
               Selecciona la dificultad:
             </Typography>
 
-            {/* CENTRADO HORIZONTAL */}
-            <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+            <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
               <ToggleButtonGroup
                 exclusive
                 value={difficulty}
                 onChange={(e, val) => val && setDifficulty(val)}
+                sx={{
+                  width: "100%",
+                  maxWidth: 360,
+                  display: "flex",
+                }}
               >
                 {["easy", "medium", "hard"].map((level) => {
+
                   const colors = {
                     easy: { main: "#16a34a", hover: "#15803d" },
                     medium: { main: "#2563eb", hover: "#1d4ed8" },
@@ -187,22 +209,28 @@ export default function WelcomeScreen({
                       key={level}
                       value={level}
                       sx={{
-                        px: 3,
-                        borderRadius: 2,
-                        border: "1px solid",
-                        borderColor: "divider",
+                        flex: 1,
                         fontWeight: 600,
-                        color: difficulty === level ? "#fff" : "inherit",
+                        borderRadius: 2,
+                        textAlign: "center",
+                        color:
+                          difficulty === level
+                            ? "#fff"
+                            : "inherit",
                         backgroundColor:
                           difficulty === level
                             ? colors[level].main
                             : "transparent",
+
                         "&.Mui-selected": {
-                          backgroundColor: colors[level].main,
+                          backgroundColor:
+                            colors[level].main,
                           color: "#fff",
                         },
+
                         "&.Mui-selected:hover": {
-                          backgroundColor: colors[level].hover,
+                          backgroundColor:
+                            colors[level].hover,
                         },
                       }}
                     >
@@ -214,11 +242,10 @@ export default function WelcomeScreen({
             </Box>
           </Stack>
 
-          {/* Botón */}
+          {/* BOTON COMENZAR */}
           <Box mt={4}>
             <Button
               variant="contained"
-              size="large"
               startIcon={<PlayArrowIcon />}
               onClick={onStart}
               sx={{
@@ -237,4 +264,4 @@ export default function WelcomeScreen({
       </Card>
     </motion.div>
   );
-}
+              }
