@@ -14,10 +14,6 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import InfoIcon from "@mui/icons-material/Info";
 import { motion } from "framer-motion";
-import TimerIcon from "@mui/icons-material/Timer";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 export default function WelcomeScreen({
   onStart,
@@ -48,7 +44,13 @@ export default function WelcomeScreen({
       >
         <CardContent>
           {/* Título + Toggle modo oscuro */}
-          <Stack direction="row" alignItems="center" justifyContent="center" spacing={2} mb={2}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            spacing={2}
+            mb={2}
+          >
             <Typography
               variant="h4"
               fontWeight="bold"
@@ -60,6 +62,7 @@ export default function WelcomeScreen({
             >
               Quiz Interactivo
             </Typography>
+
             <IconButton
               onClick={toggleDarkMode}
               color="inherit"
@@ -74,62 +77,78 @@ export default function WelcomeScreen({
           </Stack>
 
           {/* Desarrollado por */}
-<Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
-  Desarrollado por{" "}
-  <Box component="span" sx={{ fontWeight: "bold", color: "primary.main" }}>
-    Jorge Patricio Santamaría Cherrez
-  </Box>
-</Typography>
+          <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
+            Desarrollado por{" "}
+            <Box
+              component="span"
+              sx={{ fontWeight: "bold", color: "primary.main" }}
+            >
+              Jorge Patricio Santamaría Cherrez
+            </Box>
+          </Typography>
 
           {/* Instrucciones */}
-<Stack
-  spacing={1}
-  sx={{
-    textAlign: "left",
-    p: 3,
-    mb: 3,
-    borderRadius: 3,
-    background: (theme) =>
-      theme.palette.mode === "dark"
-        ? "linear-gradient(135deg, rgba(100,116,139,0.2), rgba(30,41,59,0.4))"
-        : "linear-gradient(135deg, rgba(96,165,250,0.1), rgba(237,242,247,0.6))",
-    border: (theme) =>
-      `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"}`,
-  }}
->
-  <Typography
-    variant="subtitle1"
-    sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: "500" }}
-  >
-    <InfoIcon fontSize="small" /> Instrucciones
-  </Typography>
+          <Stack
+            spacing={1}
+            sx={{
+              textAlign: "left",
+              p: 3,
+              mb: 3,
+              borderRadius: 3,
+              background: (theme) =>
+                theme.palette.mode === "dark"
+                  ? "linear-gradient(135deg, rgba(100,116,139,0.2), rgba(30,41,59,0.4))"
+                  : "linear-gradient(135deg, rgba(96,165,250,0.1), rgba(237,242,247,0.6))",
+              border: (theme) =>
+                `1px solid ${
+                  theme.palette.mode === "dark"
+                    ? "rgba(255,255,255,0.1)"
+                    : "rgba(0,0,0,0.05)"
+                }`,
+              boxShadow: (theme) =>
+                theme.palette.mode === "dark"
+                  ? "0 4px 15px rgba(0,0,0,0.2)"
+                  : "0 4px 15px rgba(0,0,0,0.05)",
+            }}
+          >
+            <Typography
+              variant="subtitle1"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                fontWeight: "500",
+              }}
+            >
+              <InfoIcon fontSize="small" /> Instrucciones
+            </Typography>
 
-  <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
-    <CheckCircleIcon fontSize="small" color="success" />
-    Responde <b>un total de 20 preguntas, a 0.5 puntos cada una</b>.
-  </Typography>
+            <Typography variant="body2">
+              ✅ Responde{" "}
+              <Box component="span" sx={{ fontWeight: "bold" }}>
+                un total de 20 preguntas, a 0.5 puntos cada una
+              </Box>.
+            </Typography>
 
-  <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
-    <TimerIcon fontSize="small" color="warning" />
-    Tienes un límite de tiempo para cada pregunta.
-  </Typography>
+            <Typography variant="body2">
+              ⏱️ Tienes un límite de tiempo para cada pregunta.
+            </Typography>
 
-  <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
-    <EmojiEventsIcon fontSize="small" color="primary" />
-    Gana puntos por cada respuesta correcta.
-  </Typography>
+            <Typography variant="body2">
+              🏆 Gana puntos por cada respuesta correcta.
+            </Typography>
 
-  <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
-    <BarChartIcon fontSize="small" color="secondary" />
-    Elige la dificultad antes de comenzar.
-  </Typography>
-</Stack>
+            <Typography variant="body2">
+              📊 Elige la dificultad antes de comenzar.
+            </Typography>
+          </Stack>
 
           {/* Selección de dificultad */}
           <Stack mt={1} spacing={2} alignItems="center">
             <Typography variant="body2" fontWeight="500">
               Selecciona la dificultad:
             </Typography>
+
             <ToggleButtonGroup
               exclusive
               value={difficulty}
@@ -137,11 +156,17 @@ export default function WelcomeScreen({
             >
               {["easy", "medium", "hard"].map((level) => {
                 const colors = {
-                  easy: { main: "#16a34a", hover: "#15803d" },   // verde
-                  medium: { main: "#2563eb", hover: "#1d4ed8" }, // azul
-                  hard: { main: "#dc2626", hover: "#b91c1c" },   // rojo
+                  easy: { main: "#16a34a", hover: "#15803d" },
+                  medium: { main: "#2563eb", hover: "#1d4ed8" },
+                  hard: { main: "#dc2626", hover: "#b91c1c" },
                 };
-                const label = level === "easy" ? "Fácil" : level === "medium" ? "Medio" : "Difícil";
+
+                const label =
+                  level === "easy"
+                    ? "Fácil"
+                    : level === "medium"
+                    ? "Medio"
+                    : "Difícil";
 
                 return (
                   <ToggleButton
@@ -154,7 +179,10 @@ export default function WelcomeScreen({
                       borderColor: "divider",
                       fontWeight: 600,
                       color: difficulty === level ? "#fff" : "inherit",
-                      backgroundColor: difficulty === level ? colors[level].main : "transparent",
+                      backgroundColor:
+                        difficulty === level
+                          ? colors[level].main
+                          : "transparent",
                       "&.Mui-selected": {
                         backgroundColor: colors[level].main,
                         color: "#fff",
@@ -164,7 +192,10 @@ export default function WelcomeScreen({
                         color: "#fff",
                       },
                       "&:hover": {
-                        backgroundColor: difficulty === level ? colors[level].hover : "rgba(37,99,235,0.1)",
+                        backgroundColor:
+                          difficulty === level
+                            ? colors[level].hover
+                            : "rgba(37,99,235,0.1)",
                         color: difficulty === level ? "#fff" : "inherit",
                       },
                     }}
