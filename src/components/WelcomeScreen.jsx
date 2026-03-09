@@ -9,10 +9,17 @@ import {
   IconButton,
   Box,
 } from "@mui/material";
+
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import InfoIcon from "@mui/icons-material/Info";
+
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import TimerIcon from "@mui/icons-material/Timer";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import BarChartIcon from "@mui/icons-material/BarChart";
+
 import { motion } from "framer-motion";
 
 export default function WelcomeScreen({
@@ -43,6 +50,7 @@ export default function WelcomeScreen({
         }}
       >
         <CardContent>
+
           {/* Título + Toggle modo oscuro */}
           <Stack
             direction="row"
@@ -79,17 +87,14 @@ export default function WelcomeScreen({
           {/* Desarrollado por */}
           <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
             Desarrollado por{" "}
-            <Box
-              component="span"
-              sx={{ fontWeight: "bold", color: "primary.main" }}
-            >
+            <Box component="span" sx={{ fontWeight: "bold", color: "primary.main" }}>
               Jorge Patricio Santamaría Cherrez
             </Box>
           </Typography>
 
           {/* Instrucciones */}
           <Stack
-            spacing={1}
+            spacing={1.5}
             sx={{
               textAlign: "left",
               p: 3,
@@ -113,33 +118,31 @@ export default function WelcomeScreen({
           >
             <Typography
               variant="subtitle1"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                fontWeight: "500",
-              }}
+              sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: "500" }}
             >
               <InfoIcon fontSize="small" /> Instrucciones
             </Typography>
 
-            <Typography variant="body2">
-              ✅ Responde{" "}
+            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+              <CheckCircleIcon fontSize="small" color="success" />
               <Box component="span" sx={{ fontWeight: "bold" }}>
-                un total de 20 preguntas, a 0.5 puntos cada una
-              </Box>.
+                Responde un total de 20 preguntas, a 0.5 puntos cada una
+              </Box>
             </Typography>
 
-            <Typography variant="body2">
-              ⏱️ Tienes un límite de tiempo para cada pregunta.
+            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+              <TimerIcon fontSize="small" color="warning" />
+              Tienes un límite de tiempo para cada pregunta.
             </Typography>
 
-            <Typography variant="body2">
-              🏆 Gana puntos por cada respuesta correcta.
+            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+              <EmojiEventsIcon fontSize="small" color="primary" />
+              Gana puntos por cada respuesta correcta.
             </Typography>
 
-            <Typography variant="body2">
-              📊 Elige la dificultad antes de comenzar.
+            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+              <BarChartIcon fontSize="small" color="secondary" />
+              Elige la dificultad antes de comenzar.
             </Typography>
           </Stack>
 
@@ -189,14 +192,12 @@ export default function WelcomeScreen({
                       },
                       "&.Mui-selected:hover": {
                         backgroundColor: colors[level].hover,
-                        color: "#fff",
                       },
                       "&:hover": {
                         backgroundColor:
                           difficulty === level
                             ? colors[level].hover
                             : "rgba(37,99,235,0.1)",
-                        color: difficulty === level ? "#fff" : "inherit",
                       },
                     }}
                   >
@@ -226,8 +227,9 @@ export default function WelcomeScreen({
               Comenzar
             </Button>
           </Box>
+
         </CardContent>
       </Card>
     </motion.div>
   );
-}
+              }
