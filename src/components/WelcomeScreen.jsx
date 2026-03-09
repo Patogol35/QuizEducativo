@@ -9,16 +9,10 @@ import {
   IconButton,
   Box,
 } from "@mui/material";
-
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import InfoIcon from "@mui/icons-material/Info";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import TimerIcon from "@mui/icons-material/Timer";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import BarChartIcon from "@mui/icons-material/BarChart";
-
 import { motion } from "framer-motion";
 
 export default function WelcomeScreen({
@@ -49,26 +43,19 @@ export default function WelcomeScreen({
         }}
       >
         <CardContent>
-
-          {/* Título + botón modo oscuro */}
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="center"
-            spacing={2}
-            mb={2}
-          >
+          {/* Título + Toggle modo oscuro */}
+          <Stack direction="row" alignItems="center" justifyContent="center" spacing={2} mb={2}>
             <Typography
               variant="h4"
               fontWeight="bold"
               sx={{
-                color: (theme) =>
-                  theme.palette.mode === "dark" ? "#60a5fa" : "#2563eb",
+                background: "linear-gradient(90deg, #2563eb, #9333ea)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
               }}
             >
               Quiz Interactivo
             </Typography>
-
             <IconButton
               onClick={toggleDarkMode}
               color="inherit"
@@ -82,102 +69,53 @@ export default function WelcomeScreen({
             </IconButton>
           </Stack>
 
-          {/* Desarrollador */}
-          <Typography
-            variant="body2"
-            sx={{
-              mb: 3,
-              fontWeight: 500,
-              color: (theme) =>
-                theme.palette.mode === "dark" ? "#cbd5f5" : "#334155",
-            }}
-          >
-            Desarrollado por{" "}
-            <Box
-              component="span"
-              sx={{
-                fontWeight: 700,
-                color: (theme) =>
-                  theme.palette.mode === "dark" ? "#60a5fa" : "#1d4ed8",
-              }}
-            >
-              Jorge Patricio Santamaría Cherrez
-            </Box>
-          </Typography>
+          {/* Desarrollado por */}
+<Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
+
+  <Box component="span" sx={{ fontWeight: "bold", color: "primary.main" }}>
+    Desarrollado por Jorge Patricio Santamaría Cherrez
+  </Box>
+</Typography>
 
           {/* Instrucciones */}
-          <Stack
-            spacing={1.5}
-            sx={{
-              textAlign: "left",
-              p: 3,
-              mb: 3,
-              borderRadius: 3,
-              background: (theme) =>
-                theme.palette.mode === "dark"
-                  ? "linear-gradient(135deg, rgba(100,116,139,0.2), rgba(30,41,59,0.4))"
-                  : "linear-gradient(135deg, rgba(96,165,250,0.1), rgba(237,242,247,0.6))",
-              border: (theme) =>
-                `1px solid ${
-                  theme.palette.mode === "dark"
-                    ? "rgba(255,255,255,0.1)"
-                    : "rgba(0,0,0,0.05)"
-                }`,
-            }}
-          >
-            <Typography
-              variant="subtitle1"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                fontWeight: 500,
-              }}
-            >
-              <InfoIcon fontSize="small" /> Instrucciones
-            </Typography>
-
-            <Typography
-              sx={{ display: "flex", alignItems: "center", gap: 1 }}
-              variant="body2"
-            >
-              <CheckCircleIcon fontSize="small" color="success" />
-              <Box component="span" sx={{ fontWeight: "bold" }}>
-                Responde un total de 20 preguntas, a 0.5 puntos cada una
-              </Box>
-            </Typography>
-
-            <Typography
-              sx={{ display: "flex", alignItems: "center", gap: 1 }}
-              variant="body2"
-            >
-              <TimerIcon fontSize="small" color="warning" />
-              Tienes un límite de tiempo para cada pregunta.
-            </Typography>
-
-            <Typography
-              sx={{ display: "flex", alignItems: "center", gap: 1 }}
-              variant="body2"
-            >
-              <EmojiEventsIcon fontSize="small" color="primary" />
-              Gana puntos por cada respuesta correcta.
-            </Typography>
-
-            <Typography
-              sx={{ display: "flex", alignItems: "center", gap: 1 }}
-              variant="body2"
-            >
-              <BarChartIcon fontSize="small" color="secondary" />
-              Elige la dificultad antes de comenzar.
-            </Typography>
-          </Stack>
+<Stack
+  spacing={1}
+  sx={{
+    textAlign: "left",
+    p: 3,
+    mb: 3,
+    borderRadius: 3,
+    background: (theme) =>
+      theme.palette.mode === "dark"
+        ? "linear-gradient(135deg, rgba(100,116,139,0.2), rgba(30,41,59,0.4))"
+        : "linear-gradient(135deg, rgba(96,165,250,0.1), rgba(237,242,247,0.6))",
+    border: (theme) =>
+      `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"}`,
+    boxShadow: (theme) =>
+      theme.palette.mode === "dark"
+        ? "0 4px 15px rgba(0,0,0,0.2)"
+        : "0 4px 15px rgba(0,0,0,0.05)",
+  }}
+>
+  <Typography
+    variant="subtitle1"
+    sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: "500" }}
+  >
+    <InfoIcon fontSize="small" /> Instrucciones
+  </Typography>
+  <Typography variant="body2">
+    ✅ Responde <b> un total de 20 preguntas, a 0.5 puntos cada una</b>.
+  </Typography>
+  <Typography variant="body2">⏱️ Tienes un límite de tiempo para cada pregunta.</Typography>
+  <Typography variant="body2">🏆 Gana puntos por cada respuesta correcta.</Typography>
+  <Typography variant="body2">📊 Elige la dificultad antes de comenzar.</Typography>
+</Stack>
 
           {/* Selección de dificultad */}
           <Stack mt={1} spacing={2} alignItems="center">
             <Typography variant="body2" fontWeight="500">
               Selecciona la dificultad:
             </Typography>
-
             <ToggleButtonGroup
               exclusive
               value={difficulty}
@@ -185,17 +123,11 @@ export default function WelcomeScreen({
             >
               {["easy", "medium", "hard"].map((level) => {
                 const colors = {
-                  easy: { main: "#16a34a", hover: "#15803d" },
-                  medium: { main: "#2563eb", hover: "#1d4ed8" },
-                  hard: { main: "#dc2626", hover: "#b91c1c" },
+                  easy: { main: "#16a34a", hover: "#15803d" },   // verde
+                  medium: { main: "#2563eb", hover: "#1d4ed8" }, // azul
+                  hard: { main: "#dc2626", hover: "#b91c1c" },   // rojo
                 };
-
-                const label =
-                  level === "easy"
-                    ? "Fácil"
-                    : level === "medium"
-                    ? "Medio"
-                    : "Difícil";
+                const label = level === "easy" ? "Fácil" : level === "medium" ? "Medio" : "Difícil";
 
                 return (
                   <ToggleButton
@@ -208,16 +140,18 @@ export default function WelcomeScreen({
                       borderColor: "divider",
                       fontWeight: 600,
                       color: difficulty === level ? "#fff" : "inherit",
-                      backgroundColor:
-                        difficulty === level
-                          ? colors[level].main
-                          : "transparent",
+                      backgroundColor: difficulty === level ? colors[level].main : "transparent",
                       "&.Mui-selected": {
                         backgroundColor: colors[level].main,
                         color: "#fff",
                       },
                       "&.Mui-selected:hover": {
                         backgroundColor: colors[level].hover,
+                        color: "#fff",
+                      },
+                      "&:hover": {
+                        backgroundColor: difficulty === level ? colors[level].hover : "rgba(37,99,235,0.1)",
+                        color: difficulty === level ? "#fff" : "inherit",
                       },
                     }}
                   >
@@ -228,10 +162,11 @@ export default function WelcomeScreen({
             </ToggleButtonGroup>
           </Stack>
 
-          {/* Botón comenzar */}
+          {/* Botón empezar */}
           <Box mt={4}>
             <Button
               variant="contained"
+              color="primary"
               size="large"
               startIcon={<PlayArrowIcon />}
               onClick={onStart}
@@ -246,9 +181,8 @@ export default function WelcomeScreen({
               Comenzar
             </Button>
           </Box>
-
         </CardContent>
       </Card>
     </motion.div>
   );
-}
+              }
