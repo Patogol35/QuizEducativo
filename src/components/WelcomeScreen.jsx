@@ -14,7 +14,6 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import InfoIcon from "@mui/icons-material/Info";
-
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import TimerIcon from "@mui/icons-material/Timer";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
@@ -51,7 +50,7 @@ export default function WelcomeScreen({
       >
         <CardContent>
 
-          {/* Título + Toggle modo oscuro */}
+          {/* Título + toggle dark */}
           <Stack
             direction="row"
             alignItems="center"
@@ -63,9 +62,8 @@ export default function WelcomeScreen({
               variant="h4"
               fontWeight="bold"
               sx={{
-                background: "linear-gradient(90deg, #2563eb, #9333ea)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                color: (theme) =>
+                  theme.palette.mode === "dark" ? "#60a5fa" : "#2563eb",
               }}
             >
               Quiz Interactivo
@@ -84,10 +82,24 @@ export default function WelcomeScreen({
             </IconButton>
           </Stack>
 
-          {/* Desarrollado por */}
-          <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
+          {/* Desarrollador */}
+          <Typography
+            variant="body2"
+            sx={{
+              mb: 3,
+              color: (theme) =>
+                theme.palette.mode === "dark" ? "#e2e8f0" : "#475569",
+            }}
+          >
             Desarrollado por{" "}
-            <Box component="span" sx={{ fontWeight: "bold", color: "primary.main" }}>
+            <Box
+              component="span"
+              sx={{
+                fontWeight: "bold",
+                color: (theme) =>
+                  theme.palette.mode === "dark" ? "#93c5fd" : "#2563eb",
+              }}
+            >
               Jorge Patricio Santamaría Cherrez
             </Box>
           </Typography>
@@ -110,15 +122,11 @@ export default function WelcomeScreen({
                     ? "rgba(255,255,255,0.1)"
                     : "rgba(0,0,0,0.05)"
                 }`,
-              boxShadow: (theme) =>
-                theme.palette.mode === "dark"
-                  ? "0 4px 15px rgba(0,0,0,0.2)"
-                  : "0 4px 15px rgba(0,0,0,0.05)",
             }}
           >
             <Typography
               variant="subtitle1"
-              sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: "500" }}
+              sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: 500 }}
             >
               <InfoIcon fontSize="small" /> Instrucciones
             </Typography>
@@ -146,7 +154,7 @@ export default function WelcomeScreen({
             </Typography>
           </Stack>
 
-          {/* Selección de dificultad */}
+          {/* Dificultad */}
           <Stack mt={1} spacing={2} alignItems="center">
             <Typography variant="body2" fontWeight="500">
               Selecciona la dificultad:
@@ -193,12 +201,6 @@ export default function WelcomeScreen({
                       "&.Mui-selected:hover": {
                         backgroundColor: colors[level].hover,
                       },
-                      "&:hover": {
-                        backgroundColor:
-                          difficulty === level
-                            ? colors[level].hover
-                            : "rgba(37,99,235,0.1)",
-                      },
                     }}
                   >
                     {label}
@@ -208,11 +210,10 @@ export default function WelcomeScreen({
             </ToggleButtonGroup>
           </Stack>
 
-          {/* Botón empezar */}
+          {/* Botón */}
           <Box mt={4}>
             <Button
               variant="contained"
-              color="primary"
               size="large"
               startIcon={<PlayArrowIcon />}
               onClick={onStart}
@@ -232,4 +233,4 @@ export default function WelcomeScreen({
       </Card>
     </motion.div>
   );
-              }
+}
