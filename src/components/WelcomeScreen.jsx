@@ -50,7 +50,7 @@ export default function WelcomeScreen({
       >
         <CardContent>
 
-          {/* Título + toggle dark */}
+          {/* Título + botón modo oscuro */}
           <Stack
             direction="row"
             alignItems="center"
@@ -87,17 +87,18 @@ export default function WelcomeScreen({
             variant="body2"
             sx={{
               mb: 3,
+              fontWeight: 500,
               color: (theme) =>
-                theme.palette.mode === "dark" ? "#e2e8f0" : "#475569",
+                theme.palette.mode === "dark" ? "#cbd5f5" : "#334155",
             }}
           >
             Desarrollado por{" "}
             <Box
               component="span"
               sx={{
-                fontWeight: "bold",
+                fontWeight: 700,
                 color: (theme) =>
-                  theme.palette.mode === "dark" ? "#93c5fd" : "#2563eb",
+                  theme.palette.mode === "dark" ? "#60a5fa" : "#1d4ed8",
               }}
             >
               Jorge Patricio Santamaría Cherrez
@@ -126,35 +127,52 @@ export default function WelcomeScreen({
           >
             <Typography
               variant="subtitle1"
-              sx={{ display: "flex", alignItems: "center", gap: 1, fontWeight: 500 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                fontWeight: 500,
+              }}
             >
               <InfoIcon fontSize="small" /> Instrucciones
             </Typography>
 
-            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+            <Typography
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
+              variant="body2"
+            >
               <CheckCircleIcon fontSize="small" color="success" />
               <Box component="span" sx={{ fontWeight: "bold" }}>
                 Responde un total de 20 preguntas, a 0.5 puntos cada una
               </Box>
             </Typography>
 
-            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+            <Typography
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
+              variant="body2"
+            >
               <TimerIcon fontSize="small" color="warning" />
               Tienes un límite de tiempo para cada pregunta.
             </Typography>
 
-            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+            <Typography
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
+              variant="body2"
+            >
               <EmojiEventsIcon fontSize="small" color="primary" />
               Gana puntos por cada respuesta correcta.
             </Typography>
 
-            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+            <Typography
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
+              variant="body2"
+            >
               <BarChartIcon fontSize="small" color="secondary" />
               Elige la dificultad antes de comenzar.
             </Typography>
           </Stack>
 
-          {/* Dificultad */}
+          {/* Selección de dificultad */}
           <Stack mt={1} spacing={2} alignItems="center">
             <Typography variant="body2" fontWeight="500">
               Selecciona la dificultad:
@@ -210,7 +228,7 @@ export default function WelcomeScreen({
             </ToggleButtonGroup>
           </Stack>
 
-          {/* Botón */}
+          {/* Botón comenzar */}
           <Box mt={4}>
             <Button
               variant="contained"
