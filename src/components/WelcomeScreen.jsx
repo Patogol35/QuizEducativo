@@ -14,6 +14,10 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import InfoIcon from "@mui/icons-material/Info";
 import { motion } from "framer-motion";
+import TimerIcon from "@mui/icons-material/Timer";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 export default function WelcomeScreen({
   onStart,
@@ -91,10 +95,6 @@ export default function WelcomeScreen({
         : "linear-gradient(135deg, rgba(96,165,250,0.1), rgba(237,242,247,0.6))",
     border: (theme) =>
       `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"}`,
-    boxShadow: (theme) =>
-      theme.palette.mode === "dark"
-        ? "0 4px 15px rgba(0,0,0,0.2)"
-        : "0 4px 15px rgba(0,0,0,0.05)",
   }}
 >
   <Typography
@@ -103,12 +103,26 @@ export default function WelcomeScreen({
   >
     <InfoIcon fontSize="small" /> Instrucciones
   </Typography>
-  <Typography variant="body2">
-    ✅ Responde <b> un total de 20 preguntas, a 0.5 puntos cada una</b>.
+
+  <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+    <CheckCircleIcon fontSize="small" color="success" />
+    Responde <b>un total de 20 preguntas, a 0.5 puntos cada una</b>.
   </Typography>
-  <Typography variant="body2">⏱️ Tienes un límite de tiempo para cada pregunta.</Typography>
-  <Typography variant="body2">🏆 Gana puntos por cada respuesta correcta.</Typography>
-  <Typography variant="body2">📊 Elige la dificultad antes de comenzar.</Typography>
+
+  <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+    <TimerIcon fontSize="small" color="warning" />
+    Tienes un límite de tiempo para cada pregunta.
+  </Typography>
+
+  <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+    <EmojiEventsIcon fontSize="small" color="primary" />
+    Gana puntos por cada respuesta correcta.
+  </Typography>
+
+  <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+    <BarChartIcon fontSize="small" color="secondary" />
+    Elige la dificultad antes de comenzar.
+  </Typography>
 </Stack>
 
           {/* Selección de dificultad */}
