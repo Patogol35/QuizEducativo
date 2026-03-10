@@ -139,12 +139,14 @@ export default function WelcomeScreen({
             </Typography>
 
             <Typography
-              variant="body2"
-              sx={{ display: "flex", alignItems: "center", gap: 1 }}
-            >
-              <CheckCircleIcon fontSize="small" color="success" />
-              Responde <b>un total de 20 preguntas, a 0.5 puntos cada una</b>.
-            </Typography>
+  variant="body2"
+  sx={{ display: "flex", alignItems: "center", gap: 1 }}
+>
+  <CheckCircleIcon fontSize="small" color="success" />
+  <span>
+    Responde <b>un total de 20 preguntas, a 0.5 puntos cada una.</b>
+  </span>
+</Typography>
 
             <Typography
               variant="body2"
