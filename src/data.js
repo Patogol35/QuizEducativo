@@ -51,7 +51,17 @@ export const questions = [
   // 🔹 PREGUNTAS ADICIONALES DE ECUADOR
   { question: "¿Cuál es la provincia más grande de Ecuador en extensión territorial?", options: ["Pastaza", "Guayas", "Orellana", "Manabí"], answer: "Pastaza" },
   { question: "¿Qué isla es la más grande del archipiélago de Galápagos?", options: ["Isabela", "Santa Cruz", "San Cristóbal", "Floreana"], answer: "Isabela" },
-  { question: "¿En qué provincia se encuentra el Parque Nacional Yasuní?", options: ["Orellana", "Sucumbíos", "Pastaza", "Napo"], answer: "Orellana" },
+  
+  {
+  question: "¿En qué dos provincias se encuentra el Parque Nacional Yasuní?",
+  options: [
+    "Orellana y Pastaza",
+    "Sucumbíos y Napo",
+    "Pichincha y Cotopaxi",
+    "Manabí y Esmeraldas"
+  ],
+  answer: "Orellana y Pastaza"
+},
   { question: "¿Qué línea imaginaria atraviesa Ecuador?", options: ["Trópico de Capricornio", "Trópico de Cáncer", "Ecuador", "Meridiano de Greenwich"], answer: "Ecuador" },
   { question: "¿Cuál es el pico más alto medido desde el centro de la Tierra?", options: ["Everest", "Cotopaxi", "Chimborazo", "Antisana"], answer: "Chimborazo" },
   { question: "¿Qué ciudad ecuatoriana es conocida como la 'Capital Mundial del Banano'?", options: ["Machala", "Babahoyo", "Portoviejo", "Quevedo"], answer: "Machala" },
@@ -62,16 +72,36 @@ export const questions = [
 
   // PREGUNTAS DE AMBATO
   { question: "¿Qué volcán se encuentra cerca de Ambato?", options: ["Cotopaxi", "Chimborazo", "Pichincha", "Tungurahua"], answer: "Tungurahua" },
-  { question: "¿Qué bebida tradicional se encuentra en Ambato durante todo el año?", options: ["Canelazo", "Chicha de jora", "Colada morada", "Aguapanela"], answer: "Colada morada" },
+  
+  {
+  question: "¿Qué bebida tradicional se puede encontrar en Atocha durante todo el año?",
+  options: ["Canelazo", "Chicha de jora", "Colada morada", "Aguapanela"],
+  answer: "Colada morada"
+},
   { question: "¿Qué río pasa por Ambato?", options: ["Río Guayas", "Río Ambato", "Río Pastaza", "Río Esmeraldas"], answer: "Río Ambato" },
   { question: "¿Cuál es el plato típico de Ambato?", options: ["Fanesca", "Llapingacho", "Cuy asado", "Humitas"], answer: "Llapingacho" },
   { question: "¿Qué fiesta es famosa en Ambato?", options: ["Fiesta de Guayaquil", "Fiesta de las frutas y de las flores", "Inti Raymi", "Feria de Quito"], answer: "Fiesta de las frutas y de las flores" },
   { question: "¿En qué provincia está ubicada Ambato?", options: ["Pichincha", "Tungurahua", "Cotopaxi", "Imbabura"], answer: "Tungurahua" },
   { question: "¿Qué parque es famoso en Ambato?", options: ["Parque Cevallos", "Parque La Carolina", "Parque Metropolitano", "Parque El Ejido"], answer: "Parque Cevallos" },
   { question: "¿Qué fruta es muy representativa de Ambato?", options: ["Banano", "Manzana", "Naranja", "Piña"], answer: "Manzana" },
+  {
+  question: "¿Qué actividad productiva ha dado fama a Ambato como la Tierra de las Flores y las Frutas?",
+  options: ["Producción frutícola y agrícola", "Pesca artesanal", "Minería", "Producción petrolera"],
+  answer: "Producción frutícola y agrícola"
+},
   { question: "¿Qué famoso escritor nació en Ambato?", options: ["Juan Montalvo", "Eloy Alfaro", "Jorge Icaza", "Oswaldo Guayasamín"], answer: "Juan Montalvo" },
   { question: "¿Qué avenida principal cruza Ambato?", options: ["Avenida Cevallos", "Avenida Amazonas", "Avenida 10 de Agosto", "Avenida América"], answer: "Avenida Cevallos" },
-  { question: "¿Cuál es la principal festividad religiosa de Ambato?", options: ["Semana Santa", "Corpus Christi", "Fiesta de la Virgen de la Merced", "Inti Raymi"], answer: "Fiesta de la Virgen de la Merced" },
+  
+  {
+  question: "¿Quién es la patrona de la Diócesis de Ambato?",
+  options: [
+    "Nuestra Señora de la Elevación",
+    "Virgen de la Merced",
+    "Virgen del Cisne",
+    "Virgen del Quinche"
+  ],
+  answer: "Nuestra Señora de la Elevación"
+},
   { question: "¿Qué museo es destacado en Ambato?", options: ["Museo Casa de Montalvo", "Museo Nacional", "Museo Tumbaco", "Museo Guayasamín"], answer: "Museo Casa de Montalvo" },
   { question: "¿Qué poeta y escritor ambateño es considerado uno de los mejores de Ecuador?", options: ["Juan Montalvo", "Juan León Mera", "Jorge Icaza", "Benjamín Carrión"], answer: "Juan León Mera" },
   { question: "¿Qué himno escribió Juan León Mera, oriundo de Ambato?", options: ["Himno Nacional del Ecuador", "Himno de Quito", "Himno de Guayaquil", "Himno de Cuenca"], answer: "Himno Nacional del Ecuador" },
@@ -88,7 +118,17 @@ export const questions = [
   { question: "¿Cuál es una de las obras más famosas de Juan León Mera?", options: ["Cumandá", "La Vorágine", "Huasipungo", "María"], answer: "Cumandá" },
   { question: "¿En qué ciudad ecuatoriana nació Juan León Mera?", options: ["Ambato", "Quito", "Guayaquil", "Loja"], answer: "Ambato" },
   { question: "¿Qué iglesia emblemática se encuentra en el centro de Ambato?", options: ["Iglesia La Catedral", "Iglesia de San Francisco", "Basílica del Voto Nacional", "Iglesia de La Merced"], answer: "Iglesia La Catedral" },
-  { question: "¿Qué parque de Ambato es conocido por su rosaleda y áreas recreativas?", 
+  
+   {
+  question: "¿Qué parque de Tungurahua cuenta con huertos, jardines, lagunas y zonas recreativas?",
+  options: [
+    "Parque Provincial de la Familia",
+    "Parque Cevallos",
+    "Parque La Carolina",
+    "Parque Montalvo"
+  ],
+  answer: "Parque Provincial de la Familia"
+},
     options: ["Parque Provincial de la Familia", "Parque Cevallos", "Parque La Carolina", "Parque Montalvo"], 
     answer: "Parque Provincial de la Familia" 
   },
