@@ -138,7 +138,7 @@ export const questions = [
   { question: "¿Qué equipo de fútbol ambateño es conocido como el Ídolo de Ambato?", options: ["Macará", "Técnico Universitario", "Mushuc Runa", "Olmedo"], answer: "Macará" },
   { question: "¿Qué equipo de fútbol de Ambato es conocido como el Rodillo Rojo?", options: ["Técnico Universitario", "Macará", "Barcelona SC", "Deportivo Cuenca"], answer: "Técnico Universitario" },
   { question: "¿Qué colores identifican tradicionalmente al Club Social y Deportivo Macará?", options: ["Celeste y blanco", "Rojo y blanco", "Amarillo y negro", "Verde y blanco"], answer: "Celeste y blanco" },
-  { question: "¿Qué colores identifican tradicionalmente a Técnico Universitario?", options: ["Rojo y blanco", "Celeste y blanco", "Azul y amarillo", "Verde y negro"], answer: "Rojo y blanco" }
+  { question: "¿Qué colores identifican tradicionalmente a Técnico Universitario?", options: ["Rojo y blanco", "Celeste y blanco", "Azul y amarillo", "Verde y negro"], answer: "Rojo y blanco" },
   
   // 🇪🇨 NUEVAS PREGUNTAS DE CULTURA GENERAL DE ECUADOR
 
@@ -175,7 +175,7 @@ export const questions = [
   { question: "¿Cuál es el ave nacional de Ecuador?", options: ["Cóndor andino", "Papagayo", "Colibrí", "Águila harpía"], answer: "Cóndor andino" },
   { question: "¿Qué mamífero andino está representado en el escudo nacional de Ecuador?", options: ["Llama", "Oso de anteojos", "Venado", "Puma"], answer: "Llama" },
   { question: "¿Qué científico visitó Ecuador y estudió las especies de las islas Galápagos?", options: ["Charles Darwin", "Albert Einstein", "Isaac Newton", "Alexander Fleming"], answer: "Charles Darwin" },
-  { question: "¿En qué deporte Ecuador consiguió su primera medalla de oro olímpica?", options: ["Marcha atlética", "Fútbol", "Boxeo", "Levantamiento de pesas"], answer: "Marcha atlética" }
+  { question: "¿En qué deporte Ecuador consiguió su primera medalla de oro olímpica?", options: ["Marcha atlética", "Fútbol", "Boxeo", "Levantamiento de pesas"], answer: "Marcha atlética" },
                                                                                                                   
   
   // 🎵 ARTISTAS Y MÚSICA ECUATORIANA
