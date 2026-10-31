@@ -173,7 +173,7 @@ export const questions = [
   { question: "¿Qué reserva ecuatoriana es conocida por proteger una gran diversidad de aves?", options: ["Reserva Ecológica Antisana", "Parque Samanes", "Parque La Carolina", "Parque El Ejido"], answer: "Reserva Ecológica Antisana" },
   { question: "¿Qué animal es representativo de la fauna de Galápagos y puede vivir más de 100 años?", options: ["Tortuga gigante", "Cóndor andino", "Oso de anteojos", "Tapir amazónico"], answer: "Tortuga gigante" },
   { question: "¿Cuál es el ave nacional de Ecuador?", options: ["Cóndor andino", "Papagayo", "Colibrí", "Águila harpía"], answer: "Cóndor andino" },
-  { question: "¿Qué mamífero andino está representado en el escudo nacional de Ecuador?", options: ["Llama", "Oso de anteojos", "Venado", "Puma"], answer: "Llama" },
+  { question: "¿Qué mamífero andino está representado en el escudo nacional de Ecuador?", options: ["Llama", "Oso de anteojos", "Venado", "Cóndor"], answer: "Cóndor" },
   { question: "¿Qué científico visitó Ecuador y estudió las especies de las islas Galápagos?", options: ["Charles Darwin", "Albert Einstein", "Isaac Newton", "Alexander Fleming"], answer: "Charles Darwin" },
   { question: "¿En qué deporte Ecuador consiguió su primera medalla de oro olímpica?", options: ["Marcha atlética", "Fútbol", "Boxeo", "Levantamiento de pesas"], answer: "Marcha atlética" },
                                                                                                                   
@@ -183,7 +183,7 @@ export const questions = [
 
   { question: "¿Qué cantante ecuatoriano es conocido por interpretar el tema Chica Linda?", options: ["Segundo Rosero", "Gerardo Morán", "Paulina Tamayo", "Widinson"], answer: "Segundo Rosero" },
   { question: "¿Qué cantante ecuatoriana es conocida como La Grande del Ecuador?", options: ["Paulina Tamayo", "Margarita Laso", "Silvana Ibarra", "Karina Clavijo"], answer: "Paulina Tamayo" },
-  { question: "¿Qué artista ecuatoriano es conocido por la canción El aguacate?", options: ["César Guerrero", "Julio Jaramillo", "Carlos Rubira Infante", "Segundo Cueva Celi"], answer: "Carlos Rubira Infante" },
+  { question: "¿Qué artista ecuatoriano es conocido por la canción El aguacate?", options: ["César Guerrero Tamayo", "Julio Jaramillo", "Carlos Rubira Infante", "Segundo Cueva Celi"], answer: "Cesar Guerrero Tamayo" },
   { question: "¿Qué cantante ecuatoriano interpreta el tema En vida?", options: ["Edhisson", "Gerardo Morán", "Fausto Miño", "Daniel Páez"], answer: "Gerardo Morán" },
   { question: "¿Qué cantante ecuatoriano popularizó la canción El más querido?", options: ["Gerardo Morán", "Widinson", "Segundo Rosero", "Héctor Jaramillo"], answer: "Widinson" },
   { question: "¿Qué cantante ecuatoriano alcanzó popularidad internacional con la canción Chao Lola?", options: ["Fausto Miño", "Juan Fernando Velasco", "Daniel Betancourth", "Jorge Luis del Hierro"], answer: "Juan Fernando Velasco" },
