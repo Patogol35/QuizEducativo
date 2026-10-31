@@ -134,9 +134,7 @@ export const questions = [
   ],
   answer: "Parque Provincial de la Familia"
 },
-    options: ["Parque Provincial de la Familia", "Parque Cevallos", "Parque La Carolina", "Parque Montalvo"], 
-    answer: "Parque Provincial de la Familia" 
-  },
+    
   { 
     question: "¿Qué parque de Ambato cuenta con un monumento a Juan Montalvo y áreas de descanso?", 
     options: ["Parque Montalvo", "Parque Cevallos", "Parque Provincial de la Familia", "Parque de las Flores"], 
