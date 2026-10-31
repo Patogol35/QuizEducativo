@@ -19,7 +19,12 @@ export const questions = [
   options: ["Loja", "Tena", "Macas", "Puyo"],
   answer: "Macas"
 },
-  { question: "¿Cuál es el plato típico ecuatoriano a base de pescado frito y patacones?", options: ["Ceviche", "Seco de gallina", "Fanesca", "Encocado"], answer: "Encocado" },
+  
+  {
+  question: "¿Qué plato típico ecuatoriano se prepara con pescado o mariscos en salsa de coco?",
+  options: ["Ceviche", "Seco de gallina", "Fanesca", "Encocado"],
+  answer: "Encocado"
+},
   { question: "¿Qué mar baña la costa de Ecuador?", options: ["Océano Atlántico", "Océano Pacífico", "Mar Caribe", "Mar del Norte"], answer: "Océano Pacífico" },
   { question: "¿Qué parque nacional es famoso por sus lobos marinos y tortugas?", options: ["Galápagos", "Cajas", "Yasuní", "Sumaco"], answer: "Galápagos" },
   { question: "¿En qué año se proclamó la independencia de Quito?", options: ["1809", "1822", "1830", "1810"], answer: "1809" },
