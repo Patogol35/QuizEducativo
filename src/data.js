@@ -56,27 +56,18 @@ export const questions = [
   // PREGUNTAS DE AMBATO
   { question: "¿Qué volcán se encuentra cerca de Ambato?", options: ["Cotopaxi", "Chimborazo", "Pichincha", "Tungurahua"], answer: "Tungurahua" },
   
-  {
-  question: "¿Qué bebida tradicional se puede encontrar en Atocha durante todo el año?",
-  options: ["Canelazo", "Chicha de jora", "Colada morada", "Aguapanela"],
-  answer: "Colada morada"
-},
+  { question: "¿Qué bebida tradicional se puede encontrar en Atocha durante todo el año?", options: ["Canelazo", "Chicha de jora", "Colada morada", "Aguapanela"], answer: "Colada morada" },
   { question: "¿Qué río pasa por Ambato?", options: ["Río Guayas", "Río Ambato", "Río Pastaza", "Río Esmeraldas"], answer: "Río Ambato" },
   { question: "¿Cuál es el plato típico de Ambato?", options: ["Fanesca", "Llapingacho", "Cuy asado", "Humitas"], answer: "Llapingacho" },
   { question: "¿Qué fiesta es famosa en Ambato?", options: ["Fiesta de Guayaquil", "Fiesta de las frutas y de las flores", "Inti Raymi", "Feria de Quito"], answer: "Fiesta de las frutas y de las flores" },
   { question: "¿En qué provincia está ubicada Ambato?", options: ["Pichincha", "Tungurahua", "Cotopaxi", "Imbabura"], answer: "Tungurahua" },
   { question: "¿Qué parque es famoso en Ambato?", options: ["Parque Cevallos", "Parque La Carolina", "Parque Metropolitano", "Parque El Ejido"], answer: "Parque Cevallos" },
   { question: "¿Qué fruta es muy representativa de Ambato?", options: ["Banano", "Manzana", "Naranja", "Piña"], answer: "Manzana" },
-  {
-  question: "¿Qué actividad productiva ha dado fama a Ambato como la Tierra de las Flores y las Frutas?",
-  options: ["Producción frutícola y agrícola", "Pesca artesanal", "Minería", "Producción petrolera"],
-  answer: "Producción frutícola y agrícola"
-},
+  { question: "¿Qué actividad productiva ha dado fama a Ambato como la Tierra de las Flores y las Frutas?", options: ["Producción frutícola y agrícola", "Pesca artesanal", "Minería", "Producción petrolera"], answer: "Producción frutícola y agrícola" },
   { question: "¿Qué famoso escritor nació en Ambato?", options: ["Juan Montalvo", "Eloy Alfaro", "Jorge Icaza", "Oswaldo Guayasamín"], answer: "Juan Montalvo" },
   { question: "¿Qué avenida principal cruza Ambato?", options: ["Avenida Cevallos", "Avenida Amazonas", "Avenida 10 de Agosto", "Avenida América"], answer: "Avenida Cevallos" },
   
-  {
-  question: "¿Quién es la patrona de la Diócesis de Ambato?",
+  { question: "¿Quién es la patrona de la Diócesis de Ambato?",
   options: [
     "Nuestra Señora de la Elevación",
     "Virgen de la Merced",
