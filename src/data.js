@@ -106,5 +106,39 @@ export const questions = [
 { question: "¿Qué escritor ambateño escribió la novela A la costa?", options: ["Juan León Mera", "Luis A. Martínez", "Juan Montalvo", "Pedro Fermín Cevallos"], answer: "Luis A. Martínez" },
 { question: "¿Qué provincia tiene como capital a Ambato?", options: ["Cotopaxi", "Chimborazo", "Tungurahua", "Pastaza"], answer: "Tungurahua" },
 { question: "¿Qué lugar turístico de Ambato se encuentra en la parroquia Atocha?", options: ["Quinta de Mera", "Parque La Carolina", "Laguna de Colta", "Quinta Bolívar"], answer: "Quinta de Mera" },
+
+  
+  // 🔹 NUEVAS PREGUNTAS DE AMBATO
+  { question: "¿En qué fecha se celebra la independencia de Ambato?", options: ["12 de noviembre", "10 de agosto", "24 de mayo", "9 de octubre"], answer: "12 de noviembre" },
+  { question: "¿Cómo se conoce a Ambato por sus tres personajes ilustres llamados Juan?", options: ["Cuna de los Tres Juanes", "Ciudad de los Poetas", "Capital de la Cultura", "Tierra de los Libertadores"], answer: "Cuna de los Tres Juanes" },
+  { question: "¿Cuáles son los tres Juanes de Ambato?", options: ["Juan Montalvo, Juan León Mera y Juan Benigno Vela", "Juan Montalvo, Juan José Flores y Juan León Mera", "Juan Benigno Vela, Juan José Flores y Juan León Mera", "Juan León Mera, Juan Pío Montúfar y Juan Montalvo"], answer: "Juan Montalvo, Juan León Mera y Juan Benigno Vela" },
+  { question: "¿Qué escritor ambateño fue conocido por sus ideas liberales y sus críticas políticas?", options: ["Juan Montalvo", "Juan León Mera", "Luis A. Martínez", "Pedro Fermín Cevallos"], answer: "Juan Montalvo" },
+  { question: "¿Qué personaje ambateño fue político y periodista, y formó parte de los Tres Juanes?", options: ["Juan Benigno Vela", "Eloy Alfaro", "Pedro Fermín Cevallos", "Luis A. Martínez"], answer: "Juan Benigno Vela" },
+  { question: "¿Qué novela escribió Luis A. Martínez?", options: ["A la costa", "Cumandá", "Las Catilinarias", "El chulla Romero y Flores"], answer: "A la costa" },
+  { question: "¿Qué acontecimiento natural destruyó gran parte de Ambato en 1949?", options: ["Un terremoto", "Una inundación", "Una erupción volcánica", "Un deslizamiento"], answer: "Un terremoto" },
+  { question: "¿Qué fecha recuerda el terremoto de Ambato de 1949?", options: ["5 de agosto", "12 de noviembre", "24 de agosto", "20 de junio"], answer: "5 de agosto" },
+  { question: "¿Qué representa la Fiesta de la Fruta y de las Flores para los ambateños?", options: ["La reconstrucción y el renacimiento de la ciudad", "La fundación de la provincia", "La independencia de Ecuador", "La celebración de la cosecha de cacao"], answer: "La reconstrucción y el renacimiento de la ciudad" },
+  { question: "¿En qué sector de Ambato se encuentra el Jardín Botánico Atocha-La Liria?", options: ["Atocha", "Huachi Chico", "Picaihua", "Izamba"], answer: "Atocha" },
+  { question: "¿Qué importante escritor ecuatoriano vivió en la Quinta de Atocha?", options: ["Juan León Mera", "Juan Montalvo", "Luis A. Martínez", "Juan Benigno Vela"], answer: "Juan León Mera" },
+  { question: "¿Qué escritor nació en la casa donde actualmente funciona la Casa Museo Juan Montalvo?", options: ["Juan Montalvo", "Juan León Mera", "Luis A. Martínez", "Juan Benigno Vela"], answer: "Juan Montalvo" },
+  { question: "¿Qué edificio patrimonial de Ambato es conocido como la Casa del Portal?", options: ["Casa del Portal", "Quinta de Mera", "Casa de Montalvo", "Casa de la Cultura"], answer: "Casa del Portal" },
+  { question: "¿Qué parque de Ambato antiguamente era conocido como plaza de San Bartolomé?", options: ["Parque Cevallos", "Parque Montalvo", "Parque 12 de Noviembre", "Parque de las Flores"], answer: "Parque Cevallos" },
+  { question: "¿Qué parque de Ambato se encuentra frente a la Catedral y tiene un monumento a Juan Montalvo?", options: ["Parque Montalvo", "Parque Cevallos", "Parque de la Familia", "Parque 12 de Noviembre"], answer: "Parque Montalvo" },
+  { question: "¿En qué parroquia ambateña es tradicional la preparación y venta de colada morada?", options: ["Atocha", "Picaihua", "Quisapincha", "Totoras"], answer: "Atocha" },
+  { question: "¿Qué alimento tradicional es especialmente famoso en la parroquia Pinllo?", options: ["Pan de Pinllo", "Tigrillo", "Bolón de verde", "Tortillas de tiesto de Cayambe"], answer: "Pan de Pinllo" },
+  { question: "¿Qué preparación gastronómica es famosa en Pinllo y suele acompañarse con papas?", options: ["Gallinas de Pinllo", "Fritada de Atuntaqui", "Hornado de Riobamba", "Cuy de Loja"], answer: "Gallinas de Pinllo" },
+  { question: "¿Qué parroquia rural de Ambato es reconocida por sus artículos de cuero?", options: ["Quisapincha", "Izamba", "Totoras", "Cunchibamba"], answer: "Quisapincha" },
+  { question: "¿Qué parroquia rural de Ambato es conocida por su tradición artesanal y sus guitarras?", options: ["Pasa", "Izamba", "Picaihua", "Unamuncho"], answer: "Pasa" },
+  { question: "¿Qué parroquia rural de Ambato es reconocida por su producción agrícola y frutícola?", options: ["Huachi Grande", "La Merced", "San Francisco", "La Matriz"], answer: "Huachi Grande" },
+  { question: "¿Qué parroquia rural de Ambato lleva el nombre de uno de los Tres Juanes?", options: ["Juan Benigno Vela", "Atocha", "Ficoa", "La Península"], answer: "Juan Benigno Vela" },
+  { question: "¿Qué parroquia de Ambato es conocida por su producción de flores y actividad agrícola?", options: ["Izamba", "La Merced", "San Francisco", "Ficoa"], answer: "Izamba" },
+  { question: "¿Qué río atraviesa el territorio de Ambato?", options: ["Río Ambato", "Río Guayas", "Río Napo", "Río Esmeraldas"], answer: "Río Ambato" },
+  { question: "¿Qué volcán lleva el mismo nombre de la provincia cuya capital es Ambato?", options: ["Tungurahua", "Cotopaxi", "Sangay", "Cayambe"], answer: "Tungurahua" },
+  { question: "¿Qué estadio es el principal escenario de fútbol profesional de Ambato?", options: ["Estadio Bellavista", "Estadio Rodrigo Paz Delgado", "Estadio Olímpico Atahualpa", "Estadio George Capwell"], answer: "Estadio Bellavista" },
+  { question: "¿Qué equipo de fútbol ambateño es conocido como el Ídolo de Ambato?", options: ["Macará", "Técnico Universitario", "Mushuc Runa", "Olmedo"], answer: "Macará" },
+  { question: "¿Qué equipo de fútbol de Ambato es conocido como el Rodillo Rojo?", options: ["Técnico Universitario", "Macará", "Barcelona SC", "Deportivo Cuenca"], answer: "Técnico Universitario" },
+  { question: "¿Qué colores identifican tradicionalmente al Club Social y Deportivo Macará?", options: ["Celeste y blanco", "Rojo y blanco", "Amarillo y negro", "Verde y blanco"], answer: "Celeste y blanco" },
+  { question: "¿Qué colores identifican tradicionalmente a Técnico Universitario?", options: ["Rojo y blanco", "Celeste y blanco", "Azul y amarillo", "Verde y negro"], answer: "Rojo y blanco" }
+  
 ];
 
