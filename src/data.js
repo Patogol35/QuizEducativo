@@ -83,4 +83,28 @@ export const questions = [
     options: ["Parque Montalvo", "Parque Cevallos", "Parque Provincial de la Familia", "Parque de las Flores"], 
     answer: "Parque Montalvo" 
   },
+  // NUEVAS PREGUNTAS DE ECUADOR
+{ question: "¿Cuántas provincias tiene Ecuador?", options: ["22", "23", "24", "25"], answer: "24" },
+{ question: "¿En qué fecha se celebra la independencia de Guayaquil?", options: ["10 de agosto", "9 de octubre", "24 de mayo", "3 de noviembre"], answer: "9 de octubre" },
+{ question: "¿Cuál es la capital de la provincia de Manabí?", options: ["Manta", "Chone", "Portoviejo", "Jipijapa"], answer: "Portoviejo" },
+{ question: "¿Qué región natural de Ecuador está formada por las islas Galápagos?", options: ["Costa", "Sierra", "Amazonía", "Insular"], answer: "Insular" },
+{ question: "¿En qué ciudad se encuentra el monumento a la Mitad del Mundo?", options: ["Quito", "Cuenca", "Riobamba", "Ibarra"], answer: "Quito" },
+{ question: "¿Qué presidente ecuatoriano impulsó la Revolución Liberal?", options: ["Juan José Flores", "Eloy Alfaro", "Gabriel García Moreno", "Vicente Rocafuerte"], answer: "Eloy Alfaro" },
+{ question: "¿Cuál es la capital de la provincia de Imbabura?", options: ["Otavalo", "Cotacachi", "Ibarra", "Atuntaqui"], answer: "Ibarra" },
+{ question: "¿Qué ciudad ecuatoriana es conocida como la Atenas del Ecuador?", options: ["Loja", "Cuenca", "Quito", "Riobamba"], answer: "Cuenca" },
+{ question: "¿En qué fecha se celebra la independencia de Cuenca?", options: ["3 de noviembre", "9 de octubre", "24 de mayo", "10 de agosto"], answer: "3 de noviembre" },
+{ question: "¿Cuál es el principal producto tradicional de exportación de Ecuador conocido mundialmente?", options: ["Café", "Cacao", "Banano", "Arroz"], answer: "Banano" },
+
+  // NUEVAS PREGUNTAS DE AMBATO
+{ question: "¿En qué año se celebró por primera vez la Fiesta de la Fruta y de las Flores?", options: ["1949", "1951", "1955", "1960"], answer: "1951" },
+{ question: "¿Qué quinta histórica perteneció al escritor Juan León Mera?", options: ["Quinta de Atocha", "Quinta La Liria", "Quinta de Montalvo", "Quinta El Rosario"], answer: "Quinta de Atocha" },
+{ question: "¿Cómo se llama el aeropuerto de Ambato?", options: ["Aeropuerto Chachoán", "Aeropuerto Mariscal Sucre", "Aeropuerto Eloy Alfaro", "Aeropuerto Cotopaxi"], answer: "Aeropuerto Chachoán" },
+{ question: "¿Qué parroquia rural de Ambato es conocida por su producción de flores?", options: ["Quisapincha", "Izamba", "Atocha", "Pinllo"], answer: "Izamba" },
+{ question: "¿Qué escritor ambateño fue autor de la novela Cumandá?", options: ["Juan Montalvo", "Juan León Mera", "Pedro Fermín Cevallos", "Luis A. Martínez"], answer: "Juan León Mera" },
+{ question: "¿Qué lugar turístico de Ambato conserva importantes colecciones históricas y culturales?", options: ["Casa Museo Juan Montalvo", "Museo del Banco Central", "Museo de la Ciudad de Quito", "Museo Pumapungo"], answer: "Casa Museo Juan Montalvo" },
+{ question: "¿Qué parroquia de Ambato es famosa por sus gallinas y pan tradicional?", options: ["Pinllo", "Izamba", "Huachi Grande", "Santa Rosa"], answer: "Pinllo" },
+{ question: "¿Qué escritor ambateño escribió la novela A la costa?", options: ["Juan León Mera", "Luis A. Martínez", "Juan Montalvo", "Pedro Fermín Cevallos"], answer: "Luis A. Martínez" },
+{ question: "¿Qué provincia tiene como capital a Ambato?", options: ["Cotopaxi", "Chimborazo", "Tungurahua", "Pastaza"], answer: "Tungurahua" },
+{ question: "¿Qué lugar turístico de Ambato se encuentra en la parroquia Atocha?", options: ["Quinta de Mera", "Parque La Carolina", "Laguna de Colta", "Quinta Bolívar"], answer: "Quinta de Mera" },
 ];
+
