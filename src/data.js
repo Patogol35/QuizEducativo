@@ -4,7 +4,12 @@ export const questions = [
   { question: "¿Cuál es la moneda oficial de Ecuador?", options: ["Dólar estadounidense", "Sucre", "Peso", "Euro"], answer: "Dólar estadounidense" },
   { question: "¿Qué ciudad ecuatoriana es conocida como la 'Ciudad de las Flores y las Frutas'?", options: ["Quito", "Ambato", "Guayaquil", "Loja"], answer: "Ambato" },
   { question: "¿Cuál es el volcán más alto de Ecuador?", options: ["Cotopaxi", "Chimborazo", "Tungurahua", "Pichincha"], answer: "Chimborazo" },
-  { question: "¿Qué río es el más largo de Ecuador?", options: ["Río Guayas", "Río Napo", "Río Pastaza", "Río Esmeraldas"], answer: "Río Napo" },
+  
+  {
+  question: "¿Cuál es uno de los principales ríos de la región amazónica ecuatoriana?",
+  options: ["Río Guayas", "Río Napo", "Río Pastaza", "Río Esmeraldas"],
+  answer: "Río Napo"
+},
   { question: "¿Cuál es la bebida típica ecuatoriana hecha de maíz fermentado?", options: ["Colada Morada", "Chicha de jora", "Canelazo", "Guayusa"], answer: "Chicha de jora" },
   { question: "¿Qué país limita al norte con Ecuador?", options: ["Colombia", "Perú", "Brasil", "Venezuela"], answer: "Colombia" },
   { question: "¿Qué país limita al sur con Ecuador?", options: ["Perú", "Chile", "Brasil", "Colombia"], answer: "Perú" },
