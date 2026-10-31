@@ -4,32 +4,13 @@ export const questions = [
   { question: "¿Cuál es la moneda oficial de Ecuador?", options: ["Dólar estadounidense", "Sucre", "Peso", "Euro"], answer: "Dólar estadounidense" },
   { question: "¿Qué ciudad ecuatoriana es conocida como la 'Ciudad de las Flores y las Frutas'?", options: ["Quito", "Ambato", "Guayaquil", "Loja"], answer: "Ambato" },
   { question: "¿Cuál es el volcán más alto de Ecuador?", options: ["Cotopaxi", "Chimborazo", "Tungurahua", "Pichincha"], answer: "Chimborazo" },
-  
-  {
-  question: "¿Cuál es uno de los principales ríos de la región amazónica ecuatoriana?",
-  options: ["Río Guayas", "Río Napo", "Río Pastaza", "Río Esmeraldas"],
-  answer: "Río Napo"
-},
+  {question: "¿Cuál es uno de los principales ríos de la región amazónica ecuatoriana?", options: ["Río Guayas", "Río Napo", "Río Pastaza", "Río Esmeraldas"], answer: "Río Napo" },
   { question: "¿Cuál es la bebida típica ecuatoriana hecha de maíz fermentado?", options: ["Colada Morada", "Chicha de jora", "Canelazo", "Guayusa"], answer: "Chicha de jora" },
   { question: "¿Qué país limita al norte con Ecuador?", options: ["Colombia", "Perú", "Brasil", "Venezuela"], answer: "Colombia" },
-  { question: "¿Qué país limita al sur con Ecuador?", options: ["Perú", "Chile", "Brasil", "Colombia"], answer: "Perú" },
-  
-  {
-  question: "¿En qué ciudad nació el pintor ecuatoriano Manuel Rendón Seminario?",
-  options: ["Guayaquil", "Quito", "París", "Cuenca"],
-  answer: "París"
-},
-  {
-  question: "¿Qué ciudad ecuatoriana es conocida como la Sultana del Oriente?",
-  options: ["Loja", "Tena", "Macas", "Puyo"],
-  answer: "Macas"
-},
-  
-  {
-  question: "¿Qué plato típico ecuatoriano se prepara con pescado o mariscos en salsa de coco?",
-  options: ["Ceviche", "Seco de gallina", "Fanesca", "Encocado"],
-  answer: "Encocado"
-},
+  { question: "¿Qué país limita al sur con Ecuador?", options: ["Perú", "Chile", "Brasil", "Colombia"], answer: "Perú" },  
+  { question: "¿En qué ciudad nació el pintor ecuatoriano Manuel Rendón Seminario?", options: ["Guayaquil", "Quito", "París", "Cuenca"], answer: "París" },
+  { question: "¿Qué ciudad ecuatoriana es conocida como la Sultana del Oriente?", options: ["Loja", "Tena", "Macas", "Puyo"], answer: "Macas" },
+  { question: "¿Qué plato típico ecuatoriano se prepara con pescado o mariscos en salsa de coco?", options: ["Ceviche", "Seco de gallina", "Fanesca", "Encocado"], answer: "Encocado" },
   { question: "¿Qué mar baña la costa de Ecuador?", options: ["Océano Atlántico", "Océano Pacífico", "Mar Caribe", "Mar del Norte"], answer: "Océano Pacífico" },
   { question: "¿Qué parque nacional es famoso por sus lobos marinos y tortugas?", options: ["Galápagos", "Cajas", "Yasuní", "Sumaco"], answer: "Galápagos" },
   { question: "¿En qué año se proclamó la independencia de Quito?", options: ["1809", "1822", "1830", "1810"], answer: "1809" },
@@ -47,7 +28,6 @@ export const questions = [
   { question: "¿Cómo se llamaba el famoso dúo musical conformado por Gonzalo Benítez y Luis Alberto Valencia?", options: ["Los Reales", "Benítez y Valencia", "Los Brillantes", "Los Hermanos Miño Naranjo"], answer: "Benítez y Valencia" },
   { question: "¿Qué cantante guayaquileño es conocido como 'El Ruiseñor de América'?", options: ["Carlota Jaramillo", "Julio Jaramillo", "Olga Gutiérrez", "Segundo Rosero"], answer: "Julio Jaramillo" },
   { question: "¿Qué instrumento musical es muy característico en los sanjuanitos ecuatorianos?", options: ["Guitarra", "Rondador", "Violín", "Charango"], answer: "Rondador" },
-  
   { question: "¿Qué cantante ecuatoriana es conocida como 'La Reina del Pasillo'?", options: ["Olga Gutiérrez", "Carlota Jaramillo", "Paulina Tamayo", "Rosa Guraieb"], answer: "Carlota Jaramillo" },
   { question: "¿Qué compositor ecuatoriano escribió la canción 'Guayaquil de mis amores'?", options: ["Nicasio Safadi", "Carlos Rubira Infante", "Luis Humberto Salgado", "Jorge Humberto Benítez"], answer: "Nicasio Safadi" },
   { question: "¿En qué provincia nació el compositor Carlos Rubira Infante?", options: ["Pichincha", "Guayas", "Manabí", "Azuay"], answer: "Guayas" },
@@ -57,9 +37,7 @@ export const questions = [
   { question: "¿Cuál es la provincia más grande de Ecuador en extensión territorial?", options: ["Pastaza", "Guayas", "Orellana", "Manabí"], answer: "Pastaza" },
   { question: "¿Qué isla es la más grande del archipiélago de Galápagos?", options: ["Isabela", "Santa Cruz", "San Cristóbal", "Floreana"], answer: "Isabela" },
   
-  {
-  question: "¿En qué dos provincias se encuentra el Parque Nacional Yasuní?",
-  options: [
+  { question: "¿En qué dos provincias se encuentra el Parque Nacional Yasuní?", options: [
     "Orellana y Pastaza",
     "Sucumbíos y Napo",
     "Pichincha y Cotopaxi",
