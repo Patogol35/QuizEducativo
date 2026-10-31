@@ -193,7 +193,7 @@ export const questions = [
   { question: "¿Cuál es el plato típico de la provincia de Manabí preparado con plátano verde y maní?", options: ["Viche", "Fanesca", "Yahuarlocro", "Locro de papa"], answer: "Viche" },
   { question: "¿Qué plato tradicional ecuatoriano se prepara con papas y queso y suele servirse con aguacate?", options: ["Locro de papa", "Encebollado", "Guatita", "Seco de chivo"], answer: "Locro de papa" },
   { question: "¿Qué provincia ecuatoriana es especialmente conocida por sus deliciosos ceviches de camarón?", options: ["Manabí", "Carchi", "Bolívar", "Cañar"], answer: "Manabí" },
-  { question: "¿Qué ingrediente principal se utiliza para preparar el encebollado ecuatoriano?", options: ["Atún", "Pollo", "Carne de res", "Cerdo"], answer: "Atún" },
+  { question: "¿Qué ingrediente principal se utiliza para preparar el encebollado ecuatoriano?", options: ["Albacora", "Pollo", "Carne de res", "Cerdo"], answer: "Albacora" },
   { question: "¿Qué dulce tradicional ecuatoriano se prepara con leche y azúcar?", options: ["Manjar de leche", "Colada morada", "Espumilla", "Pristiños"], answer: "Manjar de leche" },
 
   { question: "¿Qué reserva ecuatoriana es conocida por proteger una gran diversidad de aves?", options: ["Reserva Ecológica Antisana", "Parque Samanes", "Parque La Carolina", "Parque El Ejido"], answer: "Reserva Ecológica Antisana" },
