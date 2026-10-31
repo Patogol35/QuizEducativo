@@ -140,5 +140,68 @@ export const questions = [
   { question: "¿Qué colores identifican tradicionalmente al Club Social y Deportivo Macará?", options: ["Celeste y blanco", "Rojo y blanco", "Amarillo y negro", "Verde y blanco"], answer: "Celeste y blanco" },
   { question: "¿Qué colores identifican tradicionalmente a Técnico Universitario?", options: ["Rojo y blanco", "Celeste y blanco", "Azul y amarillo", "Verde y negro"], answer: "Rojo y blanco" }
   
+  // 🇪🇨 NUEVAS PREGUNTAS DE CULTURA GENERAL DE ECUADOR
+
+  { question: "¿Cuál es la capital de la provincia de Santo Domingo de los Tsáchilas?", options: ["Quevedo", "Santo Domingo", "Esmeraldas", "Babahoyo"], answer: "Santo Domingo" },
+  { question: "¿Qué ciudad ecuatoriana es conocida como la Perla del Pacífico?", options: ["Manta", "Guayaquil", "Salinas", "Esmeraldas"], answer: "Guayaquil" },
+  { question: "¿Cuál es la capital de la provincia de El Oro?", options: ["Machala", "Santa Rosa", "Huaquillas", "Pasaje"], answer: "Machala" },
+  { question: "¿En qué provincia se encuentra la ciudad de Otavalo?", options: ["Pichincha", "Imbabura", "Carchi", "Cotopaxi"], answer: "Imbabura" },
+  { question: "¿Qué ciudad ecuatoriana es famosa por sus sombreros de paja toquilla?", options: ["Montecristi", "Riobamba", "Tulcán", "Latacunga"], answer: "Montecristi" },
+  { question: "¿En qué provincia se encuentra el volcán Quilotoa?", options: ["Tungurahua", "Cotopaxi", "Chimborazo", "Pichincha"], answer: "Cotopaxi" },
+  { question: "¿Cuál es la capital de la provincia de Carchi?", options: ["Tulcán", "Ibarra", "Otavalo", "San Gabriel"], answer: "Tulcán" },
+  { question: "¿Qué ciudad ecuatoriana es conocida por su tradicional Fiesta de la Mama Negra?", options: ["Ambato", "Latacunga", "Riobamba", "Guaranda"], answer: "Latacunga" },
+  { question: "¿En qué provincia se encuentra el Parque Nacional Cajas?", options: ["Azuay", "Loja", "Cañar", "Chimborazo"], answer: "Azuay" },
+  { question: "¿Cuál es la capital de la provincia de Sucumbíos?", options: ["Lago Agrio", "Tena", "Puyo", "Macas"], answer: "Lago Agrio" },
+
+  { question: "¿Qué cultura precolombina construyó importantes asentamientos en la isla de La Tolita?", options: ["Valdivia", "La Tolita", "Machalilla", "Cañari"], answer: "La Tolita" },
+  { question: "¿Qué cultura precolombina es reconocida por sus antiguas figuras de cerámica femenina?", options: ["Valdivia", "Inca", "Cañari", "Quitu"], answer: "Valdivia" },
+  { question: "¿En qué año se fundó oficialmente la República del Ecuador?", options: ["1822", "1830", "1835", "1845"], answer: "1830" },
+  { question: "¿Qué prócer ecuatoriano fue conocido como el Mariscal de Ayacucho?", options: ["Antonio José de Sucre", "Eloy Alfaro", "Juan José Flores", "Vicente Rocafuerte"], answer: "Antonio José de Sucre" },
+  { question: "¿Qué presidente ecuatoriano fue conocido como el Gran Constructor?", options: ["Gabriel García Moreno", "Eloy Alfaro", "Jaime Roldós", "José María Velasco Ibarra"], answer: "Gabriel García Moreno" },
+  { question: "¿Qué ciudad fue la sede de la primera Constitución del Ecuador?", options: ["Quito", "Guayaquil", "Riobamba", "Cuenca"], answer: "Riobamba" },
+  { question: "¿Qué fecha se conmemora la Batalla de Pichincha?", options: ["24 de mayo", "10 de agosto", "9 de octubre", "3 de noviembre"], answer: "24 de mayo" },
+  { question: "¿Quién fue el autor de la letra del Himno Nacional del Ecuador?", options: ["Juan León Mera", "Juan Montalvo", "Eloy Alfaro", "José Joaquín de Olmedo"], answer: "Juan León Mera" },
+  { question: "¿Quién compuso la música del Himno Nacional del Ecuador?", options: ["Antonio Neumane", "Luis Humberto Salgado", "Segundo Cueva Celi", "Nicasio Safadi"], answer: "Antonio Neumane" },
+  { question: "¿Qué ciudad ecuatoriana fue fundada por los españoles el 6 de diciembre de 1534?", options: ["Quito", "Cuenca", "Loja", "Portoviejo"], answer: "Quito" },
+
+  { question: "¿Cuál es el plato típico de la provincia de Manabí preparado con plátano verde y maní?", options: ["Viche", "Fanesca", "Yahuarlocro", "Locro de papa"], answer: "Viche" },
+  { question: "¿Qué plato tradicional ecuatoriano se prepara con papas y queso y suele servirse con aguacate?", options: ["Locro de papa", "Encebollado", "Guatita", "Seco de chivo"], answer: "Locro de papa" },
+  { question: "¿Qué provincia ecuatoriana es especialmente conocida por sus deliciosos ceviches de camarón?", options: ["Manabí", "Carchi", "Bolívar", "Cañar"], answer: "Manabí" },
+  { question: "¿Qué ingrediente principal se utiliza para preparar el encebollado ecuatoriano?", options: ["Atún", "Pollo", "Carne de res", "Cerdo"], answer: "Atún" },
+  { question: "¿Qué dulce tradicional ecuatoriano se prepara con leche y azúcar?", options: ["Manjar de leche", "Colada morada", "Espumilla", "Pristiños"], answer: "Manjar de leche" },
+
+  { question: "¿Qué reserva ecuatoriana es conocida por proteger una gran diversidad de aves?", options: ["Reserva Ecológica Antisana", "Parque Samanes", "Parque La Carolina", "Parque El Ejido"], answer: "Reserva Ecológica Antisana" },
+  { question: "¿Qué animal es representativo de la fauna de Galápagos y puede vivir más de 100 años?", options: ["Tortuga gigante", "Cóndor andino", "Oso de anteojos", "Tapir amazónico"], answer: "Tortuga gigante" },
+  { question: "¿Cuál es el ave nacional de Ecuador?", options: ["Cóndor andino", "Papagayo", "Colibrí", "Águila harpía"], answer: "Cóndor andino" },
+  { question: "¿Qué mamífero andino está representado en el escudo nacional de Ecuador?", options: ["Llama", "Oso de anteojos", "Venado", "Puma"], answer: "Llama" },
+  { question: "¿Qué científico visitó Ecuador y estudió las especies de las islas Galápagos?", options: ["Charles Darwin", "Albert Einstein", "Isaac Newton", "Alexander Fleming"], answer: "Charles Darwin" },
+  { question: "¿En qué deporte Ecuador consiguió su primera medalla de oro olímpica?", options: ["Marcha atlética", "Fútbol", "Boxeo", "Levantamiento de pesas"], answer: "Marcha atlética" }
+                                                                                                                  
+  
+  // 🎵 ARTISTAS Y MÚSICA ECUATORIANA
+
+
+  { question: "¿Qué cantante ecuatoriano es conocido por interpretar el tema Chica Linda?", options: ["Segundo Rosero", "Gerardo Morán", "Paulina Tamayo", "Widinson"], answer: "Segundo Rosero" },
+  { question: "¿Qué cantante ecuatoriana es conocida como La Grande del Ecuador?", options: ["Paulina Tamayo", "Margarita Laso", "Silvana Ibarra", "Karina Clavijo"], answer: "Paulina Tamayo" },
+  { question: "¿Qué artista ecuatoriano es conocido por la canción El aguacate?", options: ["César Guerrero", "Julio Jaramillo", "Carlos Rubira Infante", "Segundo Cueva Celi"], answer: "Carlos Rubira Infante" },
+  { question: "¿Qué cantante ecuatoriano interpreta el tema En vida?", options: ["Edhisson", "Gerardo Morán", "Fausto Miño", "Daniel Páez"], answer: "Gerardo Morán" },
+  { question: "¿Qué cantante ecuatoriano popularizó la canción El más querido?", options: ["Gerardo Morán", "Widinson", "Segundo Rosero", "Héctor Jaramillo"], answer: "Widinson" },
+  { question: "¿Qué cantante ecuatoriano alcanzó popularidad internacional con la canción Chao Lola?", options: ["Fausto Miño", "Juan Fernando Velasco", "Daniel Betancourth", "Jorge Luis del Hierro"], answer: "Juan Fernando Velasco" },
+  { question: "¿Qué cantante ecuatoriano interpretó la canción Para que no me olvides?", options: ["Juan Fernando Velasco", "Fausto Miño", "Marlon Rosero", "Gustavo Velásquez"], answer: "Juan Fernando Velasco" },
+  { question: "¿Qué cantante ecuatoriano es conocido por la canción Baila mi vida?", options: ["Daniel Betancourth", "Fausto Miño", "Jorge Luis del Hierro", "Mirella Cesa"], answer: "Daniel Betancourth" },
+  { question: "¿Qué cantante ecuatoriana es conocida por fusionar música pop con ritmos andinos?", options: ["Mirella Cesa", "Paulina Tamayo", "Silvana Ibarra", "Margarita Laso"], answer: "Mirella Cesa" },
+
+  { question: "¿Qué grupo ecuatoriano popularizó la canción Vasija de barro?", options: ["Los 4 del Altiplano", "Los Corazas", "Pueblo Nuevo", "Jayac"], answer: "Los 4 del Altiplano" },
+  { question: "¿Qué grupo ecuatoriano es conocido por interpretar música andina?", options: ["Los 4 del Altiplano", "Tercer Mundo", "Tranzas", "Verde 70"], answer: "Los 4 del Altiplano" },
+  { question: "¿Qué banda ecuatoriana interpretó la canción Tu recuerdo?", options: ["Tranzas", "Tercer Mundo", "Verde 70", "Cruks en Karnak"], answer: "Tranzas" },
+  { question: "¿Qué grupo ecuatoriano alcanzó popularidad con la canción El alma en los labios?", options: ["Tercer Mundo", "Tranzas", "Guardarraya", "Verde 70"], answer: "Tercer Mundo" },
+  { question: "¿Qué banda ecuatoriana interpretó la canción La última vez?", options: ["Verde 70", "Tranzas", "Tercer Mundo", "Rocola Bacalao"], answer: "Verde 70" },
+
+  { question: "¿Qué compositor ecuatoriano escribió el pasillo Alma en los labios?", options: ["Medardo Ángel Silva", "Julio Jaramillo", "Carlos Rubira Infante", "Nicasio Safadi"], answer: "Medardo Ángel Silva" },
+  { question: "¿Qué compositor ecuatoriano fue conocido por sus numerosas composiciones de pasillos?", options: ["Segundo Cueva Celi", "Antonio Neumane", "Juan León Mera", "Luis A. Martínez"], answer: "Segundo Cueva Celi" },
+  { question: "¿Qué género musical ecuatoriano tiene raíces indígenas y suele interpretarse en fiestas tradicionales?", options: ["Sanjuanito", "Tango", "Samba", "Merengue"], answer: "Sanjuanito" },
+  { question: "¿Qué instrumento de viento andino está formado por varios tubos de diferentes tamaños?", options: ["Rondador", "Guitarra", "Marimba", "Bandoneón"], answer: "Rondador" },
+  { question: "¿Qué cantante ecuatoriano es conocido como el Príncipe de la Canción Nacional?", options: ["Héctor Jaramillo", "Julio Jaramillo", "Segundo Rosero", "Gerardo Morán"], answer: "Héctor Jaramillo" }
+
 ];
 
