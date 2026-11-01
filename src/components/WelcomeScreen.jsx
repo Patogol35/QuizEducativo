@@ -144,7 +144,7 @@ export default function WelcomeScreen({
 >
   <CheckCircleIcon fontSize="small" color="success" />
   <span>
-    Responde <b>un total de 20 preguntas, a 0.5 puntos cada una.</b>
+    Responde <b>un total de 30 preguntas, a 0.33 puntos cada una.</b>
   </span>
 </Typography>
 
