@@ -161,7 +161,7 @@ export const questions = [
   { question: "¿Qué río atraviesa el territorio de Ambato?", options: ["Río Ambato", "Río Guayas", "Río Napo", "Río Esmeraldas"], answer: "Río Ambato" },
   { question: "¿Qué volcán lleva el mismo nombre de la provincia cuya capital es Ambato?", options: ["Tungurahua", "Cotopaxi", "Sangay", "Cayambe"], answer: "Tungurahua" },
   { question: "¿Qué estadio es el principal escenario de fútbol profesional de Ambato?", options: ["Estadio Bellavista", "Estadio Rodrigo Paz Delgado", "Estadio Olímpico Atahualpa", "Estadio George Capwell"], answer: "Estadio Bellavista" },
-  { question: "¿Qué equipo de fútbol ambateño es conocido como el Ídolo de Ambato?", options: ["Macará", "Técnico Universitario", "Mushuc Runa", "Olmedo"], answer: "Macará" },
+  { question: "¿Qué equipo de fútbol ambateño es conocido como el Ídolo de Ambato?", options: ["Macará", "Técnico Universitario", "Mushuc Runa", "Emelec"], answer: "Macará" },
   { question: "¿Qué equipo de fútbol de Ambato es conocido como el Rodillo Rojo?", options: ["Técnico Universitario", "Macará", "Barcelona SC", "Deportivo Cuenca"], answer: "Técnico Universitario" },
   { question: "¿Qué colores identifican tradicionalmente al Club Social y Deportivo Macará?", options: ["Celeste y blanco", "Rojo y blanco", "Amarillo y negro", "Verde y blanco"], answer: "Celeste y blanco" },
   { question: "¿Qué colores identifican tradicionalmente a Técnico Universitario?", options: ["Rojo y blanco", "Celeste y blanco", "Azul y amarillo", "Verde y negro"], answer: "Rojo y blanco" },
