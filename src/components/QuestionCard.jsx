@@ -77,7 +77,8 @@ export default function QuestionCard({
                 textAlign: "center",
               }}
             >
-              {current + 1} / {total}
+              
+              Pregunta {current + 1} de {total}
             </Typography>
 
             {/* Cronómetro */}
@@ -205,7 +206,8 @@ export default function QuestionCard({
             align="right"
             sx={{ mt: 3, color: "text.secondary", fontWeight: 500 }}
           >
-            Puntos: {score}
+            
+            Puntos: {Number(score.toFixed(2))}
           </Typography>
         </CardContent>
       </Card>
