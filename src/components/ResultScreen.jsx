@@ -5,9 +5,10 @@ import ReplayIcon from "@mui/icons-material/Replay";
 import confetti from "canvas-confetti";
 
 export default function ResultScreen({ score, total, onRestart }) {
-  // Calcular porcentaje según puntaje real (0.5 por pregunta)
-  const maxScore = total * 0.5;
-  const percent = (score / maxScore) * 100;
+
+  // Calcular porcentaje sobre 10 puntos
+const maxScore = 10;
+const percent = (score / maxScore) * 100;
 
   // Mensajes de motivación
   let message = "Sigue intentándolo, cada vez serás mejor!";
@@ -89,7 +90,8 @@ export default function ResultScreen({ score, total, onRestart }) {
           </Typography>
 
           <Typography variant="h6" gutterBottom>
-            Puntaje: {score} / {maxScore}
+            
+            Puntaje: {Number(score.toFixed(2))} / {maxScore}
           </Typography>
 
           <Typography variant="body1" sx={{ mb: 3 }}>
