@@ -144,7 +144,8 @@ export default function WelcomeScreen({
 >
   <CheckCircleIcon fontSize="small" color="success" />
   <span>
-    Responde <b>un total de 30 preguntas, a 0.33 puntos cada una.</b>
+    
+    Responde <b>un total de 30 preguntas. Cada respuesta correcta suma aproximadamente 0.33 puntos, para una calificación máxima de 10 puntos.</b>
   </span>
 </Typography>
 
