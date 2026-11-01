@@ -23,6 +23,7 @@ export default function useQuiz(allQuestions, difficulty) {
 
   const [timeLeft, setTimeLeft] = useState(getTime());
   const [maxTime, setMaxTime] = useState(getTime());
+  const questionValue = 10 / 30;
 
   // 🚀 nuevo lock para evitar dobles respuestas
   const [answered, setAnswered] = useState(false);
@@ -68,7 +69,9 @@ export default function useQuiz(allQuestions, difficulty) {
     setAnswered(true);
 
     const correct = questions[current]?.answer;
-if (answer === correct) setScore((s) => s + (10 / 30));
+if (answer === correct) {
+  setScore((s) => s + questionValue);
+}
 
     setSelected(answer);
 
