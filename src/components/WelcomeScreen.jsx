@@ -65,7 +65,7 @@ export default function WelcomeScreen({
                 color: "#2563eb",
               }}
             >
-              Quiz Interactivo
+              Quiz Educativo
             </Typography>
 
             <IconButton
